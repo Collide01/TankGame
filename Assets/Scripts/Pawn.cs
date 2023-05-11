@@ -28,9 +28,19 @@ public abstract class Pawn : MonoBehaviour
     [HideInInspector] public float fireRate;
     public float shotsPerSecond;
 
+    public enum SpecialShotType
+    {
+        BouncyShot,
+        LaserBeam,
+        Mine
+    }
+    public SpecialShotType specialShotType;
     public Transform specialFirepointTransform;
+    public Transform mineTransform;
     // Variable for our special shot prefab
     public GameObject specialShotPrefab;
+    // Variable for how long the special shot lasts; only applies to laser beam and mine
+    public float specialLifespan;
     // Variable for the special shot
     public float specialChargeTime; // In seconds
 

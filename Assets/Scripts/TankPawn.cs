@@ -93,7 +93,19 @@ public class TankPawn : Pawn
     {
         if (specialShotTimer >= specialChargeTime)
         {
-
+            switch (specialShotType)
+            {
+                case SpecialShotType.BouncyShot:
+                    shooter.BouncyShot(specialShotPrefab, specialFirepointTransform, fireForce);
+                    break;
+                case SpecialShotType.LaserBeam:
+                    shooter.LaserBeam(specialShotPrefab, specialFirepointTransform, specialLifespan);
+                    break;
+                case SpecialShotType.Mine:
+                    shooter.Mine(specialShotPrefab, specialFirepointTransform, specialLifespan);
+                    break;
+            }
+            specialShotTimer = 0;
         }
     }
 }
