@@ -28,6 +28,12 @@ public abstract class Pawn : MonoBehaviour
     [HideInInspector] public float fireRate;
     public float shotsPerSecond;
 
+    public Transform specialFirepointTransform;
+    // Variable for our special shot prefab
+    public GameObject specialShotPrefab;
+    // Variable for the special shot
+    public float specialChargeTime; // In seconds
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -48,4 +54,5 @@ public abstract class Pawn : MonoBehaviour
     public abstract void RotateClockwise();
     public abstract void RotateCounterClockwise();
     public abstract void Shoot();
+    public abstract void SpecialShoot();
 }

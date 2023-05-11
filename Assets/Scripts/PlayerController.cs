@@ -37,6 +37,7 @@ public class PlayerController : Controller
         if (vInput.x < 0) pawn.RotateCounterClockwise();
 
         if (firing) pawn.Shoot();
+        if (specialFiring) pawn.SpecialShoot();
 
         // Run the Update() function from the parent (base) class
         base.Update();

@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageOnHit : MonoBehaviour
+public class BouncyShot : MonoBehaviour
 {
-    public float damageDone;
+    public float damageDone = 999;
+    public int bounces; // Bounces a certain number of times before it gets destroyed
     public Pawn owner;
 
-    public void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision collision)
     {
         // Get the Health component from the Game Object that has the Collider that we are overlapping
-        Health otherHealth = other.gameObject.GetComponent<Health>();
+        Health otherHealth = collision.gameObject.GetComponent<Health>();
         // Only damage if it has a Health component
         if (otherHealth != null)
         {
             // Do damage
             otherHealth.TakeDamage(damageDone, owner);
+            Destroy(gameObject);
         }
 
-        // Destroy ourselves, whether we did damage or not
-        Destroy(gameObject);
+        bounces--;
+        if (bounces <= 0) Destroy(gameObject);
     }
 }

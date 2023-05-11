@@ -5,6 +5,7 @@ using UnityEngine;
 public class TankPawn : Pawn
 {
     private float shootTimer;
+    private float specialShotTimer;
 
     // Start is called before the first frame update
     public override void Start()
@@ -16,6 +17,8 @@ public class TankPawn : Pawn
     public override void Update()
     {
         shootTimer += Time.deltaTime;
+        specialShotTimer += Time.deltaTime;
+        specialShotTimer = Mathf.Clamp(specialShotTimer, 0, specialChargeTime);
 
         base.Start();
     }
@@ -82,6 +85,15 @@ public class TankPawn : Pawn
         {
             shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
             shootTimer = 0;
+            specialShotTimer -= 2;
+        }
+    }
+
+    public override void SpecialShoot()
+    {
+        if (specialShotTimer >= specialChargeTime)
+        {
+
         }
     }
 }
