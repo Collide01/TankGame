@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public GameObject playerControllerPrefab;
     public GameObject tankPawnPrefab;
 
+    // List that holds our player(s)
+    public List<PlayerController> players;
+
     // Awake is called when the object is first created - before even Start can run!
     private void Awake()
     {
