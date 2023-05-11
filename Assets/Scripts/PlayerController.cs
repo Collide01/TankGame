@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : Controller
 {
+    private Vector2 vInput;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -15,15 +17,15 @@ public class PlayerController : Controller
     // Update is called once per frame
     public override void Update()
     {
-        // Process our Keyboard Inputs
-        ProcessInputs();
+        // Process out inputs
+        Debug.Log(vInput);
 
         // Run the Update() function from the parent (base) class
         base.Update();
     }
 
-    public void ProcessInputs()
+    private void OnMove(InputValue value)
     {
-        
+        vInput = value.Get<Vector2>();
     }
 }
