@@ -24,12 +24,18 @@ public abstract class Pawn : MonoBehaviour
     // Variable for how long our bullets survive if they don't collide
     public float shellLifespan;
 
+    // Variable for Rate of Fire
+    [HideInInspector] public float fireRate;
+    public float shotsPerSecond;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         mover = GetComponent<Mover>();
         shooter = GetComponent<Shooter>();
         health = GetComponent<Health>();
+
+        fireRate = 1 / shotsPerSecond;
     }
 
     // Update is called once per frame

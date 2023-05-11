@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TankPawn : Pawn
 {
+    private float shootTimer;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -13,6 +15,8 @@ public class TankPawn : Pawn
     // Update is called once per frame
     public override void Update()
     {
+        shootTimer += Time.deltaTime;
+
         base.Start();
     }
 
@@ -74,6 +78,10 @@ public class TankPawn : Pawn
 
     public override void Shoot()
     {
-        shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
+        if (shootTimer >= fireRate)
+        {
+            shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
+            shootTimer = 0;
+        }
     }
 }
