@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class Pawn : MonoBehaviour
 {
-    public Mover mover;
-    public Shooter shooter;
-    public Health health;
+    [HideInInspector] public Mover mover;
+    [HideInInspector] public Shooter shooter;
+    [HideInInspector] public Health health;
 
     // Variable for move speed
     public float moveSpeed;
@@ -35,14 +35,15 @@ public abstract class Pawn : MonoBehaviour
         Mine
     }
     public SpecialShotType specialShotType;
-    public Transform specialFirepointTransform;
-    public Transform mineTransform;
     // Variable for our special shot prefab
     public GameObject specialShotPrefab;
+
+    // Variable for the special shot's charge time
+    public float specialChargeTime; // In seconds
+    public Transform specialFirepointTransform;
+    public Transform mineTransform;
     // Variable for how long the special shot lasts; only applies to laser beam and mine
     public float specialLifespan;
-    // Variable for the special shot
-    public float specialChargeTime; // In seconds
 
     // Start is called before the first frame update
     public virtual void Start()

@@ -656,7 +656,7 @@ MonoBehaviour:
   mineTransform: {fileID: 5277566949835706100}
   specialShotPrefab: {fileID: 2884441558055782101, guid: 4618aca98b3867a40bd72c7a4b5913e9, type: 3}
   specialLifespan: 2
-  specialChargeTime: 3
+  specialChargeTime: 10
 --- !u!114 &8773601441572174939
 MonoBehaviour:
   m_ObjectHideFlags: 0
