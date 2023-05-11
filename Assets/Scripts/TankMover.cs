@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class TankMover : Mover
 {
+    // Variable to hold the Rigidbody Component
+    private Rigidbody rb;
+
     // Start is called before the first frame update
-    public override void Start()
+    public void Start()
     {
-        // Run the Start() function from the parent (base) class
-        base.Start();
+        // Get the Rigidbody component
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    public override void Update()
+    public override void Move(Vector3 direction, float speed)
     {
-        // Run the Update() function from the parent (base) class
-        base.Update();
+        Vector3 moveVector = direction.normalized * speed * Time.deltaTime;
+        rb.MovePosition(rb.position + moveVector);
     }
 
-    public override void Move(int direction, float moveSpeed)
+    public override void Rotate(float speed)
     {
-        gameObject.GetComponent<Rigidbody>()
-            .MovePosition(new Vector3(gameObject.transform.position.x, 
-            gameObject.transform.position.y, 
-            gameObject.transform.position.z + direction * moveSpeed * Time.deltaTime));
-    }
-
-    public override void Rotate(int direction, float turnSpeed)
-    {
-        gameObject.transform.Rotate(new Vector3(0, direction * turnSpeed * Time.deltaTime, 0));
+        gameObject.transform.Rotate(new Vector3(0, speed * Time.deltaTime, 0));
     }
 }

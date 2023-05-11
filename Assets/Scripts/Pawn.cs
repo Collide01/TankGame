@@ -16,6 +16,7 @@ public abstract class Pawn : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        mover = GetComponent<Mover>();
     }
 
     // Update is called once per frame
