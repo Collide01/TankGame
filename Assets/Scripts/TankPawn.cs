@@ -71,4 +71,9 @@ public class TankPawn : Pawn
             Debug.LogWarning("Warning: No Mover in TankPawn.RotateCounterClockwise()!");
         }
     }
+
+    public override void Shoot()
+    {
+        shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
+    }
 }

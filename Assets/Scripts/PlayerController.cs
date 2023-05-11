@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : Controller
 {
     private Vector2 vInput;
-    private float fireValue;
-    private float specialFireValue;
+    private bool firing;
+    private bool specialFiring;
 
     // Start is called before the first frame update
     public override void Start()
@@ -36,6 +36,8 @@ public class PlayerController : Controller
         if (vInput.x > 0) pawn.RotateClockwise();
         if (vInput.x < 0) pawn.RotateCounterClockwise();
 
+        if (firing) pawn.Shoot();
+
         // Run the Update() function from the parent (base) class
         base.Update();
     }
@@ -47,12 +49,28 @@ public class PlayerController : Controller
 
     private void OnFire(InputValue value)
     {
-        fireValue = value.Get<float>();
+        float v = value.Get<float>();
+        if (v != 0)
+        {
+            firing = true;
+        }
+        else
+        {
+            firing = false;
+        }
     }
 
     private void OnSpecialFire(InputValue value)
     {
-        specialFireValue = value.Get<float>();
+        float v = value.Get<float>();
+        if (v != 0)
+        {
+            specialFiring = true;
+        }
+        else
+        {
+            specialFiring = false;
+        }
     }
 
     private void OnPause(InputValue value)
