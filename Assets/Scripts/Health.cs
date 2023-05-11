@@ -17,4 +17,9 @@ public class Health : MonoBehaviour
     {
 
     }
+
+    public void OnDie()
+    {
+
+    }
 }

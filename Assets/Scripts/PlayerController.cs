@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : Controller
 {
-    public KeyCode moveForwardKey;
-    public KeyCode moveBackwardKey;
-    public KeyCode rotateClockwiseKey;
-    public KeyCode rotateCounterClockwiseKey;
-
     // Start is called before the first frame update
     public override void Start()
     {
@@ -28,24 +24,6 @@ public class PlayerController : Controller
 
     public void ProcessInputs()
     {
-        if (Input.GetKey(moveForwardKey))
-        {
-            pawn.MoveForward();
-        }
-
-        if (Input.GetKey(moveBackwardKey))
-        {
-            pawn.MoveBackward();
-        }
-
-        if (Input.GetKey(rotateClockwiseKey))
-        {
-            pawn.RotateClockwise();
-        }
-
-        if (Input.GetKey(rotateCounterClockwiseKey))
-        {
-            pawn.RotateCounterClockwise();
-        }
+        
     }
 }
