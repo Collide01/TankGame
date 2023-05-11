@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
+public abstract class Mover : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        
+    }
+    // Update is called once per frame
+    public virtual void Update()
+    {
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Move();
+    public abstract void Rotate();
 }

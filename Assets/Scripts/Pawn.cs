@@ -4,6 +4,10 @@ using UnityEngine;
 
 public abstract class Pawn : MonoBehaviour
 {
+    public Mover mover;
+    public Shooter shooter;
+    public Health health;
+
     // Variable for move speed
     public float moveSpeed;
     // Variable for turn speed

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+public abstract class Shooter : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        
     }
+
+    public abstract void Shoot();
 }
