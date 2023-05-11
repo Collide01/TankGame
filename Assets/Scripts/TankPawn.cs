@@ -16,6 +16,7 @@ public class TankPawn : Pawn
         base.Start();
     }
 
+    // Calls Mover to move the tank forward
     public override void MoveForward()
     {
         if (mover != null)
@@ -24,10 +25,12 @@ public class TankPawn : Pawn
         }
         else
         {
+            // Failsafe
             Debug.LogWarning("Warning: No Mover in TankPawn.MoveForward()!");
         }
     }
 
+    // Calls Mover to move the tank backward
     public override void MoveBackward()
     {
         if (mover != null)
@@ -36,10 +39,12 @@ public class TankPawn : Pawn
         }
         else
         {
+            // Failsafe
             Debug.LogWarning("Warning: No Mover in TankPawn.MoveBackward()!");
         }
     }
 
+    // Calls Mover to rotate the tank clockwise
     public override void RotateClockwise()
     {
         if (mover != null)
@@ -48,10 +53,12 @@ public class TankPawn : Pawn
         }
         else
         {
+            // Failsafe
             Debug.LogWarning("Warning: No Mover in TankPawn.RotateClockwise()!");
         }
     }
 
+    // Calls Mover to rotate the tank counterclockwise
     public override void RotateCounterClockwise()
     {
         if (mover != null)
@@ -60,6 +67,7 @@ public class TankPawn : Pawn
         }
         else
         {
+            // Failsafe
             Debug.LogWarning("Warning: No Mover in TankPawn.RotateCounterClockwise()!");
         }
     }
