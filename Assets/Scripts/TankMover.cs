@@ -18,13 +18,16 @@ public class TankMover : Mover
         base.Update();
     }
 
-    public override void Move()
+    public override void Move(int direction, float moveSpeed)
     {
-        
+        gameObject.GetComponent<Rigidbody>()
+            .MovePosition(new Vector3(gameObject.transform.position.x, 
+            gameObject.transform.position.y, 
+            gameObject.transform.position.z + direction * moveSpeed * Time.deltaTime));
     }
 
-    public override void Rotate()
+    public override void Rotate(int direction, float turnSpeed)
     {
-
+        gameObject.transform.Rotate(new Vector3(0, direction * turnSpeed * Time.deltaTime, 0));
     }
 }

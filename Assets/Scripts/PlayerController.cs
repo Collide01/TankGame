@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : Controller
 {
     private Vector2 vInput;
+    private float fireValue;
+    private float specialFireValue;
 
     // Start is called before the first frame update
     public override void Start()
@@ -18,7 +20,10 @@ public class PlayerController : Controller
     public override void Update()
     {
         // Process out inputs
-        Debug.Log(vInput);
+        if (vInput.y > 0) pawn.MoveForward();
+        if (vInput.y < 0) pawn.MoveBackward();
+        if (vInput.x > 0) pawn.RotateClockwise();
+        if (vInput.x < 0) pawn.RotateCounterClockwise();
 
         // Run the Update() function from the parent (base) class
         base.Update();
@@ -27,5 +32,24 @@ public class PlayerController : Controller
     private void OnMove(InputValue value)
     {
         vInput = value.Get<Vector2>();
+    }
+
+    private void OnFire(InputValue value)
+    {
+        fireValue = value.Get<float>();
+    }
+
+    private void OnSpecialFire(InputValue value)
+    {
+        specialFireValue = value.Get<float>();
+    }
+
+    private void OnPause(InputValue value)
+    {
+        float v = value.Get<float>();
+        if (v != 0)
+        {
+            Debug.Log("Paused");
+        }
     }
 }

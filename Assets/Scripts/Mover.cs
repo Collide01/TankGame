@@ -13,6 +13,6 @@ public abstract class Mover : MonoBehaviour
     {
     }
 
-    public abstract void Move();
-    public abstract void Rotate();
+    public abstract void Move(int direction, float moveSpeed);
+    public abstract void Rotate(int direction, float turnSpeed);
 }
