@@ -53,6 +53,17 @@ public abstract class Pawn : MonoBehaviour
         health = GetComponent<Health>();
 
         fireRate = 1 / shotsPerSecond;
+
+        // If we have a GameManager
+        if (GameManager.instance != null)
+        {
+            // And it tracks the player(s)
+            if (GameManager.instance.pawns != null)
+            {
+                // Register with the GameManager
+                GameManager.instance.pawns.Add(this);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -66,4 +77,18 @@ public abstract class Pawn : MonoBehaviour
     public abstract void RotateCounterClockwise();
     public abstract void Shoot();
     public abstract void SpecialShoot();
+
+    public void OnDestroy()
+    {
+        // If we have a GameManager
+        if (GameManager.instance != null)
+        {
+            // And it tracks the player(s)
+            if (GameManager.instance.pawns != null)
+            {
+                // Deregister with the GameManager
+                GameManager.instance.pawns.Remove(this);
+            }
+        }
+    }
 }

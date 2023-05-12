@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
 
     // List that holds our player(s)
     public List<PlayerController> players;
+    // List that holds our controller(s)
+    public List<Controller> controllers;
+    // List that holds our pawn(s)
+    public List<Pawn> pawns;
 
     // Awake is called when the object is first created - before even Start can run!
     private void Awake()

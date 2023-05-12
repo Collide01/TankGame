@@ -94,6 +94,13 @@ public class PlayerController : Controller
                 // Deregister with the GameManager
                 GameManager.instance.players.Remove(this);
             }
+
+            // And it tracks the controller(s)
+            if (GameManager.instance.controllers != null)
+            {
+                // Deregister with the GameManager
+                GameManager.instance.controllers.Remove(this);
+            }
         }
     }
 }
