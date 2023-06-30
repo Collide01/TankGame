@@ -45,6 +45,8 @@ public abstract class Pawn : MonoBehaviour
     // Variable for how long the special shot lasts; only applies to laser beam and mine
     public float specialLifespan;
 
+    public abstract void RotateTowards(Vector3 targetPosition);
+
     // Start is called before the first frame update
     public virtual void Start()
     {

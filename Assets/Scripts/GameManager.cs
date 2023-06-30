@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public List<Controller> controllers;
     // List that holds our pawn(s)
     public List<Pawn> pawns;
+    public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
 
     // Awake is called when the object is first created - before even Start can run!
     private void Awake()
@@ -65,5 +66,10 @@ public class GameManager : MonoBehaviour
 
         // Hook them up!
         newController.pawn = newPawn;
+    }
+
+    private PawnSpawnPoint GetRandomSpawnPoint()
+    {
+        return pawnSpawnPoints[Random.Range(0, pawnSpawnPoints.Count)];
     }
 }
