@@ -95,10 +95,18 @@ public class TankPawn : Pawn
         }
     }
 
-    public override void RotateTowards(Vector3 targetPosition)
+    public override void RotateTowards(Vector3 targetPosition, float avoidanceSpeed = 0)
     {
         Vector3 vectorToTarget = targetPosition - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        if (avoidanceSpeed != 0)
+        {
+            mover.Rotate(turnSpeed + avoidanceSpeed);
+            Debug.Log(turnSpeed + avoidanceSpeed);
+        }
+        else
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        }
     }
 }

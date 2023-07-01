@@ -9,6 +9,7 @@ public class AIAggressive : AIController
     {
         base.Start();
         currentState = AIState.Patrol;
+        moveDirection = MoveDirection.Forward;
     }
 
     // Update is called once per frame
