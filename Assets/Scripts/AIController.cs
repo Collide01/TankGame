@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIController : Controller
+public abstract class AIController : Controller
 {
     public enum AIState { Idle, Chase, Flee, Patrol, Attack, Scan, BackToPost };
 

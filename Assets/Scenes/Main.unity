@@ -751,6 +751,7 @@ MonoBehaviour:
   players: []
   controllers: []
   pawns: []
+  pawnSpawnPoints: []
 --- !u!4 &1701155502
 Transform:
   m_ObjectHideFlags: 0
