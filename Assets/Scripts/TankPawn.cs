@@ -52,30 +52,16 @@ public class TankPawn : Pawn
     }
 
     // Calls Mover to rotate the tank clockwise
-    public override void RotateClockwise()
+    public override void Rotate(float setTurnSpeed)
     {
         if (mover != null)
         {
-            mover.Rotate(turnSpeed);
+            mover.Rotate(setTurnSpeed);
         }
         else
         {
             // Failsafe
-            Debug.LogWarning("Warning: No Mover in TankPawn.RotateClockwise()!");
-        }
-    }
-
-    // Calls Mover to rotate the tank counterclockwise
-    public override void RotateCounterClockwise()
-    {
-        if (mover != null)
-        {
-            mover.Rotate(-turnSpeed);
-        }
-        else
-        {
-            // Failsafe
-            Debug.LogWarning("Warning: No Mover in TankPawn.RotateCounterClockwise()!");
+            Debug.LogWarning("Warning: No Mover in TankPawn.Rotate()!");
         }
     }
 

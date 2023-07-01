@@ -89,7 +89,22 @@ public class AIAggressive : AIController
                 DoPatrolState();
 
                 // Check for transitions
+                foreach (Controller playerController in GameManager.instance.players)
+                {
 
+                    if (CanSee(playerController.gameObject))
+                    {
+                        Debug.Log("I saw a player");
+                        target = playerController.gameObject;
+                        ChangeAIState(AIState.Chase);
+                        return;
+                    }
+                    if (CanHear(playerController.gameObject))
+                    {
+                        ChangeAIState(AIState.Scan);
+                        return;
+                    }
+                }
                 break;
             case AIState.Scan:
                 // Do that state's behavior

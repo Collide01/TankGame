@@ -33,8 +33,8 @@ public class PlayerController : Controller
         // Process out inputs
         if (vInput.y > 0) pawn.MoveForward();
         if (vInput.y < 0) pawn.MoveBackward();
-        if (vInput.x > 0) pawn.RotateClockwise();
-        if (vInput.x < 0) pawn.RotateCounterClockwise();
+        if (vInput.x > 0) pawn.Rotate(pawn.turnSpeed);
+        if (vInput.x < 0) pawn.Rotate(-pawn.turnSpeed);
 
         if (firing) pawn.Shoot();
         if (specialFiring) pawn.SpecialShoot();

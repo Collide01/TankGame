@@ -15,6 +15,13 @@ public abstract class AIController : Controller
     public float fieldOfView = 30f;
     public List<Transform> patrolPoints;
     private int currentPatrolPoint = 0; // Set to the patrolPoints index
+    public float turnSpeed;
+
+    // Simple steering
+    private int steeringDistance = 0;
+    private float steeringAmount = 0;
+    private float minSteerDistance = 1;
+    private float maxSteerDistance = 2;
 
     public override void Start()
     {
@@ -74,6 +81,10 @@ public abstract class AIController : Controller
     public virtual void DoFleeState()
     {
         //throw new NotImplementedException();
+        // Turn to face target
+        pawn.RotateTowards(target.transform.position);
+        // Move backward
+        pawn.MoveBackward();
     }
 
     public virtual void DoPatrolState()
@@ -96,7 +107,7 @@ public abstract class AIController : Controller
     public virtual void DoScanState()
     {
         // Rotate Clockwise
-        pawn.RotateClockwise();
+        pawn.Rotate(turnSpeed);
     }
 
     public virtual void DoBackToPostState()
