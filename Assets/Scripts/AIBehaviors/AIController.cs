@@ -14,20 +14,23 @@ public abstract class AIController : Controller
     public GameObject target;
     public Transform post;
     public float fieldOfView = 30f;
+    public float hearingDistance = 50f;
     public List<Transform> patrolPoints;
     private int currentPatrolPoint = 0; // Set to the patrolPoints index
     protected MoveDirection moveDirection = MoveDirection.Neither;
 
     // Simple steering
     private float steeringDistance = 0;
-    private float steeringAmount = 0;
-    private float minSteerDistance = 5;
-    private float maxSteerDistance = 10;
+    private List<float> steeringAmounts;
+    private float totalSteeringAmount;
+    private float minSteerDistance = 2;
+    private float maxSteerDistance = 3;
 
     public override void Start()
     {
         pawn = GetComponent<Pawn>();
         post = transform;
+        steeringAmounts = new List<float>();
         base.Start();
     }
 
@@ -42,7 +45,31 @@ public abstract class AIController : Controller
 
     public virtual bool CanHear(GameObject targetGameObject)
     {
-        return false;
+        // Get the target's NoiseMaker
+        NoiseMaker noiseMaker = targetGameObject.GetComponent<NoiseMaker>();
+        // If they don't have one, they can't make noise, so return false
+        if (noiseMaker == null)
+        {
+            return false;
+        }
+        // If they are making 0 noise, they also can't be heard
+        if (noiseMaker.volumeDistance <= 0)
+        {
+            return false;
+        }
+        // If they are making noise, add the volumeDistance in the noisemaker to the hearingDistance of this AI
+        float totalDistance = noiseMaker.volumeDistance + hearingDistance;
+        // If the distance between our pawn and target is closer than this...
+        if (Vector3.Distance(pawn.transform.position, targetGameObject.transform.position) <= totalDistance)
+        {
+            // ... then we can hear the target
+            return true;
+        }
+        else
+        {
+            // Otherwise, we are too far away to hear them
+            return false;
+        }
     }
 
     public virtual bool CanSee(GameObject targetGameObject)
@@ -68,14 +95,14 @@ public abstract class AIController : Controller
 
     public virtual void DoAttackState()
     {
-        pawn.RotateTowards(target.transform.position, steeringAmount);
+        pawn.RotateTowards(target.transform.position, totalSteeringAmount);
         pawn.Shoot();
     }
 
     public virtual void DoChaseState()
     {
         // Turn to face target
-        pawn.RotateTowards(target.transform.position, steeringAmount);
+        pawn.RotateTowards(target.transform.position, totalSteeringAmount);
         // Move forward
         pawn.MoveForward();
         moveDirection = MoveDirection.Forward;
@@ -85,7 +112,7 @@ public abstract class AIController : Controller
     {
         //throw new NotImplementedException();
         // Turn to face target
-        pawn.RotateTowards(target.transform.position, steeringAmount);
+        pawn.RotateTowards(target.transform.position, totalSteeringAmount);
         // Move backward
         pawn.MoveBackward();
         moveDirection = MoveDirection.Backward;
@@ -94,7 +121,7 @@ public abstract class AIController : Controller
     public virtual void DoPatrolState()
     {
         // Turn to face patrol point
-        pawn.RotateTowards(patrolPoints[currentPatrolPoint].transform.position, steeringAmount);
+        pawn.RotateTowards(patrolPoints[currentPatrolPoint].transform.position, totalSteeringAmount);
         // Move forward
         pawn.MoveForward();
         moveDirection = MoveDirection.Forward;
@@ -118,7 +145,7 @@ public abstract class AIController : Controller
     public virtual void DoBackToPostState()
     {
         //throw new NotImplementedException();
-        pawn.RotateTowards(post.position, steeringAmount);
+        pawn.RotateTowards(post.position, totalSteeringAmount);
         pawn.MoveForward();
         moveDirection = MoveDirection.Forward;
     }
@@ -140,10 +167,13 @@ public abstract class AIController : Controller
     {
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 
-        foreach (GameObject obstacle in obstacles)
+        steeringAmounts.Clear();
+        for (int i = 0; i < obstacles.Length; i++)
         {
+            steeringAmounts.Add(0);
+
             // Determines if the tank is moving towards the obstacle
-            Vector3 direction = obstacle.transform.position - transform.position;
+            Vector3 direction = obstacles[i].transform.position - transform.position;
             steeringDistance = direction.magnitude;
             float sightAngle = Vector3.Angle(direction, transform.forward);
 
@@ -157,11 +187,11 @@ public abstract class AIController : Controller
                         {
                             if (steeringDistance < minSteerDistance)
                             {
-                                steeringAmount = pawn.turnSpeed * 2;
+                                steeringAmounts[i] = pawn.turnSpeed * 2;
                             }
                             else
                             {
-                                steeringAmount = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
+                                steeringAmounts[i] = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
                             }
 
                             // Checks if the obstacle is to the right of the tank
@@ -169,17 +199,17 @@ public abstract class AIController : Controller
                             float dir = Vector3.Dot(perp, transform.up);
                             if (dir > 0f)
                             {
-                                steeringAmount *= -1; // Turn left
+                                steeringAmounts[i] *= -1; // Turn left
                             }
                         }
                         else
                         {
-                            steeringAmount = 0;
+                            steeringAmounts[i] = 0;
                         }
                     }
                     else
                     {
-                        steeringAmount = 0;
+                        steeringAmounts[i] = 0;
                     }
                     break;
                 case MoveDirection.Backward:
@@ -190,11 +220,11 @@ public abstract class AIController : Controller
                         {
                             if (steeringDistance < minSteerDistance)
                             {
-                                steeringAmount = pawn.turnSpeed * 2;
+                                steeringAmounts[i] = pawn.turnSpeed * 2;
                             }
                             else
                             {
-                                steeringAmount = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
+                                steeringAmounts[i] = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
                             }
 
                             // Checks if the obstacle is to the right of the tank
@@ -202,25 +232,29 @@ public abstract class AIController : Controller
                             float dir = Vector3.Dot(perp, transform.up);
                             if (dir > 0f)
                             {
-                                steeringAmount *= -1; // Turn left
+                                steeringAmounts[i] *= -1; // Turn left
                             }
-
-                            Debug.Log(steeringAmount);
                         }
                         else
                         {
-                            steeringAmount = 0;
+                            steeringAmounts[i] = 0;
                         }
                     }
                     else
                     {
-                        steeringAmount = 0;
+                        steeringAmounts[i] = 0;
                     }
                     break;
                 default:
-                    steeringAmount = 0;
+                    steeringAmounts[i] = 0;
                     break;
             }
+        }
+
+        totalSteeringAmount = 0;
+        for (int i = 0; i < steeringAmounts.Count; i++)
+        {
+            totalSteeringAmount += steeringAmounts[i];
         }
     }
 }
