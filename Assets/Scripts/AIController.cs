@@ -170,7 +170,6 @@ public abstract class AIController : Controller
                             if (dir > 0f)
                             {
                                 steeringAmount *= -1; // Turn left
-                                steeringAmount -= 100;
                             }
                         }
                         else
@@ -204,7 +203,6 @@ public abstract class AIController : Controller
                             if (dir > 0f)
                             {
                                 steeringAmount *= -1; // Turn left
-                                steeringAmount -= 100;
                             }
 
                             Debug.Log(steeringAmount);

@@ -101,8 +101,8 @@ public class TankPawn : Pawn
         Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget, Vector3.up);
         if (avoidanceSpeed != 0)
         {
-            mover.Rotate(turnSpeed + avoidanceSpeed);
-            Debug.Log(turnSpeed + avoidanceSpeed);
+            if (avoidanceSpeed > 0) mover.Rotate(turnSpeed + avoidanceSpeed);
+            else mover.Rotate(-turnSpeed + avoidanceSpeed);
         }
         else
         {
