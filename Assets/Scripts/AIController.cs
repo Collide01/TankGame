@@ -9,10 +9,12 @@ public abstract class AIController : Controller
 
     public float attackRange = 100f;
     public AIState currentState = AIState.Scan;
-    private float lastStateChangeTime = 0f;
+    protected float lastStateChangeTime = 0f;
     public GameObject target;
     public Transform post;
     public float fieldOfView = 30f;
+    public List<Transform> patrolPoints;
+    private int currentPatrolPoint = 0; // Set to the patrolPoints index
 
     public override void Start()
     {
@@ -27,114 +29,14 @@ public abstract class AIController : Controller
         base.Update();
     }
 
-    public void MakeDecisions()
-    {
-        switch (currentState)
-        {
-            case AIState.Idle:
-                // Do that state's behavior
-                DoIdleState();
-                // Check for transitions
-                foreach (Controller playerController in GameManager.instance.players)
-                {
+    public abstract void MakeDecisions();
 
-                    if (CanSee(playerController.gameObject))
-                    {
-                        Debug.Log("I saw a player");
-                        target = playerController.gameObject;
-                        ChangeAIState(AIState.Chase);
-                        return;
-                    }
-                    if (CanHear(playerController.gameObject))
-                    {
-                        ChangeAIState(AIState.Scan);
-                        return;
-                    }
-                }
-                break;
-            case AIState.Attack:
-                // Do that state's behavior
-                DoAttackState();
-                // Check for transitions
-                if (Vector3.SqrMagnitude(target.transform.position - transform.position) > attackRange)
-                {
-                    ChangeAIState(AIState.Chase);
-                    return;
-                }
-                if (!CanSee(target))
-                {
-                    target = null;
-                    ChangeAIState(AIState.Scan);
-                    return;
-                }
-                break;
-            case AIState.Chase:
-                // Do that state's behavior
-                DoChaseState();
-                // Check for transitions
-                if (!CanSee(target))
-                {
-                    target = null;
-                    ChangeAIState(AIState.Scan);
-                    return;
-                }
-                if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= attackRange)
-                {
-                    ChangeAIState(AIState.Attack);
-                    return;
-                }
-                break;
-            case AIState.Flee:
-                // Do that state's behavior
-                DoFleeState();
-                // Check for transitions
-                break;
-            case AIState.Patrol:
-                // Do that state's behavior
-                DoPatrolState();
-                // Check for transitions
-                break;
-            case AIState.Scan:
-                // Do that state's behavior
-                DoScanState();
-                // Check for transitions
-                foreach (Controller playerController in GameManager.instance.players)
-                {
-                    if (CanSee(playerController.gameObject))
-                    {
-                        target = playerController.gameObject;
-                        ChangeAIState(AIState.Chase);
-                        return;
-                    }
-                }
-                if (Time.time - lastStateChangeTime > 3f)
-                {
-                    ChangeAIState(AIState.BackToPost);
-                    return;
-                }
-                break;
-            case AIState.BackToPost:
-                // Do that state's behavior
-                DoBackToPostState();
-                // Check for transitions
-                if (Vector3.SqrMagnitude(post.position - transform.position) <= 1f)
-                {
-                    ChangeAIState(AIState.Idle);
-                    return;
-                }
-                break;
-            default:
-                Debug.LogWarning("AI Controller doesn't have that state implemented");
-                break;
-        }
-    }
-
-    private bool CanHear(GameObject targetGameObject)
+    public virtual bool CanHear(GameObject targetGameObject)
     {
         return false;
     }
 
-    private bool CanSee(GameObject targetGameObject)
+    public virtual bool CanSee(GameObject targetGameObject)
     {
         Vector3 agentToTargetVector = targetGameObject.transform.position - transform.position;
 
@@ -155,13 +57,13 @@ public abstract class AIController : Controller
         return false;
     }
 
-    private void DoAttackState()
+    public virtual void DoAttackState()
     {
         pawn.RotateTowards(target.transform.position);
         pawn.Shoot();
     }
 
-    private void DoChaseState()
+    public virtual void DoChaseState()
     {
         // Turn to face target
         pawn.RotateTowards(target.transform.position);
@@ -169,30 +71,42 @@ public abstract class AIController : Controller
         pawn.MoveForward();
     }
 
-    private void DoFleeState()
+    public virtual void DoFleeState()
     {
         //throw new NotImplementedException();
     }
 
-    private void DoPatrolState()
+    public virtual void DoPatrolState()
     {
-        //throw new NotImplementedException();
+        // Turn to face patrol point
+        pawn.RotateTowards(patrolPoints[currentPatrolPoint].transform.position);
+        // Move forward
+        pawn.MoveForward();
+
+        if (Mathf.Abs(transform.position.x - patrolPoints[currentPatrolPoint].transform.position.x) < 0.1f && Mathf.Abs(transform.position.z - patrolPoints[currentPatrolPoint].transform.position.z) < 0.1f)
+        {
+            currentPatrolPoint++;
+            if (currentPatrolPoint > patrolPoints.Count - 1)
+            {
+                currentPatrolPoint = 0;
+            }
+        }
     }
 
-    private void DoScanState()
+    public virtual void DoScanState()
     {
         // Rotate Clockwise
         pawn.RotateClockwise();
     }
 
-    private void DoBackToPostState()
+    public virtual void DoBackToPostState()
     {
         //throw new NotImplementedException();
         pawn.RotateTowards(post.position);
         pawn.MoveForward();
     }
 
-    private void DoIdleState()
+    public virtual void DoIdleState()
     {
         //throw new NotImplementedException();
     }
