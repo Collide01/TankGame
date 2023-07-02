@@ -246,7 +246,7 @@ public abstract class AIController : Controller
                             // Checks if the obstacle is to the right of the tank
                             Vector3 perp = Vector3.Cross(transform.forward, obstacleCheckScript.directions[i]);
                             float dir = Vector3.Dot(perp, transform.up);
-                            if (dir >= 0f)
+                            if (dir <= 0f)
                             {
                                 steeringAmounts[i] *= -1; // Turn left
                             }
