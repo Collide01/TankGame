@@ -91,14 +91,14 @@ public class AIAggressive : AIController
                 foreach (Controller playerController in GameManager.instance.players)
                 {
 
-                    if (CanSee(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
                     {
                         Debug.Log("I saw a player");
                         target = playerController.gameObject;
                         //ChangeAIState(AIState.Chase);
                         return;
                     }
-                    if (CanHear(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanHear(playerController.pawn.gameObject))
                     {
                         //ChangeAIState(AIState.Scan);
                         return;

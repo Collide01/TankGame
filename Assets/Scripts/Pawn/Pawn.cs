@@ -100,4 +100,13 @@ public abstract class Pawn : MonoBehaviour
             }
         }
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Vehicle")
+        {
+            health.TakeDamage(999, this);
+            collision.gameObject.GetComponent<Health>().TakeDamage(999, collision.gameObject.GetComponent<Pawn>());
+        }
+    }
 }

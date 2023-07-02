@@ -25,6 +25,8 @@ public class PlayerController : Controller
         }
 
         pawn.gameObject.layer = 7; // Player layer
+        pawn.health.maxHealth = 10;
+        pawn.health.currentHealth = 10;
 
         // Run the Start() function from the parent (base) class
         base.Start();
