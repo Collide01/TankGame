@@ -1431,10 +1431,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 1848704974}
-  attackRange: 50
+  attackRange: 100
   currentState: 0
   target: {fileID: 0}
-  post: {fileID: 518094449}
+  post: {fileID: 0}
   fieldOfView: 30
   viewDistance: 15
   seeTarget: 0

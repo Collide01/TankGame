@@ -39,7 +39,7 @@ public class AILazy : AIController
                 DoAttackState();
 
                 // Check for transitions
-                if (!CanSee(target))
+                if (!CanSee(target) || target == null)
                 {
                     target = null;
                     ChangeAIState(AIState.Idle);

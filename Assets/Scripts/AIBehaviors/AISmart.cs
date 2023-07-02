@@ -40,14 +40,22 @@ public class AISmart : AIController
                 DoAttackState();
 
                 // Check for transitions
-                if (Vector3.SqrMagnitude(target.transform.position - transform.position) > attackRange)
+                if (target != null)
                 {
-                    ChangeAIState(AIState.Chase);
-                    return;
+                    if (Vector3.SqrMagnitude(target.transform.position - transform.position) > attackRange)
+                    {
+                        ChangeAIState(AIState.Chase);
+                        return;
+                    }
+                    if (!CanSee(target))
+                    {
+                        target = null;
+                        ChangeAIState(AIState.Scan);
+                        return;
+                    }
                 }
-                if (!CanSee(target))
+                else
                 {
-                    target = null;
                     ChangeAIState(AIState.Scan);
                     return;
                 }
@@ -62,16 +70,23 @@ public class AISmart : AIController
                     ChangeAIState(AIState.BackToPost);
                     return;
                 }
-                if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= attackRange)
+                if (target != null)
                 {
-                    ChangeAIState(AIState.Attack);
-                    return;
+                    if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= attackRange)
+                    {
+                        ChangeAIState(AIState.Attack);
+                        return;
+                    }
+                    if (!CanSee(target))
+                    {
+                        target = null;
+                        ChangeAIState(AIState.Scan);
+                        return;
+                    }
                 }
-                if (!CanSee(target))
+                else
                 {
-                    target = null;
                     ChangeAIState(AIState.Scan);
-                    return;
                 }
                 break;
             case AIState.Flee:

@@ -142,9 +142,12 @@ public abstract class AIController : Controller
 
     public virtual void DoAttackState()
     {
-        pawn.RotateTowards(target.transform.position);
-        pawn.Shoot();
-        moveDirection = MoveDirection.Neither;
+        if (target != null)
+        {
+            pawn.RotateTowards(target.transform.position);
+            pawn.Shoot();
+            moveDirection = MoveDirection.Neither;
+        }
     }
 
     public virtual void DoChaseState()
