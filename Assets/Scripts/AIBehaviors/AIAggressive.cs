@@ -91,14 +91,13 @@ public class AIAggressive : AIController
                 {
                     if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
                     {
-                        Debug.Log("I saw a player");
                         target = playerController.gameObject;
-                        //ChangeAIState(AIState.Chase);
+                        ChangeAIState(AIState.Chase);
                         return;
                     }
                     if (playerController.pawn != null && CanHear(playerController.pawn.gameObject))
                     {
-                        //ChangeAIState(AIState.Scan);
+                        ChangeAIState(AIState.Scan);
                         return;
                     }
                 }
@@ -110,7 +109,7 @@ public class AIAggressive : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (CanSee(playerController.gameObject))
+                    if (playerController.pawn != null && CanSee(playerController.gameObject))
                     {
                         target = playerController.gameObject;
                         ChangeAIState(AIState.Chase);
@@ -136,7 +135,7 @@ public class AIAggressive : AIController
                 break;
             case AIState.GoToSpot:
                 // Do that state's behavior
-                DoBackToPostState();
+                DoGoToSpotState();
 
                 // Check for transitions
                 break;
