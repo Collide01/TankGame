@@ -138,6 +138,7 @@ public class AIAggressive : AIController
                 DoGoToSpotState();
 
                 // Check for transitions
+
                 break;
             default:
                 Debug.LogWarning("AI Controller doesn't have that state implemented");

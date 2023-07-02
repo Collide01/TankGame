@@ -42,6 +42,12 @@ public abstract class AIController : Controller
         obstacleCheck = Instantiate(obstacleCheckPrefab, transform.position, Quaternion.identity);
         obstacleCheckScript = obstacleCheck.GetComponent<ObstacleCheck>();
 
+        GameObject[] patrolTransforms = GameObject.FindGameObjectsWithTag("PatrolPoints");
+        for (int i = 0; i < patrolTransforms.Length; i++)
+        {
+            patrolPoints.Add(patrolTransforms[i].transform);
+        }
+
         // If we have a GameManager
         if (GameManager.instance != null)
         {
