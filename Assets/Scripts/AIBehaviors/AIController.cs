@@ -317,4 +317,25 @@ public abstract class AIController : Controller
             totalSteeringAmount += steeringAmounts[i];
         }
     }
+
+    public void OnDestroy()
+    {
+        // If we have a GameManager
+        if (GameManager.instance != null)
+        {
+            // And it tracks the AI
+            if (GameManager.instance.aiControllers != null)
+            {
+                // Deregister with the GameManager
+                GameManager.instance.aiControllers.Remove(this);
+            }
+
+            // And it tracks the controller(s)
+            if (GameManager.instance.controllers != null)
+            {
+                // Deregister with the GameManager
+                GameManager.instance.controllers.Remove(this);
+            }
+        }
+    }
 }
