@@ -57,6 +57,11 @@ public class AISmart : AIController
                 DoChaseState();
 
                 // Check for transitions
+                if (Vector3.Magnitude(post.position - transform.position) > 20f)
+                {
+                    ChangeAIState(AIState.BackToPost);
+                    return;
+                }
                 if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= attackRange)
                 {
                     ChangeAIState(AIState.Attack);
@@ -66,11 +71,6 @@ public class AISmart : AIController
                 {
                     target = null;
                     ChangeAIState(AIState.Scan);
-                    return;
-                }
-                if (Vector3.SqrMagnitude(post.position - transform.position) > 25f)
-                {
-                    ChangeAIState(AIState.BackToPost);
                     return;
                 }
                 break;
@@ -101,12 +101,6 @@ public class AISmart : AIController
                         ChangeAIState(AIState.Chase);
                         return;
                     }
-                    if (playerController.pawn != null && CanHear(playerController.pawn.gameObject))
-                    {
-                        heardPosition = playerController.pawn.transform.position;
-                        ChangeAIState(AIState.GoToSpot);
-                        return;
-                    }
                 }
                 if (Time.time - lastStateChangeTime > 3f)
                 {
@@ -119,16 +113,7 @@ public class AISmart : AIController
                 DoBackToPostState();
 
                 // Check for transitions
-                foreach (Controller playerController in GameManager.instance.players)
-                {
-                    if (playerController.pawn != null && CanHear(playerController.pawn.gameObject))
-                    {
-                        heardPosition = playerController.pawn.transform.position;
-                        ChangeAIState(AIState.GoToSpot);
-                        return;
-                    }
-                }
-                if (Vector3.SqrMagnitude(post.position - transform.position) <= 1f)
+                if (Vector3.Magnitude(post.position - transform.position) <= 1f)
                 {
                     ChangeAIState(AIState.Idle);
                     return;
@@ -138,7 +123,12 @@ public class AISmart : AIController
                 // Do that state's behavior
                 DoGoToSpotState();
 
-                // Check for transitions
+                // Check for transitionss
+                if (Vector3.Magnitude(heardPosition - transform.position) <= 1f)
+                {
+                    ChangeAIState(AIState.Scan);
+                    return;
+                }
                 foreach (Controller playerController in GameManager.instance.players)
                 {
                     if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
@@ -147,16 +137,6 @@ public class AISmart : AIController
                         ChangeAIState(AIState.Chase);
                         return;
                     }
-                }
-                if (Vector3.SqrMagnitude(post.position - transform.position) > 25f)
-                {
-                    ChangeAIState(AIState.BackToPost);
-                    return;
-                }
-                if (Vector3.SqrMagnitude(heardPosition - transform.position) <= 1f)
-                {
-                    ChangeAIState(AIState.Scan);
-                    return;
                 }
                 break;
             default:

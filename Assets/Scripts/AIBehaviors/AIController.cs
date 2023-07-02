@@ -37,11 +37,13 @@ public abstract class AIController : Controller
     public override void Start()
     {
         pawn = GetComponent<Pawn>();
-        post = transform;
         steeringAmounts = new List<float>();
         obstacleCheck = Instantiate(obstacleCheckPrefab, transform.position, Quaternion.identity);
         obstacleCheckScript = obstacleCheck.GetComponent<ObstacleCheck>();
 
+        GameObject postTransform = GameObject.FindGameObjectWithTag("Post");
+        post = postTransform.transform;
+    
         GameObject[] patrolTransforms = GameObject.FindGameObjectsWithTag("PatrolPoint");
         for (int i = 0; i < patrolTransforms.Length; i++)
         {
@@ -217,6 +219,7 @@ public abstract class AIController : Controller
     {
         lastStateChangeTime = Time.time;
         currentState = newState;
+        Debug.Log("Switching to " + currentState);
     }
 
     // This helps AI avoid obstacles and walls
