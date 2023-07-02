@@ -127,7 +127,6 @@ public class AIAnalytical : AIController
                 }
                 if (Time.time - lastStateChangeTime > 5f)
                 {
-                    currentPatrolPoint = NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                     return;
                 }
