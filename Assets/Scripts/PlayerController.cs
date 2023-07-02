@@ -23,6 +23,9 @@ public class PlayerController : Controller
                 GameManager.instance.players.Add(this);
             }
         }
+
+        pawn.gameObject.layer = 7; // Player layer
+
         // Run the Start() function from the parent (base) class
         base.Start();
     }

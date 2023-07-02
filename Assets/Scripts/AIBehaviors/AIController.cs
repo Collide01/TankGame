@@ -13,7 +13,11 @@ public abstract class AIController : Controller
     protected float lastStateChangeTime = 0f;
     public GameObject target;
     public Transform post;
-    public float fieldOfView = 30f;
+    [Range(0, 360)] public float fieldOfView = 30f;
+    public float viewDistance = 30f;
+    [HideInInspector] public bool seeTarget = false;
+    public LayerMask targetMask;
+    public LayerMask obstructionMask;
     public float hearingDistance = 15f;
     public List<Transform> patrolPoints;
     private int currentPatrolPoint = 0; // Set to the patrolPoints index
@@ -92,22 +96,39 @@ public abstract class AIController : Controller
 
     public virtual bool CanSee(GameObject targetGameObject)
     {
-        Vector3 agentToTargetVector = targetGameObject.transform.position - transform.position;
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, viewDistance, targetMask);
 
-        if (Vector3.Angle(agentToTargetVector, transform.forward) <= fieldOfView)
+        if (rangeChecks.Length != 0)
         {
-            Vector3 raycastDirection = targetGameObject.transform.position - pawn.transform.position;
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, raycastDirection, out hit))
-            {
-                if (hit.collider.transform.parent != null)
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
+            if (Vector3.Angle(transform.forward, directionToTarget) < fieldOfView / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
-                    return (hit.collider.transform.parent.gameObject == targetGameObject);
+                    seeTarget = true;
+                    return true;
+                }
+                else
+                {
+                    seeTarget = false;
+                    return false;
                 }
             }
+            else
+            {
+                seeTarget = false;
+                return false;
+            }
         }
-        return false;
+        else
+        {
+            seeTarget = false;
+            return false;
+        }
     }
 
     public virtual void DoAttackState()

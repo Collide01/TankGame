@@ -51,26 +51,26 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (AIController ai in aiControllers)
-        {
-            float nearestDistance = 0;
-            for (int i = 0; i < players.Count; i++)
-            {
-                if (i == 0)
-                {
-                    nearestDistance = (players[i].transform.position - transform.position).magnitude;
-                    ai.target = players[i].pawn.gameObject;
-                }
-                else
-                {
-                    if ((players[i].transform.position - transform.position).magnitude < nearestDistance)
-                    {
-                        nearestDistance = (players[i].transform.position - transform.position).magnitude;
-                        ai.target = players[i].pawn.gameObject;
-                    }
-                }
-            }
-        }
+        //foreach (AIController ai in aiControllers)
+        //{
+        //    float nearestDistance = 0;
+        //    for (int i = 0; i < players.Count; i++)
+        //    {
+        //        if (i == 0)
+        //        {
+        //            nearestDistance = (players[i].transform.position - transform.position).magnitude;
+        //            ai.target = players[i].pawn.gameObject;
+        //        }
+        //        else
+        //        {
+        //            if ((players[i].transform.position - transform.position).magnitude < nearestDistance)
+        //            {
+        //                nearestDistance = (players[i].transform.position - transform.position).magnitude;
+        //                ai.target = players[i].pawn.gameObject;
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     public void SpawnPlayer()

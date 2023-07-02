@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94920852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 22.5}
+  m_LocalPosition: {x: -7, y: 0.5, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 242245885}
   - component: {fileID: 242245884}
   - component: {fileID: 242245883}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallC3
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: 673982780}
   - component: {fileID: 673982779}
   - component: {fileID: 673982783}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallE
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -798,7 +798,7 @@ GameObject:
   - component: {fileID: 921291291}
   - component: {fileID: 921291290}
   - component: {fileID: 921291289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallC4
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -912,7 +912,7 @@ GameObject:
   - component: {fileID: 979311005}
   - component: {fileID: 979311004}
   - component: {fileID: 979311008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallS
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1037,7 +1037,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993989580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 7, y: 0.5, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1068,7 +1068,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998091813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -7, y: 0.5, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1099,7 +1099,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691674037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -22.5}
+  m_LocalPosition: {x: 7, y: 0.5, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 1796853537}
   - component: {fileID: 1796853536}
   - component: {fileID: 1796853540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallW
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 1838372422}
   - component: {fileID: 1838372421}
   - component: {fileID: 1838372425}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallN
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1399,7 +1399,7 @@ GameObject:
   - component: {fileID: 1852329213}
   - component: {fileID: 1852329212}
   - component: {fileID: 1852329216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallC2
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1513,7 +1513,7 @@ GameObject:
   - component: {fileID: 1938101851}
   - component: {fileID: 1938101850}
   - component: {fileID: 1938101854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallC1
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1637,6 +1637,14 @@ MonoBehaviour:
   target: {fileID: 0}
   post: {fileID: 0}
   fieldOfView: 30
+  viewDistance: 30
+  seeTarget: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 256
   hearingDistance: 15
   patrolPoints:
   - {fileID: 993989581}
