@@ -14,7 +14,7 @@ public abstract class AIController : Controller
     public GameObject target;
     public Transform post;
     public float fieldOfView = 30f;
-    public float hearingDistance = 50f;
+    public float hearingDistance = 15f;
     public List<Transform> patrolPoints;
     private int currentPatrolPoint = 0; // Set to the patrolPoints index
     protected MoveDirection moveDirection = MoveDirection.Neither;
@@ -173,6 +173,7 @@ public abstract class AIController : Controller
     {
         //throw new NotImplementedException();
         moveDirection = MoveDirection.Neither;
+        pawn.StayStill();
     }
 
     public void ChangeAIState(AIState newState)

@@ -738,9 +738,9 @@ MonoBehaviour:
   shellLifespan: 1.5
   fireRate: 0
   shotsPerSecond: 2
-  moveNoise: 10
-  shootNoise: 20
-  specialShotNoise: 30
+  moveNoise: 5
+  shootNoise: 10
+  specialShotNoise: 20
   specialShotType: 0
   specialShotPrefab: {fileID: 2884441558055782101, guid: 4618aca98b3867a40bd72c7a4b5913e9, type: 3}
   specialChargeTime: 10

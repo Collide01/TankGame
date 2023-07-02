@@ -85,6 +85,7 @@ public abstract class Pawn : MonoBehaviour
     public abstract void Rotate(float setTurnSpeed);
     public abstract void Shoot();
     public abstract void SpecialShoot();
+    public abstract void StayStill();
 
     public void OnDestroy()
     {

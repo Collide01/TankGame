@@ -20,7 +20,7 @@ public class TankPawn : Pawn
         specialShotTimer += Time.deltaTime;
         specialShotTimer = Mathf.Clamp(specialShotTimer, 0, specialChargeTime);
 
-        base.Start();
+        base.Update();
     }
 
     // Calls Mover to move the tank forward
@@ -132,6 +132,14 @@ public class TankPawn : Pawn
         if (noiseMaker != null)
         {
             noiseMaker.volumeDistance = moveNoise;
+        }
+    }
+
+    public override void StayStill()
+    {
+        if (noiseMaker != null)
+        {
+            noiseMaker.volumeDistance = 0;
         }
     }
 }
