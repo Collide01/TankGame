@@ -20,7 +20,7 @@ public abstract class AIController : Controller
     public LayerMask obstructionMask;
     public float hearingDistance = 15f;
     public List<Transform> patrolPoints;
-    private int currentPatrolPoint = 0; // Set to the patrolPoints index
+    [HideInInspector] public int currentPatrolPoint = 0; // Set to the patrolPoints index
     protected MoveDirection moveDirection = MoveDirection.Neither;
     [HideInInspector] public Vector3 heardPosition = Vector3.zero; // For GoToSpot state
 
@@ -169,7 +169,7 @@ public abstract class AIController : Controller
         moveDirection = MoveDirection.Backward;
     }
 
-    public virtual void DoPatrolState()
+    public virtual void DoPatrolState(bool changeState = false) // changeState prevents changing the patrol point so it can manually be done in MakeDecisions()
     {
         // Turn to face patrol point
         pawn.RotateTowards(patrolPoints[currentPatrolPoint].transform.position, totalSteeringAmount);
@@ -177,7 +177,7 @@ public abstract class AIController : Controller
         pawn.MoveForward();
         moveDirection = MoveDirection.Forward;
 
-        if (Vector3.SqrMagnitude(patrolPoints[currentPatrolPoint].transform.position - transform.position) < 1f)
+        if (Vector3.SqrMagnitude(patrolPoints[currentPatrolPoint].transform.position - transform.position) < 1f && !changeState)
         {
             currentPatrolPoint++;
             if (currentPatrolPoint > patrolPoints.Count - 1)
