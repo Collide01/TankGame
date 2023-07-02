@@ -13,6 +13,8 @@ public abstract class AIController : Controller
     protected float lastStateChangeTime = 0f;
     public GameObject target;
     public Transform post;
+
+    // Seeing/hearing
     [Range(0, 360)] public float fieldOfView = 30f;
     public float viewDistance = 15f;
     [HideInInspector] public bool seeTarget = false;
@@ -20,6 +22,8 @@ public abstract class AIController : Controller
     public LayerMask obstructionMask;
     public float hearingDistance = 15f;
     [HideInInspector] public bool hearTarget = false;
+
+    // Patrol points and other behavior specific data
     public List<Transform> patrolPoints;
     [HideInInspector] public int currentPatrolPoint = 0; // Set to the patrolPoints index
     protected MoveDirection moveDirection = MoveDirection.Neither;
