@@ -90,4 +90,15 @@ public class PawnEditor : Editor
         }
         serializedObject.ApplyModifiedProperties();
     }
+
+    private void OnSceneGUI()
+    {
+        Pawn tank = (Pawn)target;
+
+        if (tank.noiseMaker != null)
+        {
+            Handles.color = Color.cyan;
+            Handles.DrawWireArc(tank.transform.position, Vector3.up, Vector3.forward, 360, tank.noiseMaker.volumeDistance);
+        }
+    }
 }

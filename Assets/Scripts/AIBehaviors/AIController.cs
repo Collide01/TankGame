@@ -19,6 +19,7 @@ public abstract class AIController : Controller
     public LayerMask targetMask;
     public LayerMask obstructionMask;
     public float hearingDistance = 15f;
+    [HideInInspector] public bool hearTarget = false;
     public List<Transform> patrolPoints;
     [HideInInspector] public int currentPatrolPoint = 0; // Set to the patrolPoints index
     protected MoveDirection moveDirection = MoveDirection.Neither;
@@ -81,11 +82,13 @@ public abstract class AIController : Controller
         // If they don't have one, they can't make noise, so return false
         if (noiseMaker == null)
         {
+            hearTarget = false;
             return false;
         }
         // If they are making 0 noise, they also can't be heard
         if (noiseMaker.volumeDistance <= 0)
         {
+            hearTarget = false;
             return false;
         }
         // If they are making noise, add the volumeDistance in the noisemaker to the hearingDistance of this AI
@@ -94,11 +97,13 @@ public abstract class AIController : Controller
         if (Vector3.Distance(pawn.transform.position, targetGameObject.transform.position) <= totalDistance)
         {
             // ... then we can hear the target
+            hearTarget = true;
             return true;
         }
         else
         {
             // Otherwise, we are too far away to hear them
+            hearTarget = false;
             return false;
         }
     }

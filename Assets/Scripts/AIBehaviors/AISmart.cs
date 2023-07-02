@@ -67,6 +67,7 @@ public class AISmart : AIController
                 // Check for transitions
                 if (Vector3.Magnitude(post.position - transform.position) > 20f)
                 {
+                    target = null;
                     ChangeAIState(AIState.BackToPost);
                     return;
                 }
