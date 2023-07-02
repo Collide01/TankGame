@@ -7,7 +7,6 @@ public abstract class Pawn : MonoBehaviour
     [HideInInspector] public Mover mover;
     [HideInInspector] public Shooter shooter;
     [HideInInspector] public Health health;
-    [HideInInspector] public NoiseMaker noiseMaker;
 
     // Variable for move speed
     public float moveSpeed;
@@ -28,11 +27,6 @@ public abstract class Pawn : MonoBehaviour
     // Variable for Rate of Fire
     [HideInInspector] public float fireRate;
     public float shotsPerSecond;
-
-    // Variables for making noise
-    public float moveNoise;
-    public float shootNoise;
-    public float specialShotNoise;
 
     public enum SpecialShotType
     {

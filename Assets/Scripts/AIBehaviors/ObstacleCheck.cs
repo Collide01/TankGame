@@ -44,14 +44,14 @@ public class ObstacleCheck : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Obstacle" && obstacles != null)
+        if (other.gameObject.tag == "Obstacle")
         {
             obstacles.Add(other);
         }
     }
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Obstacle" && obstacles != null)
+        if (other.gameObject.tag == "Obstacle")
         {
             obstacles.Remove(other);
         }
