@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 15, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9099700600107466425}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 8773601441572174939}
   - component: {fileID: 8773601441572174940}
   - component: {fileID: 8773601441572174941}
+  - component: {fileID: 8077771078082289518}
   m_Layer: 0
   m_Name: FutureRacer
   m_TagString: Untagged
@@ -727,6 +728,7 @@ MonoBehaviour:
   mover: {fileID: 8773601441572174941}
   shooter: {fileID: 8773601441572174940}
   health: {fileID: 8773601441572174939}
+  noiseMaker: {fileID: 0}
   moveSpeed: 10
   turnSpeed: 100
   firepointTransform: {fileID: 8816704911908366828}
@@ -736,6 +738,9 @@ MonoBehaviour:
   shellLifespan: 1.5
   fireRate: 0
   shotsPerSecond: 2
+  moveNoise: 0
+  shootNoise: 0
+  specialShotNoise: 0
   specialShotType: 0
   specialShotPrefab: {fileID: 2884441558055782101, guid: 4618aca98b3867a40bd72c7a4b5913e9, type: 3}
   specialChargeTime: 10
@@ -780,6 +785,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1d6e4770b05e44ea68d506039eb8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8077771078082289518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431708097166189571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81030646182e9c94cb6784437a576efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeDistance: 0
 --- !u!1001 &4864927953868025409
 PrefabInstance:
   m_ObjectHideFlags: 0
