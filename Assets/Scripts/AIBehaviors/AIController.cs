@@ -45,6 +45,7 @@ public abstract class AIController : Controller
         steeringAmounts = new List<float>();
         obstacleCheck = Instantiate(obstacleCheckPrefab, transform.position, Quaternion.identity);
         obstacleCheckScript = obstacleCheck.GetComponent<ObstacleCheck>();
+        obstacleCheck.GetComponent<SphereCollider>().radius = maxSteerDistance;
 
         GameObject postTransform = GameObject.FindGameObjectWithTag("Post");
         post = postTransform.transform;
