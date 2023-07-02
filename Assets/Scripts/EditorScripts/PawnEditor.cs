@@ -15,6 +15,9 @@ public class PawnEditor : Editor
         damageDone_Pawn,
         shellLifespawn_Pawn,
         shotsPerSecond_Pawn,
+        moveNoise_Pawn,
+        shootNoise_Pawn,
+        specialShotNoise_Pawn,
         sShotPrefab_Pawn,
         sChargeTime_Pawn,
         // Values that appear depending on the special shot
@@ -37,6 +40,9 @@ public class PawnEditor : Editor
         shotsPerSecond_Pawn = serializedObject.FindProperty("shotsPerSecond");
         sShotPrefab_Pawn = serializedObject.FindProperty("specialShotPrefab");
         sChargeTime_Pawn = serializedObject.FindProperty("specialChargeTime");
+        moveNoise_Pawn = serializedObject.FindProperty("moveNoise");
+        shootNoise_Pawn = serializedObject.FindProperty("shootNoise");
+        specialShotNoise_Pawn = serializedObject.FindProperty("specialShotNoise");
         // Based on special shot
         state_Pawn = serializedObject.FindProperty("specialShotType");
         sFirepoint_Pawn = serializedObject.FindProperty("specialFirepointTransform");
@@ -56,7 +62,10 @@ public class PawnEditor : Editor
         EditorGUILayout.PropertyField(damageDone_Pawn);
         EditorGUILayout.PropertyField(shellLifespawn_Pawn);
         EditorGUILayout.PropertyField(shotsPerSecond_Pawn);
-        
+        EditorGUILayout.PropertyField(moveNoise_Pawn);
+        EditorGUILayout.PropertyField(shootNoise_Pawn);
+        EditorGUILayout.PropertyField(specialShotNoise_Pawn);
+
         EditorGUILayout.PropertyField(state_Pawn);
         EditorGUILayout.PropertyField(sShotPrefab_Pawn);
         EditorGUILayout.PropertyField(sChargeTime_Pawn);

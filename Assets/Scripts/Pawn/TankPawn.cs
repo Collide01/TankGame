@@ -29,6 +29,10 @@ public class TankPawn : Pawn
         if (mover != null)
         {
             mover.Move(transform.forward, moveSpeed);
+            if (noiseMaker != null)
+            {
+                noiseMaker.volumeDistance = moveNoise;
+            }
         }
         else
         {
@@ -43,6 +47,10 @@ public class TankPawn : Pawn
         if (mover != null)
         {
             mover.Move(transform.forward, -moveSpeed);
+            if (noiseMaker != null)
+            {
+                noiseMaker.volumeDistance = moveNoise;
+            }
         }
         else
         {
@@ -57,6 +65,10 @@ public class TankPawn : Pawn
         if (mover != null)
         {
             mover.Rotate(setTurnSpeed);
+            if (noiseMaker != null)
+            {
+                noiseMaker.volumeDistance = moveNoise;
+            }
         }
         else
         {
@@ -72,6 +84,10 @@ public class TankPawn : Pawn
             shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
             shootTimer = 0;
             specialShotTimer -= 2;
+            if (noiseMaker != null)
+            {
+                noiseMaker.volumeDistance = shootNoise;
+            }
         }
     }
 
@@ -92,6 +108,10 @@ public class TankPawn : Pawn
                     break;
             }
             specialShotTimer = 0;
+            if (noiseMaker != null)
+            {
+                noiseMaker.volumeDistance = specialShotNoise;
+            }
         }
     }
 
@@ -108,6 +128,10 @@ public class TankPawn : Pawn
         else
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        }
+        if (noiseMaker != null)
+        {
+            noiseMaker.volumeDistance = moveNoise;
         }
     }
 }

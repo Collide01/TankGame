@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(players.Count);
         foreach (AIController ai in aiControllers)
         {
             float nearestDistance = 0;
