@@ -50,7 +50,7 @@ public abstract class AIController : Controller
         {
             patrolPoints.Add(patrolTransforms[i].transform);
         }
-        NearestPatrolPoint();
+        currentPatrolPoint = NearestPatrolPoint();
 
         // If we have a GameManager
         if (GameManager.instance != null)
@@ -183,7 +183,7 @@ public abstract class AIController : Controller
         pawn.MoveForward();
         moveDirection = MoveDirection.Forward;
 
-        if (Vector3.SqrMagnitude(patrolPoints[currentPatrolPoint].transform.position - transform.position) < 1f && !changeState)
+        if (Vector3.SqrMagnitude(patrolPoints[currentPatrolPoint].transform.position - transform.position) < 1.5f && !changeState)
         {
             currentPatrolPoint++;
             if (currentPatrolPoint > patrolPoints.Count - 1)
@@ -324,14 +324,14 @@ public abstract class AIController : Controller
         }
     }
 
-    public Transform NearestPatrolPoint()
+    public int NearestPatrolPoint()
     {
-        Transform closestPoint = patrolPoints[0];
-        foreach (Transform patrolPoint in patrolPoints)
+        int closestPoint = 0; // Gets the index of the closest patrol point
+        for (int i = 0; i < patrolPoints.Count; i++)
         {
-            if (Vector3.SqrMagnitude(patrolPoint.position - transform.position) < Vector3.SqrMagnitude(closestPoint.position - transform.position))
+            if (Vector3.SqrMagnitude(patrolPoints[i].transform.position - transform.position) < Vector3.SqrMagnitude(patrolPoints[closestPoint].transform.position - transform.position))
             {
-                closestPoint = patrolPoint;
+                closestPoint = i;
             }
         }
         return closestPoint;

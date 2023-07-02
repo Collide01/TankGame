@@ -42,14 +42,14 @@ public class AIAnalytical : AIController
                     if (!CanSee(target))
                     {
                         target = null;
-                        NearestPatrolPoint();
+                        currentPatrolPoint = NearestPatrolPoint();
                         ChangeAIState(AIState.Patrol);
                         return;
                     }
                 }
                 else
                 {
-                    NearestPatrolPoint();
+                    currentPatrolPoint = NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                 }
                 break;
@@ -75,14 +75,14 @@ public class AIAnalytical : AIController
                     if (!CanSee(target))
                     {
                         target = null;
-                        NearestPatrolPoint();
+                        currentPatrolPoint = NearestPatrolPoint();
                         ChangeAIState(AIState.Patrol);
                         return;
                     }
                 }
                 else
                 {
-                    NearestPatrolPoint();
+                    currentPatrolPoint = NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                 }
                 break;
@@ -100,7 +100,7 @@ public class AIAnalytical : AIController
                         return;
                     }
                 }
-                if (Vector3.SqrMagnitude(patrolPoints[currentPatrolPoint].position - transform.position) < 1f)
+                if (Vector3.SqrMagnitude(patrolPoints[currentPatrolPoint].position - transform.position) < 1.5f)
                 {
                     currentPatrolPoint++;
                     if (currentPatrolPoint > patrolPoints.Count - 1)
@@ -127,7 +127,7 @@ public class AIAnalytical : AIController
                 }
                 if (Time.time - lastStateChangeTime > 5f)
                 {
-                    NearestPatrolPoint();
+                    currentPatrolPoint = NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                     return;
                 }
@@ -137,11 +137,7 @@ public class AIAnalytical : AIController
                 DoBackToPostState();
 
                 // Check for transitions
-                //if (Vector3.SqrMagnitude(post.position - transform.position) <= 1f)
-                //{
-                //    ChangeAIState(AIState.Idle);
-                //    return;
-                //}
+                
                 break;
             case AIState.GoToSpot:
                 // Do that state's behavior
