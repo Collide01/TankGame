@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class AIController : Controller
 {
-    public enum AIState { Idle, Chase, Flee, Patrol, Attack, Scan, BackToPost };
+    public enum AIState { Idle, Chase, Flee, Patrol, Attack, Scan, BackToPost, GoToSpot };
     protected enum MoveDirection { Neither, Forward, Backward };
 
     public float attackRange = 100f;
@@ -22,6 +22,7 @@ public abstract class AIController : Controller
     public List<Transform> patrolPoints;
     private int currentPatrolPoint = 0; // Set to the patrolPoints index
     protected MoveDirection moveDirection = MoveDirection.Neither;
+    [HideInInspector] public Vector3 heardPosition = Vector3.zero; // For GoToSpot state
 
     // Simple steering
     private float steeringDistance = 0;
@@ -195,6 +196,15 @@ public abstract class AIController : Controller
         //throw new NotImplementedException();
         moveDirection = MoveDirection.Neither;
         pawn.StayStill();
+    }
+
+    // Make sure to set heardPosition before entering the state to prevent heardPosition from updating while in the state
+    public virtual void DoGoToSpotState()
+    {
+        //throw new NotImplementedException();
+        pawn.RotateTowards(heardPosition, totalSteeringAmount);
+        pawn.MoveForward();
+        moveDirection = MoveDirection.Forward;
     }
 
     public void ChangeAIState(AIState newState)
