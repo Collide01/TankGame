@@ -25,9 +25,6 @@ public abstract class Controller : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        if (pawn != null)
-        {
-            transform.position = pawn.transform.position;
-        }
+        
     }
 }

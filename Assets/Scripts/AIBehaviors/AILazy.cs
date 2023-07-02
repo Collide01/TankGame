@@ -76,7 +76,7 @@ public class AILazy : AIController
                 {
                     if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
                     {
-                        target = playerController.gameObject;
+                        target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Attack);
                         return;
                     }

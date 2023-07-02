@@ -25,38 +25,14 @@ public class AIAggressive : AIController
                 DoIdleState();
 
                 // Check for transitions
-                //foreach (Controller playerController in GameManager.instance.players)
-                //{
-
-                //    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
-                //    {
-                //        target = playerController.gameObject;
-                //        ChangeAIState(AIState.Chase);
-                //        return;
-                //    }
-                //    if (playerController.pawn != null && CanHear(playerController.pawn.gameObject))
-                //    {
-                //        ChangeAIState(AIState.Scan);
-                //        return;
-                //    }
-                //}
+                
                 break;
             case AIState.Attack:
                 // Do that state's behavior
                 DoAttackState();
 
                 // Check for transitions
-                //if (Vector3.SqrMagnitude(target.transform.position - transform.position) > attackRange)
-                //{
-                //    ChangeAIState(AIState.Chase);
-                //    return;
-                //}
-                //if (!CanSee(target))
-                //{
-                //    target = null;
-                //    ChangeAIState(AIState.Scan);
-                //    return;
-                //}
+                
                 break;
             case AIState.Chase:
                 // Do that state's behavior
@@ -69,11 +45,6 @@ public class AIAggressive : AIController
                     ChangeAIState(AIState.Scan);
                     return;
                 }
-                //if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= attackRange)
-                //{
-                //    ChangeAIState(AIState.Attack);
-                //    return;
-                //}
                 break;
             case AIState.Flee:
                 // Do that state's behavior
@@ -91,7 +62,7 @@ public class AIAggressive : AIController
                 {
                     if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
                     {
-                        target = playerController.gameObject;
+                        target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Chase);
                         return;
                     }
@@ -109,9 +80,9 @@ public class AIAggressive : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.gameObject))
+                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
                     {
-                        target = playerController.gameObject;
+                        target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Chase);
                         return;
                     }
@@ -127,11 +98,7 @@ public class AIAggressive : AIController
                 DoBackToPostState();
 
                 // Check for transitions
-                //if (Vector3.SqrMagnitude(post.position - transform.position) <= 1f)
-                //{
-                //    ChangeAIState(AIState.Idle);
-                //    return;
-                //}
+                
                 break;
             case AIState.GoToSpot:
                 // Do that state's behavior

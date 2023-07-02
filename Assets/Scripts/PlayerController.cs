@@ -24,6 +24,7 @@ public class PlayerController : Controller
             }
         }
 
+        transform.parent = pawn.transform;
         pawn.gameObject.layer = 7; // Player layer
         pawn.health.maxHealth = 10;
         pawn.health.currentHealth = 10;
