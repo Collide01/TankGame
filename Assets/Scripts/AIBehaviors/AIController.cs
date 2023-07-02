@@ -102,6 +102,7 @@ public abstract class AIController : Controller
     {
         pawn.RotateTowards(target.transform.position, totalSteeringAmount);
         pawn.Shoot();
+        moveDirection = MoveDirection.Neither;
     }
 
     public virtual void DoChaseState()
@@ -131,7 +132,7 @@ public abstract class AIController : Controller
         pawn.MoveForward();
         moveDirection = MoveDirection.Forward;
 
-        if (Mathf.Abs(transform.position.x - patrolPoints[currentPatrolPoint].transform.position.x) < 0.2f && Mathf.Abs(transform.position.z - patrolPoints[currentPatrolPoint].transform.position.z) < 0.2f)
+        if (Mathf.Abs(transform.position.x - patrolPoints[currentPatrolPoint].transform.position.x) < 1f && Mathf.Abs(transform.position.z - patrolPoints[currentPatrolPoint].transform.position.z) < 1f)
         {
             currentPatrolPoint++;
             if (currentPatrolPoint > patrolPoints.Count - 1)
@@ -176,84 +177,80 @@ public abstract class AIController : Controller
             steeringAmounts.Add(0);
 
             // Determines if the tank is moving towards the obstacle
-            if (obstacleCheckScript.nearObstacle)
+            steeringDistance = obstacleCheckScript.distances[i];
+            float sightAngle = Vector3.Angle(obstacleCheckScript.directions[i], transform.forward);
+
+            switch (moveDirection)
             {
-                steeringDistance = obstacleCheckScript.distances[i];
-                float sightAngle = Vector3.Angle(obstacleCheckScript.directions[i], transform.forward);
-                Debug.Log(sightAngle);
-
-                switch (moveDirection)
-                {
-                    case MoveDirection.Forward:
-                        // This prevents the tank from continuing to turn after passing by the obstacle
-                        if (sightAngle <= 90)
+                case MoveDirection.Forward:
+                    // This prevents the tank from continuing to turn after passing by the obstacle
+                    if (sightAngle <= 91)
+                    {
+                        if (steeringDistance <= maxSteerDistance)
                         {
-                            if (steeringDistance <= maxSteerDistance)
+                            if (steeringDistance < minSteerDistance)
                             {
-                                if (steeringDistance < minSteerDistance)
-                                {
-                                    steeringAmounts[i] = pawn.turnSpeed * 2;
-                                }
-                                else
-                                {
-                                    steeringAmounts[i] = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
-                                }
-
-                                // Checks if the obstacle is to the right of the tank
-                                Vector3 perp = Vector3.Cross(transform.forward, obstacleCheckScript.directions[i]);
-                                float dir = Vector3.Dot(perp, transform.up);
-                                if (dir >= 0f)
-                                {
-                                    steeringAmounts[i] *= -1; // Turn left
-                                }
+                                steeringAmounts[i] = pawn.turnSpeed * 2;
                             }
                             else
                             {
-                                steeringAmounts[i] = 0;
+                                steeringAmounts[i] = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
+                            }
+
+                            // Checks if the obstacle is to the right of the tank
+                            Vector3 perp = Vector3.Cross(transform.forward, obstacleCheckScript.directions[i]);
+                            float dir = Vector3.Dot(perp, transform.up);
+                            if (dir >= 0f)
+                            {
+                                steeringAmounts[i] *= -1; // Turn left
                             }
                         }
                         else
                         {
                             steeringAmounts[i] = 0;
                         }
-                        break;
-                    case MoveDirection.Backward:
-                        // This prevents the tank from continuing to turn after passing by the obstacle
-                        if (sightAngle >= 90)
-                        {
-                            if (steeringDistance <= maxSteerDistance)
-                            {
-                                if (steeringDistance < minSteerDistance)
-                                {
-                                    steeringAmounts[i] = pawn.turnSpeed * 2;
-                                }
-                                else
-                                {
-                                    steeringAmounts[i] = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
-                                }
-
-                                // Checks if the obstacle is to the right of the tank
-                                Vector3 perp = Vector3.Cross(transform.forward, obstacleCheckScript.directions[i]);
-                                float dir = Vector3.Dot(perp, transform.up);
-                                if (dir >= 0f)
-                                {
-                                    steeringAmounts[i] *= -1; // Turn left
-                                }
-                            }
-                            else
-                            {
-                                steeringAmounts[i] = 0;
-                            }
-                        }
-                        else
-                        {
-                            steeringAmounts[i] = 0;
-                        }
-                        break;
-                    default:
+                    }
+                    else
+                    {
                         steeringAmounts[i] = 0;
-                        break;
-                }
+                    }
+                    break;
+                case MoveDirection.Backward:
+                    // This prevents the tank from continuing to turn after passing by the obstacle
+                    if (sightAngle >= 89)
+                    {
+                        if (steeringDistance <= maxSteerDistance)
+                        {
+                            if (steeringDistance < minSteerDistance)
+                            {
+                                steeringAmounts[i] = pawn.turnSpeed * 2;
+                            }
+                            else
+                            {
+                                steeringAmounts[i] = (Mathf.Abs(steeringDistance - maxSteerDistance) / Mathf.Abs(minSteerDistance - maxSteerDistance)) * pawn.turnSpeed * 2;
+                            }
+
+                            // Checks if the obstacle is to the right of the tank
+                            Vector3 perp = Vector3.Cross(transform.forward, obstacleCheckScript.directions[i]);
+                            float dir = Vector3.Dot(perp, transform.up);
+                            if (dir >= 0f)
+                            {
+                                steeringAmounts[i] *= -1; // Turn left
+                            }
+                        }
+                        else
+                        {
+                            steeringAmounts[i] = 0;
+                        }
+                    }
+                    else
+                    {
+                        steeringAmounts[i] = 0;
+                    }
+                    break;
+                default:
+                    steeringAmounts[i] = 0;
+                    break;
             }
         }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObstacleCheck : MonoBehaviour
 {
-    public bool nearObstacle = false;
     private List<Collider> obstacles = new List<Collider>();
     public List<Vector3> closestPoints = new List<Vector3>();
     public List<Vector3> directions = new List<Vector3>();
@@ -41,8 +40,6 @@ public class ObstacleCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            Debug.Log("Collision");
-            nearObstacle = true;
             obstacles.Add(other);
         }
     }
@@ -50,7 +47,6 @@ public class ObstacleCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            nearObstacle = false;
             obstacles.Remove(other);
         }
     }

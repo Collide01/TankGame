@@ -10,17 +10,20 @@ public class BouncyShot : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        // Get the Health component from the Game Object that has the Collider that we are overlapping
-        Health otherHealth = collision.collider.gameObject.GetComponent<Health>();
-        // Only damage if it has a Health component
-        if (otherHealth != null)
+        if (collision.gameObject.tag != "ObstacleCheck")
         {
-            // Do damage
-            otherHealth.TakeDamage(damageDone, owner);
-            Destroy(gameObject);
-        }
+            // Get the Health component from the Game Object that has the Collider that we are overlapping
+            Health otherHealth = collision.collider.gameObject.GetComponent<Health>();
+            // Only damage if it has a Health component
+            if (otherHealth != null)
+            {
+                // Do damage
+                otherHealth.TakeDamage(damageDone, owner);
+                Destroy(gameObject);
+            }
 
-        bounces--;
-        if (bounces <= 0) Destroy(gameObject);
+            bounces--;
+            if (bounces <= 0) Destroy(gameObject);
+        }
     }
 }

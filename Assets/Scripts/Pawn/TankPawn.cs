@@ -99,6 +99,7 @@ public class TankPawn : Pawn
     {
         Vector3 vectorToTarget = targetPosition - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget, Vector3.up);
+        // Rotate the vehicle manually if near an obstacle
         if (avoidanceSpeed != 0)
         {
             if (avoidanceSpeed > 0) mover.Rotate(turnSpeed + avoidanceSpeed);
