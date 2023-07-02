@@ -89,6 +89,7 @@ public class AIAggressive : AIController
                 }
                 if (Time.time - lastStateChangeTime > 3f)
                 {
+                    NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                     return;
                 }

@@ -50,6 +50,7 @@ public abstract class AIController : Controller
         {
             patrolPoints.Add(patrolTransforms[i].transform);
         }
+        NearestPatrolPoint();
 
         // If we have a GameManager
         if (GameManager.instance != null)
@@ -321,6 +322,19 @@ public abstract class AIController : Controller
         {
             totalSteeringAmount += steeringAmounts[i];
         }
+    }
+
+    public Transform NearestPatrolPoint()
+    {
+        Transform closestPoint = patrolPoints[0];
+        foreach (Transform patrolPoint in patrolPoints)
+        {
+            if (Vector3.SqrMagnitude(patrolPoint.position - transform.position) < Vector3.SqrMagnitude(closestPoint.position - transform.position))
+            {
+                closestPoint = patrolPoint;
+            }
+        }
+        return closestPoint;
     }
 
     public void OnDestroy()

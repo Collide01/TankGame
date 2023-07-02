@@ -42,12 +42,14 @@ public class AIAnalytical : AIController
                     if (!CanSee(target))
                     {
                         target = null;
+                        NearestPatrolPoint();
                         ChangeAIState(AIState.Patrol);
                         return;
                     }
                 }
                 else
                 {
+                    NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                 }
                 break;
@@ -73,12 +75,14 @@ public class AIAnalytical : AIController
                     if (!CanSee(target))
                     {
                         target = null;
+                        NearestPatrolPoint();
                         ChangeAIState(AIState.Patrol);
                         return;
                     }
                 }
                 else
                 {
+                    NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                 }
                 break;
@@ -123,6 +127,7 @@ public class AIAnalytical : AIController
                 }
                 if (Time.time - lastStateChangeTime > 5f)
                 {
+                    NearestPatrolPoint();
                     ChangeAIState(AIState.Patrol);
                     return;
                 }
