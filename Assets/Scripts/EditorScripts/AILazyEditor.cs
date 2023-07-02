@@ -20,7 +20,7 @@ public class AILazyEditor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.viewDistance);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.viewDistance);
 
-        if (fov.seeTarget)
+        if (fov.seeTarget && fov.target != null)
         {
             Handles.color = Color.green;
             Handles.DrawLine(fov.transform.position, fov.target.transform.position);

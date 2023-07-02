@@ -74,7 +74,7 @@ public class AILazy : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.gameObject))
+                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
                     {
                         target = playerController.gameObject;
                         ChangeAIState(AIState.Attack);

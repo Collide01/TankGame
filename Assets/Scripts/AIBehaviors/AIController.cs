@@ -29,7 +29,7 @@ public abstract class AIController : Controller
     private List<float> steeringAmounts;
     private float totalSteeringAmount;
     public float minSteerDistance = 2;
-    public float maxSteerDistance = 4;
+    public float maxSteerDistance = 3;
     public GameObject obstacleCheckPrefab;
     private GameObject obstacleCheck;
     private ObstacleCheck obstacleCheckScript;

@@ -4,8 +4,8 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
-[CustomEditor(typeof(AIAggressive))]
-public class AIAggressiveEditor : Editor
+[CustomEditor(typeof(AISmart))]
+public class AISmartEditor : Editor
 {
     private void OnSceneGUI()
     {
