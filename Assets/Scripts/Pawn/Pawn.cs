@@ -78,6 +78,10 @@ public abstract class Pawn : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        if (transform.position.y < -10)
+        {
+            health.TakeDamage(999, this);
+        }
     }
 
     public abstract void MoveForward();
