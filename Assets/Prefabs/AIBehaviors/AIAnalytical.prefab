@@ -16,10 +16,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FutureRacer
       objectReference: {fileID: 0}
-    - target: {fileID: 8773601441572174937, guid: d4c17e4692709b945a5cdf9274a06ac1, type: 3}
-      propertyPath: shotsPerSecond
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 9099700600107466425, guid: d4c17e4692709b945a5cdf9274a06ac1, type: 3}
       propertyPath: m_RootOrder
       value: 18
