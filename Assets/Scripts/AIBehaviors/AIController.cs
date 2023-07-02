@@ -36,6 +36,18 @@ public abstract class AIController : Controller
         steeringAmounts = new List<float>();
         obstacleCheck = Instantiate(obstacleCheckPrefab, transform.position, Quaternion.identity);
         obstacleCheckScript = obstacleCheck.GetComponent<ObstacleCheck>();
+
+        // If we have a GameManager
+        if (GameManager.instance != null)
+        {
+            // And it tracks the AI
+            if (GameManager.instance.aiControllers != null)
+            {
+                // Register with the GameManager
+                GameManager.instance.aiControllers.Add(this);
+            }
+        }
+
         base.Start();
     }
 
@@ -100,7 +112,7 @@ public abstract class AIController : Controller
 
     public virtual void DoAttackState()
     {
-        pawn.RotateTowards(target.transform.position, totalSteeringAmount);
+        pawn.RotateTowards(target.transform.position);
         pawn.Shoot();
         moveDirection = MoveDirection.Neither;
     }
@@ -132,7 +144,7 @@ public abstract class AIController : Controller
         pawn.MoveForward();
         moveDirection = MoveDirection.Forward;
 
-        if (Mathf.Abs(transform.position.x - patrolPoints[currentPatrolPoint].transform.position.x) < 1f && Mathf.Abs(transform.position.z - patrolPoints[currentPatrolPoint].transform.position.z) < 1f)
+        if (Vector3.SqrMagnitude(patrolPoints[currentPatrolPoint].transform.position - transform.position) < 1f)
         {
             currentPatrolPoint++;
             if (currentPatrolPoint > patrolPoints.Count - 1)
@@ -146,6 +158,7 @@ public abstract class AIController : Controller
     {
         // Rotate Clockwise
         pawn.Rotate(pawn.turnSpeed);
+        moveDirection = MoveDirection.Neither;
     }
 
     public virtual void DoBackToPostState()

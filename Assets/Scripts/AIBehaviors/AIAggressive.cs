@@ -8,8 +8,6 @@ public class AIAggressive : AIController
     public override void Start()
     {
         base.Start();
-        currentState = AIState.Patrol;
-        moveDirection = MoveDirection.Forward;
     }
 
     // Update is called once per frame
@@ -49,34 +47,34 @@ public class AIAggressive : AIController
                 DoAttackState();
 
                 // Check for transitions
-                if (Vector3.SqrMagnitude(target.transform.position - transform.position) > attackRange)
-                {
-                    ChangeAIState(AIState.Chase);
-                    return;
-                }
-                if (!CanSee(target))
-                {
-                    target = null;
-                    ChangeAIState(AIState.Scan);
-                    return;
-                }
+                //if (Vector3.SqrMagnitude(target.transform.position - transform.position) > attackRange)
+                //{
+                //    ChangeAIState(AIState.Chase);
+                //    return;
+                //}
+                //if (!CanSee(target))
+                //{
+                //    target = null;
+                //    ChangeAIState(AIState.Scan);
+                //    return;
+                //}
                 break;
             case AIState.Chase:
                 // Do that state's behavior
                 DoChaseState();
 
                 // Check for transitions
-                if (!CanSee(target))
-                {
-                    target = null;
-                    ChangeAIState(AIState.Scan);
-                    return;
-                }
-                if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= attackRange)
-                {
-                    ChangeAIState(AIState.Attack);
-                    return;
-                }
+                //if (!CanSee(target))
+                //{
+                //    target = null;
+                //    ChangeAIState(AIState.Scan);
+                //    return;
+                //}
+                //if (Vector3.SqrMagnitude(target.transform.position - transform.position) <= attackRange)
+                //{
+                //    ChangeAIState(AIState.Attack);
+                //    return;
+                //}
                 break;
             case AIState.Flee:
                 // Do that state's behavior
@@ -90,42 +88,42 @@ public class AIAggressive : AIController
                 DoPatrolState();
 
                 // Check for transitions
-                foreach (Controller playerController in GameManager.instance.players)
-                {
+                //foreach (Controller playerController in GameManager.instance.players)
+                //{
 
-                    if (CanSee(playerController.gameObject))
-                    {
-                        Debug.Log("I saw a player");
-                        target = playerController.gameObject;
-                        ChangeAIState(AIState.Chase);
-                        return;
-                    }
-                    if (CanHear(playerController.gameObject))
-                    {
-                        ChangeAIState(AIState.Scan);
-                        return;
-                    }
-                }
+                //    if (CanSee(playerController.gameObject))
+                //    {
+                //        Debug.Log("I saw a player");
+                //        target = playerController.gameObject;
+                //        ChangeAIState(AIState.Chase);
+                //        return;
+                //    }
+                //    if (CanHear(playerController.gameObject))
+                //    {
+                //        ChangeAIState(AIState.Scan);
+                //        return;
+                //    }
+                //}
                 break;
             case AIState.Scan:
                 // Do that state's behavior
                 DoScanState();
 
                 // Check for transitions
-                foreach (Controller playerController in GameManager.instance.players)
-                {
-                    if (CanSee(playerController.gameObject))
-                    {
-                        target = playerController.gameObject;
-                        ChangeAIState(AIState.Chase);
-                        return;
-                    }
-                }
-                if (Time.time - lastStateChangeTime > 3f)
-                {
-                    ChangeAIState(AIState.BackToPost);
-                    return;
-                }
+                //foreach (Controller playerController in GameManager.instance.players)
+                //{
+                //    if (CanSee(playerController.gameObject))
+                //    {
+                //        target = playerController.gameObject;
+                //        ChangeAIState(AIState.Chase);
+                //        return;
+                //    }
+                //}
+                //if (Time.time - lastStateChangeTime > 3f)
+                //{
+                //    ChangeAIState(AIState.BackToPost);
+                //    return;
+                //}
                 break;
             case AIState.BackToPost:
                 // Do that state's behavior

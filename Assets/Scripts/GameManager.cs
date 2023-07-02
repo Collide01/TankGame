@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     // List that holds our player(s)
     public List<PlayerController> players;
+    // List that holds our AI
+    public List<AIController> aiControllers;
     // List that holds our controller(s)
     public List<Controller> controllers;
     // List that holds our pawn(s)
@@ -49,7 +51,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(players.Count);
+        foreach (AIController ai in aiControllers)
+        {
+            float nearestDistance = 0;
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (i == 0)
+                {
+                    nearestDistance = (players[i].transform.position - transform.position).magnitude;
+                    ai.target = players[i].pawn.gameObject;
+                }
+                else
+                {
+                    if ((players[i].transform.position - transform.position).magnitude < nearestDistance)
+                    {
+                        nearestDistance = (players[i].transform.position - transform.position).magnitude;
+                        ai.target = players[i].pawn.gameObject;
+                    }
+                }
+            }
+        }
     }
 
     public void SpawnPlayer()
