@@ -14,7 +14,7 @@ public abstract class AIController : Controller
     public GameObject target;
     public Transform post;
     [Range(0, 360)] public float fieldOfView = 30f;
-    public float viewDistance = 30f;
+    public float viewDistance = 15f;
     [HideInInspector] public bool seeTarget = false;
     public LayerMask targetMask;
     public LayerMask obstructionMask;

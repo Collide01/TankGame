@@ -1637,7 +1637,7 @@ MonoBehaviour:
   target: {fileID: 0}
   post: {fileID: 0}
   fieldOfView: 30
-  viewDistance: 30
+  viewDistance: 15
   seeTarget: 0
   targetMask:
     serializedVersion: 2

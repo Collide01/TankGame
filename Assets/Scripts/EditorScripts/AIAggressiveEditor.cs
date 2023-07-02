@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(AIAggressive))]
-public class FieldOfViewEditor : Editor
+public class AIAggressiveEditor : Editor
 {
     private void OnSceneGUI()
     {
