@@ -9,7 +9,7 @@ public abstract class AIController : Controller
     protected enum MoveDirection { Neither, Forward, Backward };
 
     public float attackRange = 100f;
-    public AIState currentState = AIState.Scan;
+    public AIState currentState = AIState.Idle;
     protected float lastStateChangeTime = 0f;
     public GameObject target;
     public Transform post;
@@ -42,7 +42,7 @@ public abstract class AIController : Controller
         obstacleCheck = Instantiate(obstacleCheckPrefab, transform.position, Quaternion.identity);
         obstacleCheckScript = obstacleCheck.GetComponent<ObstacleCheck>();
 
-        GameObject[] patrolTransforms = GameObject.FindGameObjectsWithTag("PatrolPoints");
+        GameObject[] patrolTransforms = GameObject.FindGameObjectsWithTag("PatrolPoint");
         for (int i = 0; i < patrolTransforms.Length; i++)
         {
             patrolPoints.Add(patrolTransforms[i].transform);

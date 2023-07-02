@@ -28,13 +28,13 @@ public class AIAggressive : AIController
                 //foreach (Controller playerController in GameManager.instance.players)
                 //{
 
-                //    if (CanSee(playerController.gameObject))
+                //    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
                 //    {
                 //        target = playerController.gameObject;
                 //        ChangeAIState(AIState.Chase);
                 //        return;
                 //    }
-                //    if (CanHear(playerController.gameObject))
+                //    if (playerController.pawn != null && CanHear(playerController.pawn.gameObject))
                 //    {
                 //        ChangeAIState(AIState.Scan);
                 //        return;
