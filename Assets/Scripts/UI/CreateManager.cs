@@ -29,7 +29,7 @@ public class CreateManager : MonoBehaviour
         TruckFlat,
         Van
     }
-    public Vehicle chosenVehicle;
+    [HideInInspector] public Vehicle chosenVehicle;
 
     public enum Blaster
     {
@@ -52,29 +52,32 @@ public class CreateManager : MonoBehaviour
         BlasterQ,
         BlasterR,
     }
-    public Blaster chosenBlaster;
-
-    public enum SpecialShot
-    {
-        Bouncy,
-        Laser,
-        Mine
-    }
+    [HideInInspector] public Blaster chosenBlaster;
 
     // These variables are adjusted based on the vehicle chosen
-    [HideInInspector] private Vector3 blasterLocation;
-    [HideInInspector] private Vector3 firePoint;
-    [HideInInspector] private Vector3 specialFirePoint;
-    [HideInInspector] private Vector3 minePoint;
+    [HideInInspector] public float health;
+    [HideInInspector] public float speed;
+    [HideInInspector] public float turnSpeed;
+    [HideInInspector] public Vector3 blasterLocation;
+    [HideInInspector] public Vector3 firePoint;
+    [HideInInspector] public Vector3 specialFirePoint;
+    [HideInInspector] public Vector3 minePoint;
 
     // This variable is adjusted based on the blaster chosen
-    [HideInInspector] private float shellLifespan;
+    [HideInInspector] public float bulletSpeed;
+    [HideInInspector] public float shellLifespan;
+    [HideInInspector] public float fireRate;
+    [HideInInspector] public Pawn.SpecialShotType specialShot;
 
     [Header("Menu GameObjects")]
     public GameObject vehicle;
     public GameObject blaster;
     public GameObject vehicleSelection;
     public GameObject blasterSelection;
+    public GameObject vehicleArrowLeft;
+    public GameObject vehicleArrowRight;
+    public GameObject blasterArrowLeft;
+    public GameObject blasterArrowRight;
 
     [Header("Controllable sliders")]
     public Slider vehicleSlider;
@@ -140,6 +143,11 @@ public class CreateManager : MonoBehaviour
         Instantiate(blasterA, blaster.transform.position, blaster.transform.rotation, blaster.transform);
         Instantiate(ambulance, vehicleSelection.transform.position, vehicleSelection.transform.rotation, vehicleSelection.transform);
         Instantiate(blasterA, blasterSelection.transform.position, blasterSelection.transform.rotation, blasterSelection.transform);
+
+        vehicleArrowLeft.SetActive(false);
+        vehicleArrowRight.SetActive(false);
+        blasterArrowLeft.SetActive(false);
+        blasterArrowRight.SetActive(false);
     }
 
     // Update is called once per frame
@@ -418,5 +426,33 @@ public class CreateManager : MonoBehaviour
                 break;
         }
         chosenBlaster = (Blaster)value;
+    }
+
+    public void ToggleVehicleArrows()
+    {
+        if (vehicleArrowLeft.activeSelf)
+        {
+            vehicleArrowLeft.SetActive(false);
+            vehicleArrowRight.SetActive(false);
+        }
+        else
+        {
+            vehicleArrowLeft.SetActive(true);
+            vehicleArrowRight.SetActive(true);
+        }
+    }
+
+    public void ToggleBlasterArrows()
+    {
+        if (blasterArrowLeft.activeSelf)
+        {
+            blasterArrowLeft.SetActive(false);
+            blasterArrowRight.SetActive(false);
+        }
+        else
+        {
+            blasterArrowLeft.SetActive(true);
+            blasterArrowRight.SetActive(true);
+        }
     }
 }
