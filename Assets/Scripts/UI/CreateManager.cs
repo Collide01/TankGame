@@ -63,9 +63,8 @@ public class CreateManager : MonoBehaviour
     [HideInInspector] public Vector3 specialFirePoint;
     [HideInInspector] public Vector3 minePoint;
 
-    // This variable is adjusted based on the blaster chosen
+    // These variables are adjusted based on the blaster chosen
     [HideInInspector] public float bulletSpeed;
-    [HideInInspector] public float shellLifespan;
     [HideInInspector] public float fireRate;
     [HideInInspector] public Pawn.SpecialShotType specialShot;
 
