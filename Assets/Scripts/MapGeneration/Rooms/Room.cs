@@ -1,18 +1,15 @@
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class Room : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class Room : MonoBehaviour {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public GameObject doorNorth;
+	public GameObject doorSouth;
+	public GameObject doorEast;
+	public GameObject doorWest;
+
+
+
+
+
 }
