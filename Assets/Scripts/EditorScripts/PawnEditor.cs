@@ -24,7 +24,12 @@ public class PawnEditor : Editor
         state_Pawn,
         sFirepoint_Pawn,
         mFirepoint_Pawn,
-        lifespawn_Pawn;
+        lifespawn_Pawn,
+        // Values for the prefab children
+        blaster_Pawn,
+        firepoint_Pawn,
+        specialFirepoint_Pawn,
+        minepoint_Pawn;
 
     void OnEnable()
     {
@@ -48,6 +53,11 @@ public class PawnEditor : Editor
         sFirepoint_Pawn = serializedObject.FindProperty("specialFirepointTransform");
         mFirepoint_Pawn = serializedObject.FindProperty("mineTransform");
         lifespawn_Pawn = serializedObject.FindProperty("specialLifespan");
+        // Prefab children
+        blaster_Pawn = serializedObject.FindProperty("blaster");
+        firepoint_Pawn = serializedObject.FindProperty("firePoint");
+        specialFirepoint_Pawn = serializedObject.FindProperty("specialFirePoint");
+        minepoint_Pawn = serializedObject.FindProperty("minePoint");
     }
 
     public override void OnInspectorGUI()
@@ -88,6 +98,11 @@ public class PawnEditor : Editor
                 EditorGUILayout.PropertyField(lifespawn_Pawn);
                 break;
         }
+
+        EditorGUILayout.PropertyField(blaster_Pawn);
+        EditorGUILayout.PropertyField(firepoint_Pawn);
+        EditorGUILayout.PropertyField(specialFirepoint_Pawn);
+        EditorGUILayout.PropertyField(minepoint_Pawn);
         serializedObject.ApplyModifiedProperties();
     }
 

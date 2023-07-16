@@ -6,6 +6,9 @@ using TMPro;
 
 public class CreateManager : MonoBehaviour
 {
+    // Instance of CreateManager singleton
+    [HideInInspector] public static CreateManager instance;
+
     public enum Vehicle
     {
         Ambulance,
@@ -129,6 +132,24 @@ public class CreateManager : MonoBehaviour
     public GameObject blasterP;
     public GameObject blasterQ;
     public GameObject blasterR;
+
+    // Awake is called when the object is first created - before even Start can run!
+    private void Awake()
+    {
+        // If the instance doesn't exist yet...
+        if (instance == null)
+        {
+            // This is the instance
+            instance = this;
+            //Don't destroy it if we load a new scene
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            // Otherwise, there is already an instance, so destroy this gameObject
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

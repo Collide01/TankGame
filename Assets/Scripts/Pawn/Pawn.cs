@@ -61,8 +61,6 @@ public abstract class Pawn : MonoBehaviour
         health = GetComponent<Health>();
         noiseMaker = GetComponent<NoiseMaker>();
 
-        fireRate = 1 / shotsPerSecond;
-
         // If we have a GameManager
         if (GameManager.instance != null)
         {

@@ -3297,7 +3297,7 @@ GameObject:
   - component: {fileID: 1762994074}
   - component: {fileID: 1762994073}
   m_Layer: 0
-  m_Name: Create Manager
+  m_Name: CreateManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3343,44 +3343,44 @@ MonoBehaviour:
   bulletSpeedSlider: {fileID: 1097288545}
   fireRateSlider: {fileID: 737295588}
   specialShotText: {fileID: 165136748}
-  ambulance: {fileID: 919132149155446097, guid: 40e571126c8159e4fbe6756e9cf365a4, type: 3}
-  delivery: {fileID: 919132149155446097, guid: 06c322299a3b9fa42a0b01b46deb1d89, type: 3}
-  deliveryFlat: {fileID: 919132149155446097, guid: 039864e9c03852d4ca3d71f188080e8b, type: 3}
-  fireTruck: {fileID: 919132149155446097, guid: 65cd343b68cc18f48a2d008781727c7a, type: 3}
-  garbageTruck: {fileID: 919132149155446097, guid: a37776949c726a84a82bdaf2c40e52c4, type: 3}
-  hatchbackSports: {fileID: 919132149155446097, guid: f4188de50c34e2843abacc3b10f5890e, type: 3}
-  police: {fileID: 919132149155446097, guid: 909138ce48236e442a1189759d3ba0fa, type: 3}
-  race: {fileID: 919132149155446097, guid: dafc29162de441d4a8d1d6ba0a1935a1, type: 3}
-  raceFuture: {fileID: 919132149155446097, guid: f9c8a586b079cdf43be84a82d0427a1e, type: 3}
-  sedan: {fileID: 919132149155446097, guid: 7407616d124e9a2448c6d075b0269ef9, type: 3}
-  sedanSports: {fileID: 919132149155446097, guid: fac95168bf5818a449f3fe0c0ea8d390, type: 3}
-  suv: {fileID: 919132149155446097, guid: 238b199138491ee4fb0ee6d828f97aea, type: 3}
-  suvLuxury: {fileID: 919132149155446097, guid: 442745d48c9255d4995249d953a99be4, type: 3}
-  taxi: {fileID: 919132149155446097, guid: 385ca9469d6b24b4185c02c5f089b578, type: 3}
-  tractor: {fileID: 919132149155446097, guid: 4cd721473ce1bd14d82724d2408bb14c, type: 3}
-  tractorPolice: {fileID: 919132149155446097, guid: b00abdf3a6ad7b7438ed7e6581837207, type: 3}
-  tractorShovel: {fileID: 919132149155446097, guid: 0705f65e7d35da84a94b7ea457a1390a, type: 3}
-  truck: {fileID: 919132149155446097, guid: 2ffcaa7a5aada1542bf50d020ac9ef4f, type: 3}
-  truckFlat: {fileID: 919132149155446097, guid: 36226753ba4edac4580158f400e01267, type: 3}
-  van: {fileID: 919132149155446097, guid: f19715c1fc5b434489890063b1245e40, type: 3}
-  blasterA: {fileID: 919132149155446097, guid: f352e9b5de6fd0f4e985e2a307488ed8, type: 3}
-  blasterB: {fileID: 919132149155446097, guid: 1c39c751d85ab6744a0daa764934fbd4, type: 3}
-  blasterC: {fileID: 919132149155446097, guid: bc9032f54132caf48abce19909373646, type: 3}
-  blasterD: {fileID: 919132149155446097, guid: cda44fb0e8af7c4489fbd027e871ec73, type: 3}
-  blasterE: {fileID: 919132149155446097, guid: c4e615ea623880a41abdf4eae81f757b, type: 3}
-  blasterF: {fileID: 919132149155446097, guid: a19355c5a7a1765459fdc8f13c970132, type: 3}
-  blasterG: {fileID: 919132149155446097, guid: bdcc850dfad95704f932eefe7d6b6d5e, type: 3}
-  blasterH: {fileID: 919132149155446097, guid: d31c3a1a76d270c43a3224f4b78b7132, type: 3}
-  blasterI: {fileID: 919132149155446097, guid: 866582c5afbd19c42aafe153952fa5be, type: 3}
-  blasterJ: {fileID: 919132149155446097, guid: 712b23c62cac33944ade217e3524b423, type: 3}
-  blasterK: {fileID: 919132149155446097, guid: 98065a64d6f3460469d3f208e1e4a432, type: 3}
-  blasterL: {fileID: 919132149155446097, guid: 0e79815b8ee28ac4f97f36b6c4ea7fd9, type: 3}
-  blasterM: {fileID: 919132149155446097, guid: 20a66c18b91049a42ba59f7ac97c7473, type: 3}
-  blasterN: {fileID: 919132149155446097, guid: 5ce9babe184292c47a952cd30ee841a5, type: 3}
-  blasterO: {fileID: 919132149155446097, guid: a7f76e3ae66fdde448b6d4b824d758e9, type: 3}
-  blasterP: {fileID: 919132149155446097, guid: f0185fa8d42348a45bd62e9825d16d81, type: 3}
-  blasterQ: {fileID: 919132149155446097, guid: 901dfe51fb69ad646be7edd111e0af5e, type: 3}
-  blasterR: {fileID: 919132149155446097, guid: b9d003a9c1eeb4d479fdaf7082ab3445, type: 3}
+  ambulance: {fileID: 3144730932396826205, guid: de7dad599ae06e04490f50b5e834333c, type: 3}
+  delivery: {fileID: 3990786821727018511, guid: 3e1c3e1eef0ebbc4fa298388453733d5, type: 3}
+  deliveryFlat: {fileID: 2657644047650458638, guid: 340f0c3936f057948929fadc51540753, type: 3}
+  fireTruck: {fileID: 1122169854714050700, guid: 19eec897f6be3664d8eb37d8f8904907, type: 3}
+  garbageTruck: {fileID: 6491548106536132276, guid: 0d430b26e40dc4e4f82750c3c152bcc7, type: 3}
+  hatchbackSports: {fileID: 5056326340048653017, guid: b5c1a4b2565248f47ba1f2e024a943bb, type: 3}
+  police: {fileID: 7460855124028071536, guid: e467f30504dc5324d908c0c3024db73c, type: 3}
+  race: {fileID: 48318726972746310, guid: 33afead81c8a9b54da862dee8a25318f, type: 3}
+  raceFuture: {fileID: 2107398264066286529, guid: 9257bd02715c77543bea73e07d141320, type: 3}
+  sedan: {fileID: 3837056432104891979, guid: c87f3435d4e3a9e4ab705d1a7dff3f14, type: 3}
+  sedanSports: {fileID: 958266303138616610, guid: 199ec5bfe950dbb4f81becfd8e640e5a, type: 3}
+  suv: {fileID: 206474124471534821, guid: ae1bdfc92e114d14a9bd95ed3a74b0b4, type: 3}
+  suvLuxury: {fileID: 7121862943430746943, guid: aa09f5a4d5ee6024ab806efd1e3b4053, type: 3}
+  taxi: {fileID: 6302573154503874887, guid: 13529278a7958a24398c6b2437705b74, type: 3}
+  tractor: {fileID: 8911912203429323770, guid: fd96efd21d4c61448939539d51d515fa, type: 3}
+  tractorPolice: {fileID: 4398000003025000564, guid: 6f17939708814e944b17cee654525fdf, type: 3}
+  tractorShovel: {fileID: 2725031788347594291, guid: 13d14d8fde444da4eb6d47cf81bde606, type: 3}
+  truck: {fileID: 9130248046331484568, guid: 9e162a819e4dd33448a5df70af8df753, type: 3}
+  truckFlat: {fileID: 3542779634646676413, guid: c829c4ce75ebe1f4ea084fb9ece34607, type: 3}
+  van: {fileID: 6303099406200535667, guid: ddb0641a7838bdd479cc1835e76e1efb, type: 3}
+  blasterA: {fileID: 410828280625143681, guid: 834c054705bd041458180a8b07aa0b62, type: 3}
+  blasterB: {fileID: 1738216067663111973, guid: b3e5490595d1b494aa311be437647277, type: 3}
+  blasterC: {fileID: 189843858212640452, guid: 33448213d56160c448b3835be563a27f, type: 3}
+  blasterD: {fileID: 5667856948182994294, guid: ecb407adcf3b48349a22cd317dbb53a2, type: 3}
+  blasterE: {fileID: 2245634732501346120, guid: 139c793a145e01b4aa620ce8d0271ee8, type: 3}
+  blasterF: {fileID: 7939920200545202435, guid: 2e13408882b6678449378363f3c8ee21, type: 3}
+  blasterG: {fileID: 5215873744525853454, guid: 59a604f9b9942bb45a18b98e031560e8, type: 3}
+  blasterH: {fileID: 8099887835748209892, guid: e0c0acb9d78f5af4d869e096e454747e, type: 3}
+  blasterI: {fileID: 6062988437362373585, guid: 5ad3602b572e0e94b8aa1a497d929f0f, type: 3}
+  blasterJ: {fileID: 3655035206446310528, guid: e179f2235b072804193e0cfe021841f7, type: 3}
+  blasterK: {fileID: 5918154399187506875, guid: 1c5da87aa29438f47a4c0c6752a0c10a, type: 3}
+  blasterL: {fileID: 1311788597120507430, guid: 41ee478d41457454486fe67b460862e2, type: 3}
+  blasterM: {fileID: 3678840083155852837, guid: 66e3004f62227e9418311df791addac7, type: 3}
+  blasterN: {fileID: 2930672816238112644, guid: 64902edee08d07b4f97a68f9ebde32aa, type: 3}
+  blasterO: {fileID: 4536968976333322798, guid: f83e573aa70382947a276ecb99209e3e, type: 3}
+  blasterP: {fileID: 894169536595335455, guid: f8dceb648faa8084c8068947b1bd09d0, type: 3}
+  blasterQ: {fileID: 8995556067664203268, guid: 1af8c6808b626c54ea4a23c78179a5c3, type: 3}
+  blasterR: {fileID: 334941347288461874, guid: 152fcb8f2fe426b42ba1a856df3cae16, type: 3}
 --- !u!4 &1762994074
 Transform:
   m_ObjectHideFlags: 0

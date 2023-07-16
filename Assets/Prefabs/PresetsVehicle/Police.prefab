@@ -581,6 +581,6 @@ MonoBehaviour:
   speed: 12
   turnSpeed: 120
   blasterLocation: {x: 0, y: 0.55, z: 1.47}
-  firePoint: {x: 0, y: 0.5, z: 1.67}
-  specialFirePoint: {x: 0, y: 0.5, z: 1.87}
+  firePoint: {x: 0, y: 0.5, z: 1.77}
+  specialFirePoint: {x: 0, y: 0.5, z: 1.97}
   minePoint: {x: 0, y: 0, z: -1.89}

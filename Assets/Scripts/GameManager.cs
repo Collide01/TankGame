@@ -23,6 +23,46 @@ public class GameManager : MonoBehaviour
     public List<Pawn> pawns;
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
 
+    [Header("Prefabs")]
+    public GameObject ambulance;
+    public GameObject delivery;
+    public GameObject deliveryFlat;
+    public GameObject fireTruck;
+    public GameObject garbageTruck;
+    public GameObject hatchbackSports;
+    public GameObject police;
+    public GameObject race;
+    public GameObject raceFuture;
+    public GameObject sedan;
+    public GameObject sedanSports;
+    public GameObject suv;
+    public GameObject suvLuxury;
+    public GameObject taxi;
+    public GameObject tractor;
+    public GameObject tractorPolice;
+    public GameObject tractorShovel;
+    public GameObject truck;
+    public GameObject truckFlat;
+    public GameObject van;
+    public GameObject blasterA;
+    public GameObject blasterB;
+    public GameObject blasterC;
+    public GameObject blasterD;
+    public GameObject blasterE;
+    public GameObject blasterF;
+    public GameObject blasterG;
+    public GameObject blasterH;
+    public GameObject blasterI;
+    public GameObject blasterJ;
+    public GameObject blasterK;
+    public GameObject blasterL;
+    public GameObject blasterM;
+    public GameObject blasterN;
+    public GameObject blasterO;
+    public GameObject blasterP;
+    public GameObject blasterQ;
+    public GameObject blasterR;
+
     // Awake is called when the object is first created - before even Start can run!
     private void Awake()
     {
