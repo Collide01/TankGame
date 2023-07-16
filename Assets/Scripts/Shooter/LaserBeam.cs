@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class LaserBeam : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float damageDone = 999;
+    public int bounces; // Bounces a certain number of times before it gets destroyed
+    public Pawn owner;
 
-    // Update is called once per frame
-    void Update()
+    public void OnCollisionEnter(Collision collision)
     {
-        
+        // Get the Health component from the Game Object that has the Collider that we are overlapping
+        Health otherHealth = collision.collider.gameObject.GetComponent<Health>();
+        // Only damage if it has a Health component
+        if (otherHealth != null)
+        {
+            // Do damage
+            otherHealth.TakeDamage(damageDone, owner);
+            Destroy(gameObject);
+        }
     }
 }
