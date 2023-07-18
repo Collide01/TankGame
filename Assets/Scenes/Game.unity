@@ -252,7 +252,7 @@ MonoBehaviour:
   - {fileID: 2872993779070253552, guid: 8b0780604be6dcc4d98099e7ad7e297b, type: 3}
   rows: 5
   columns: 5
-  roomWidth: 50
+  roomWidth: 100
   roomHeight: 50
   mapSeed: 13
   randomType: 1

@@ -18,10 +18,12 @@ public class TankMover : Mover
     {
         Vector3 moveVector = direction.normalized * speed * Time.deltaTime;
         rb.MovePosition(rb.position + moveVector);
+        base.Move(direction, speed);
     }
 
     public override void Rotate(float speed)
     {
         gameObject.transform.Rotate(new Vector3(0, speed * Time.deltaTime, 0));
+        base.Rotate(speed);
     }
 }
