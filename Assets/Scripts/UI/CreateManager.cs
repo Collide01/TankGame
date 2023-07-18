@@ -183,7 +183,11 @@ public class CreateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        blaster.transform.localPosition = blasterLocation;
+        // Stops this when going to another scene
+        if (blaster != null)
+        {
+            blaster.transform.localPosition = blasterLocation;
+        }
     }
 
     public void ChangeVehicle()
@@ -364,7 +368,7 @@ public class CreateManager : MonoBehaviour
 
         // Subtracts it by 1 because the enums start at 0
         value--;
-        GameObject selectedBlaster = new GameObject();
+        GameObject selectedBlaster = null;
 
         switch (value)
         {
