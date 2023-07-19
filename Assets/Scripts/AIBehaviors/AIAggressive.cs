@@ -32,7 +32,7 @@ public class AIAggressive : AIController
                 DoAttackState();
 
                 // Check for transitions
-                
+                ChangeAIState(AIState.Patrol);
                 break;
             case AIState.Chase:
                 // Do that state's behavior

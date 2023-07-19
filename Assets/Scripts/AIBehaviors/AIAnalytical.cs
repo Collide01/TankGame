@@ -25,7 +25,7 @@ public class AIAnalytical : AIController
                 DoIdleState();
 
                 // Check for transitions
-                
+                ChangeAIState(AIState.Patrol);
                 break;
             case AIState.Attack:
                 // Do that state's behavior

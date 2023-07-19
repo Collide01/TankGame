@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Room : MonoBehaviour {
 
@@ -8,8 +9,6 @@ public class Room : MonoBehaviour {
 	public GameObject doorEast;
 	public GameObject doorWest;
 
-
-
-
-
+	public List<Transform> spawnPoints;
+	public List<Transform> patrolPoints;
 }

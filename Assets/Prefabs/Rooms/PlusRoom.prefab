@@ -128,6 +128,51 @@ Transform:
   m_Father: {fileID: 2872993779070274960}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1229563997743561178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5981675976898611144}
+  - component: {fileID: 8628165722425722166}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5981675976898611144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229563997743561178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2872993779070274960}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8628165722425722166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229563997743561178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ffa383ce3892e4297059c06b7e2ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedPawn: {fileID: 0}
 --- !u!1 &1930290408480939733
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +933,7 @@ Transform:
   - {fileID: 8178683017820390784}
   - {fileID: 2905801331319943717}
   - {fileID: 6928075561841611199}
+  - {fileID: 5981675976898611144}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -907,6 +953,13 @@ MonoBehaviour:
   doorSouth: {fileID: 2872993779070257328}
   doorEast: {fileID: 2872993779070099662}
   doorWest: {fileID: 2872993779070253536}
+  spawnPoints:
+  - {fileID: 5981675976898611144}
+  patrolPoints:
+  - {fileID: 605446768937389362}
+  - {fileID: 8178683017820390784}
+  - {fileID: 2905801331319943717}
+  - {fileID: 6928075561841611199}
 --- !u!1 &2872993779070253560
 GameObject:
   m_ObjectHideFlags: 0
