@@ -94,7 +94,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1618247069817010555}
-  - component: {fileID: 6426216933545991394}
   - component: {fileID: 4973410696234594939}
   m_Layer: 0
   m_Name: RaceFuture
@@ -123,20 +122,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &6426216933545991394
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107398264066286529}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: f9c8a586b079cdf43be84a82d0427a1e, type: 3}
 --- !u!114 &4973410696234594939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: f9c8a586b079cdf43be84a82d0427a1e, type: 3}
   health: 1
   speed: 18
   turnSpeed: 121

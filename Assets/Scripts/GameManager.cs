@@ -122,6 +122,10 @@ public class GameManager : MonoBehaviour
 
         // Hook them up!
         newController.pawn = newPawn;
+
+        // Set the layer of the vehicle prefab to the Player layer
+        int playerLayer = LayerMask.NameToLayer("Player");
+        newPawnObj.gameObject.layer = playerLayer;
     }
 
     public void SpawnAI()

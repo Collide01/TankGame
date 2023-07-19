@@ -353,7 +353,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4335224629953627317}
-  - component: {fileID: 3126946251056159264}
   - component: {fileID: 4943017087701671259}
   m_Layer: 0
   m_Name: Delivery
@@ -383,20 +382,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &3126946251056159264
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3990786821727018511}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: 06c322299a3b9fa42a0b01b46deb1d89, type: 3}
 --- !u!114 &4943017087701671259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: 06c322299a3b9fa42a0b01b46deb1d89, type: 3}
   health: 4
   speed: 8
   turnSpeed: 70

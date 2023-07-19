@@ -266,7 +266,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3358156270051478665}
-  - component: {fileID: 4080267611701881982}
   - component: {fileID: 3691624245936808472}
   m_Layer: 0
   m_Name: TractorShovel
@@ -296,20 +295,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &4080267611701881982
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2725031788347594291}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: 0705f65e7d35da84a94b7ea457a1390a, type: 3}
 --- !u!114 &3691624245936808472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: 0705f65e7d35da84a94b7ea457a1390a, type: 3}
   health: 5
   speed: 5
   turnSpeed: 120

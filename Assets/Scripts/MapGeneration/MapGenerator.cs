@@ -101,6 +101,10 @@ public class MapGenerator : MonoBehaviour
                 {
                     grid[currentColumn, currentRow].doorEast.SetActive(true);
                 }
+                for (int i = 0; i < grid[currentColumn, currentRow].obstacles.Count; i++)
+                {
+                    grid[currentColumn, currentRow].obstacles[i].SetActive(true);
+                }
             }
         }
     }

@@ -183,7 +183,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4206832514933336327}
-  - component: {fileID: 1122191241311916972}
   - component: {fileID: 3349506161482308221}
   m_Layer: 0
   m_Name: TruckFlat
@@ -212,20 +211,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1122191241311916972
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3542779634646676413}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: 36226753ba4edac4580158f400e01267, type: 3}
 --- !u!114 &3349506161482308221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: 36226753ba4edac4580158f400e01267, type: 3}
   health: 3
   speed: 11
   turnSpeed: 84

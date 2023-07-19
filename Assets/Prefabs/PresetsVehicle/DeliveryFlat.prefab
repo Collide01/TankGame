@@ -268,7 +268,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3434568122677548724}
-  - component: {fileID: 2657644047650458640}
   - component: {fileID: 2657644047650458639}
   m_Layer: 0
   m_Name: DeliveryFlat
@@ -297,20 +296,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &2657644047650458640
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657644047650458638}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: 039864e9c03852d4ca3d71f188080e8b, type: 3}
 --- !u!114 &2657644047650458639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: 039864e9c03852d4ca3d71f188080e8b, type: 3}
   health: 3
   speed: 8.5
   turnSpeed: 75

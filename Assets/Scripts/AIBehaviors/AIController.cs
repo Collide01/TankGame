@@ -47,8 +47,7 @@ public abstract class AIController : Controller
         obstacleCheckScript = obstacleCheck.GetComponent<ObstacleCheck>();
         obstacleCheck.GetComponent<SphereCollider>().radius = maxSteerDistance;
 
-        GameObject postTransform = GameObject.FindGameObjectWithTag("Post");
-        post = postTransform.transform;
+        post = transform;
     
         GameObject[] patrolTransforms = GameObject.FindGameObjectsWithTag("PatrolPoint");
         for (int i = 0; i < patrolTransforms.Length; i++)
@@ -233,7 +232,6 @@ public abstract class AIController : Controller
     {
         lastStateChangeTime = Time.time;
         currentState = newState;
-        Debug.Log("Switching to " + currentState);
     }
 
     // This helps AI avoid obstacles and walls

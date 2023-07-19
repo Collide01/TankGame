@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VehicleData : MonoBehaviour
 {
+    public Mesh meshCollider;
     public float health;
     public float speed;
     public float turnSpeed;
@@ -14,6 +15,11 @@ public class VehicleData : MonoBehaviour
 
     private void Start()
     {
+        if (GetComponentInParent<MeshCollider>() != null)
+        {
+            GetComponentInParent<MeshCollider>().sharedMesh = meshCollider;
+            GetComponentInParent<MeshCollider>().convex = true;
+        }
         if (GetComponentInParent<Health>() != null)
         {
             GetComponentInParent<Health>().maxHealth = health;

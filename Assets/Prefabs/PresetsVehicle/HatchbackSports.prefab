@@ -264,7 +264,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5575595602424451171}
-  - component: {fileID: 5036388302536723124}
   - component: {fileID: 8941751926966428779}
   m_Layer: 0
   m_Name: HatchbackSports
@@ -293,20 +292,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &5036388302536723124
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5056326340048653017}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: f4188de50c34e2843abacc3b10f5890e, type: 3}
 --- !u!114 &8941751926966428779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: f4188de50c34e2843abacc3b10f5890e, type: 3}
   health: 2
   speed: 13
   turnSpeed: 112

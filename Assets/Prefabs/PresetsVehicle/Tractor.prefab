@@ -433,7 +433,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8135374778722679104}
-  - component: {fileID: 6917849286519828827}
   - component: {fileID: 8243596895079994608}
   m_Layer: 0
   m_Name: Tractor
@@ -463,20 +462,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &6917849286519828827
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8911912203429323770}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: 4cd721473ce1bd14d82724d2408bb14c, type: 3}
 --- !u!114 &8243596895079994608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: 4cd721473ce1bd14d82724d2408bb14c, type: 3}
   health: 4
   speed: 5.5
   turnSpeed: 90

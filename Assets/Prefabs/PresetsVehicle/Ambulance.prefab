@@ -179,7 +179,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5805129039674094110}
-  - component: {fileID: 4943126169941851447}
   - component: {fileID: 6936174415040898869}
   m_Layer: 0
   m_Name: Ambulance
@@ -210,20 +209,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &4943126169941851447
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3144730932396826205}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8545447256379345787, guid: 40e571126c8159e4fbe6756e9cf365a4, type: 3}
 --- !u!114 &6936174415040898869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cdef1686c1d9a4cb770f6026b40136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshCollider: {fileID: -8545447256379345787, guid: 40e571126c8159e4fbe6756e9cf365a4, type: 3}
   health: 4
   speed: 7
   turnSpeed: 78
