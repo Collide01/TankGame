@@ -96,11 +96,17 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
+        PawnSpawnPoint spawn = GetRandomSpawnPoint();
+        while (spawn.spawnedPawn != null)
+        {
+            spawn = GetRandomSpawnPoint();
+        }
+
         // Spawn the Player Controller at (0,0,0) with no rotation
-        GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newPlayerObj = Instantiate(playerControllerPrefab, spawn.gameObject.transform.position, Quaternion.identity) as GameObject;
 
         // Spawn the Pawn and connect it to the Controller
-        GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnTransform.position, playerSpawnTransform.rotation) as GameObject;
+        GameObject newPawnObj = Instantiate(tankPawnPrefab, spawn.gameObject.transform.position, playerSpawnTransform.rotation) as GameObject;
 
         // Get the Player Controller component and Pawn component. 
         Controller newController = newPlayerObj.GetComponent<Controller>();

@@ -64,7 +64,7 @@ public class TankShooter : Shooter
 
     public override void LaserBeam(GameObject shellPrefab, Transform firepointTransform, float lifespan)
     {
-        
+        throw new System.NotImplementedException();
     }
 
     public override void Mine(GameObject shellPrefab, Transform firepointTransform, float lifespan)
