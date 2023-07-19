@@ -271,37 +271,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &500974718
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 500974719}
-  m_Layer: 0
-  m_Name: PlayerSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &500974719
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500974718}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: 2, z: -15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &972769759
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3c6cb0d82e88847b60eab0de0f8dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawnTransform: {fileID: 500974719}
   playerControllerPrefab: {fileID: 6516318107442943948, guid: b555baf987cf519489efa0ab9f456ade, type: 3}
   tankPawnPrefab: {fileID: 8431708097166189571, guid: d4c17e4692709b945a5cdf9274a06ac1, type: 3}
   players: []

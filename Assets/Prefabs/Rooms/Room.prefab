@@ -1133,13 +1133,6 @@ MonoBehaviour:
   doorSouth: {fileID: 109208}
   doorEast: {fileID: 197350}
   doorWest: {fileID: 121800}
-  spawnPoints:
-  - {fileID: 9162697803583864491}
-  patrolPoints:
-  - {fileID: 355448167621743640}
-  - {fileID: 9027699679979826807}
-  - {fileID: 1462122825880414358}
-  - {fileID: 4200694662388580362}
 --- !u!1 &190428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,7 +1464,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ffa383ce3892e4297059c06b7e2ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnedPawn: {fileID: 0}
+  spawnedPawn: {fileID: 8773601441572174937, guid: d4c17e4692709b945a5cdf9274a06ac1, type: 3}
+  aiPawns:
+  - {fileID: 4053644455689082704, guid: 224c0055d25128940963c4f162091d22, type: 3}
+  - {fileID: 8079960956425683358, guid: 53845939a6797ed408bbb3b5521d3fc2, type: 3}
+  - {fileID: 2653980535850433899, guid: 33c2ec50412e0014a864690010b4ce6c, type: 3}
+  - {fileID: 6766471610627814483, guid: 5ad21236e7c18c74e9c4eb2e10b2c353, type: 3}
+  patrolPoints:
+  - {fileID: 355448167621743640}
+  - {fileID: 9027699679979826807}
+  - {fileID: 1462122825880414358}
+  - {fileID: 4200694662388580362}
+  playerSpawn: 0
 --- !u!1 &7939302522392897097
 GameObject:
   m_ObjectHideFlags: 0

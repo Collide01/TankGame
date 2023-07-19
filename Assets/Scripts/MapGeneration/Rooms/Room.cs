@@ -8,7 +8,4 @@ public class Room : MonoBehaviour {
 	public GameObject doorSouth;
 	public GameObject doorEast;
 	public GameObject doorWest;
-
-	public List<Transform> spawnPoints;
-	public List<Transform> patrolPoints;
 }

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     // Instance of GameManager singleton
     [HideInInspector] public static GameManager instance;
 
-    public Transform playerSpawnTransform;
+    private bool spawnedObjects;
 
     // Prefabs
     public GameObject playerControllerPrefab;
@@ -84,29 +84,37 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Temp Code - for now, we spawn player as soon as the GameManager starts
-        SpawnPlayer();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!spawnedObjects && pawnSpawnPoints.Count > 0)
+        {
+            SpawnPlayer();
+            for (int i = 0; i < pawnSpawnPoints.Count - 1; i++)
+            {
+                SpawnAI();
+            }
+            spawnedObjects = true;
+        }
     }
 
     public void SpawnPlayer()
     {
         PawnSpawnPoint spawn = GetRandomSpawnPoint();
-        while (spawn.spawnedPawn != null)
+        while (spawn.spawnedPawn == null)
         {
             spawn = GetRandomSpawnPoint();
         }
+        spawn.spawned = true;
 
-        // Spawn the Player Controller at (0,0,0) with no rotation
-        GameObject newPlayerObj = Instantiate(playerControllerPrefab, spawn.gameObject.transform.position, Quaternion.identity) as GameObject;
+        // Spawn the Player Controller at the spawn point
+        GameObject newPlayerObj = Instantiate(playerControllerPrefab, spawn.gameObject.transform.position, spawn.gameObject.transform.rotation) as GameObject;
 
         // Spawn the Pawn and connect it to the Controller
-        GameObject newPawnObj = Instantiate(tankPawnPrefab, spawn.gameObject.transform.position, playerSpawnTransform.rotation) as GameObject;
+        GameObject newPawnObj = Instantiate(spawn.spawnedPawn.gameObject, spawn.gameObject.transform.position, spawn.gameObject.transform.rotation) as GameObject;
 
         // Get the Player Controller component and Pawn component. 
         Controller newController = newPlayerObj.GetComponent<Controller>();
@@ -114,6 +122,25 @@ public class GameManager : MonoBehaviour
 
         // Hook them up!
         newController.pawn = newPawn;
+    }
+
+    public void SpawnAI()
+    {
+        PawnSpawnPoint spawn = GetRandomSpawnPoint();
+        while (spawn.aiPawns.Count == 0 || spawn.spawned)
+        {
+            spawn = GetRandomSpawnPoint();
+        }
+        spawn.spawned = true;
+
+        // Choose a random behavior for the AI
+        int randomBehavior = Random.Range(0, 4);
+
+        // Spawn the AI prefab
+        GameObject aiPawn = Instantiate(spawn.aiPawns[randomBehavior], spawn.gameObject.transform.position, spawn.gameObject.transform.rotation);
+
+        // Pass the patrol points to the AI
+        aiPawn.GetComponent<AIController>().patrolPoints = spawn.patrolPoints;
     }
 
     private PawnSpawnPoint GetRandomSpawnPoint()

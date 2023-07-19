@@ -5,6 +5,9 @@ using UnityEngine;
 public class PawnSpawnPoint : MonoBehaviour
 {
     public Pawn spawnedPawn;
+    public List<GameObject> aiPawns;
+    public List<Transform> patrolPoints;
+    [HideInInspector] public bool spawned;
 
     private void Start()
     {
