@@ -8,11 +8,15 @@ public class HealthPowerup : Powerup
     public float healthToAdd;
     public override void Apply(PowerupManager target)
     {
-        // TODO: Apply Health changes
+        Health targetHealth = target.gameObject.GetComponent<Health>();
+        if (targetHealth != null)
+        {
+            targetHealth.Heal(healthToAdd, target.gameObject.GetComponent<Pawn>());
+        }
     }
 
     public override void Remove(PowerupManager target)
     {
-        // TODO: Remove Health changes
+        // Don't
     }
 }

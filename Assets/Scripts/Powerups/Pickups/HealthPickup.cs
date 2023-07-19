@@ -4,32 +4,14 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    public HealthPowerup powerup;
+    public HealthPowerup healthPowerup;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        // variable to store other object's PowerupController - if it has one
-        PowerupManager powerupManager = other.GetComponent<PowerupManager>();
-
-        // If the other object has a PowerupController
-        if (powerupManager != null)
+        PowerupManager manager = other.transform.parent.GetComponent<PowerupManager>();
+        if (manager)
         {
-            // Add the powerup
-            powerupManager.Add(powerup);
-
-            // Destroy this pickup
+            manager.Add(healthPowerup);
             Destroy(gameObject);
         }
     }
