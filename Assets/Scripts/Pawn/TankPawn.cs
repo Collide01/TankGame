@@ -384,7 +384,10 @@ public class TankPawn : Pawn
         {
             shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
             shootTimer = 0;
-            specialShotTimer -= 2;
+            if (!overcharge)
+            {
+                specialShotTimer -= 2;
+            }
             if (noiseMaker != null)
             {
                 noiseMaker.volumeDistance = shootNoise;
@@ -408,7 +411,25 @@ public class TankPawn : Pawn
                     //shooter.Mine(specialShotPrefab, specialFirepointTransform, specialLifespan);
                     break;
             }
-            specialShotTimer = 0;
+            if (!overcharge)
+            {
+                specialShotTimer = 0;
+            }
+            else
+            {
+                switch (specialShotType)
+                {
+                    case SpecialShotType.BouncyShot:
+                        specialShotTimer = specialChargeTime - 1;
+                        break;
+                    case SpecialShotType.LaserBeam:
+                        specialShotTimer = specialChargeTime - 5;
+                        break;
+                    case SpecialShotType.Mine:
+                        specialShotTimer = specialChargeTime - 2;
+                        break;
+                }
+            }
             if (noiseMaker != null)
             {
                 noiseMaker.volumeDistance = specialShotNoise;

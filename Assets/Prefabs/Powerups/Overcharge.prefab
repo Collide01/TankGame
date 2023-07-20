@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2290807387205411543}
   - component: {fileID: 1910766303640631897}
   m_Layer: 0
-  m_Name: InstantCharge
+  m_Name: Overcharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,5 +112,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargePowerup:
-    duration: 0
-    isPermanent: 1
+    duration: 5
+    isPermanent: 0

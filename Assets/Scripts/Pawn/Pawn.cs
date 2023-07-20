@@ -52,6 +52,7 @@ public abstract class Pawn : MonoBehaviour
     // Variable for how long the special shot lasts; only applies to laser beam and mine
     public float specialLifespan;
     [HideInInspector] public float specialShotTimer;
+    [HideInInspector] public bool overcharge;
 
     public abstract void RotateTowards(Vector3 targetPosition, float avoidanceSpeed = 0);
 

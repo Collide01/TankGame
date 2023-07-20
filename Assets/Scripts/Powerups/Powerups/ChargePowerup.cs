@@ -10,12 +10,18 @@ public class ChargePowerup : Powerup
         Pawn targetPawn = target.gameObject.GetComponent<Pawn>();
         if (targetPawn != null)
         {
+            targetPawn.overcharge = true;
             targetPawn.specialShotTimer = targetPawn.specialChargeTime;
         }
     }
 
     public override void Remove(PowerupManager target)
     {
-        // Don't
+        Pawn targetPawn = target.gameObject.GetComponent<Pawn>();
+        if (targetPawn != null)
+        {
+            targetPawn.overcharge = false;
+            targetPawn.specialShotTimer = 0;
+        }
     }
 }

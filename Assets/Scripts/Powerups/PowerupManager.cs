@@ -59,7 +59,7 @@ public class PowerupManager : MonoBehaviour
         // Now that we are sure we are not iterating through "powerups", remove the powerups that are in our temporary list
         foreach (Powerup powerup in powerupsToRemove)
         {
-            powerups.Remove(powerup);
+            Remove(powerup);
         }
         // And reset our temporary list
         powerupsToRemove.Clear();
