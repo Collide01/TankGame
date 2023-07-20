@@ -24,14 +24,14 @@ public class TankPawn : Pawn
         base.Start();
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        GameObject createManager = GameObject.Find("CreateManager");
+        createManager = GameObject.Find("CreateManager");
         if (createManager != null)
         {
             tankPrefabs = createManager.GetComponent<CreateManager>();
         }
 
         // Set the vehicle data from the vehicle menu
-        if (tankPrefabs != null)
+        if (tankPrefabs != null && ownedByPlayer)
         {
             switch (tankPrefabs.chosenVehicle)
             {

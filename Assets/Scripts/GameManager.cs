@@ -105,7 +105,10 @@ public class GameManager : MonoBehaviour
             spawnedObjects = true;
         }
 
-        specialShotSlider.value = playerPawn.specialShotTimer;
+        if (playerPawn != null)
+        {
+            specialShotSlider.value = playerPawn.specialShotTimer;
+        }
     }
 
     public void SpawnPlayer()

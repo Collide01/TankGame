@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Pawn : MonoBehaviour
 {
+    [HideInInspector] public bool ownedByPlayer;
     [HideInInspector] public Mover mover;
     [HideInInspector] public Shooter shooter;
     [HideInInspector] public Health health;
