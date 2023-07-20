@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
     // List that holds our pawn(s)
     public List<Pawn> pawns;
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
+
+    public Slider specialShotSlider;
+    // This variable is temporary; only accomodates for one player
+    private Pawn playerPawn;
 
     [Header("Prefabs")]
     public GameObject ambulance;
@@ -99,6 +104,8 @@ public class GameManager : MonoBehaviour
             }
             spawnedObjects = true;
         }
+
+        specialShotSlider.value = playerPawn.specialShotTimer;
     }
 
     public void SpawnPlayer()
@@ -126,6 +133,10 @@ public class GameManager : MonoBehaviour
         // Set the layer of the vehicle prefab to the Player layer
         int playerLayer = LayerMask.NameToLayer("Player");
         newPawnObj.gameObject.layer = playerLayer;
+
+        // Temporary code; only accomodates for one player
+        playerPawn = newController.pawn;
+        specialShotSlider.maxValue = newController.pawn.specialChargeTime;
     }
 
     public void SpawnAI()

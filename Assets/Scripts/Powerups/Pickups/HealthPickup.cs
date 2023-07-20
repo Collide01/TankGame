@@ -8,10 +8,11 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PowerupManager manager = other.transform.parent.GetComponent<PowerupManager>();
+        PowerupManager manager = other.gameObject.GetComponent<PowerupManager>();
         if (manager)
         {
             manager.Add(healthPowerup);
+            Debug.Log("Healed tank");
             Destroy(gameObject);
         }
     }

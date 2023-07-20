@@ -47,7 +47,6 @@ public class ObstacleCheck : MonoBehaviour
         if (other.gameObject.tag == "Obstacle" && obstacles != null)
         {
             obstacles.Add(other);
-            Debug.Log("Seeing obstacle");
         }
     }
     public void OnTriggerExit(Collider other)

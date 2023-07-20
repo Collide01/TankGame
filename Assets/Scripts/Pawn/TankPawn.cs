@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankPawn : Pawn
 {
@@ -16,7 +17,6 @@ public class TankPawn : Pawn
     [SerializeField] private GameObject blaster;
 
     private float shootTimer;
-    private float specialShotTimer;
 
     // Start is called before the first frame update
     public override void Start()
@@ -401,10 +401,10 @@ public class TankPawn : Pawn
                     shooter.BouncyShot(specialShotPrefab, specialFirepointTransform, fireForce);
                     break;
                 case SpecialShotType.LaserBeam:
-                    shooter.LaserBeam(specialShotPrefab, specialFirepointTransform, specialLifespan);
+                    //shooter.LaserBeam(specialShotPrefab, specialFirepointTransform, specialLifespan);
                     break;
                 case SpecialShotType.Mine:
-                    shooter.Mine(specialShotPrefab, specialFirepointTransform, specialLifespan);
+                    //shooter.Mine(specialShotPrefab, specialFirepointTransform, specialLifespan);
                     break;
             }
             specialShotTimer = 0;
