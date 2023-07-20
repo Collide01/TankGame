@@ -316,6 +316,7 @@ public class TankPawn : Pawn
         specialShotTimer = Mathf.Clamp(specialShotTimer, 0, specialChargeTime);
 
         blaster.transform.localPosition = vehicle.GetComponent<VehicleData>().blasterLocation;
+        transform.GetChild(transform.childCount - 1).gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
         firePoint.transform.localPosition = vehicle.GetComponent<VehicleData>().firePoint;
         specialFirePoint.transform.localPosition = vehicle.GetComponent<VehicleData>().specialFirePoint;
         minePoint.transform.localPosition = vehicle.GetComponent<VehicleData>().minePoint;
@@ -441,5 +442,74 @@ public class TankPawn : Pawn
         {
             noiseMaker.volumeDistance = 0;
         }
+    }
+
+    public void ChangeWeapon()
+    {
+        Destroy(transform.GetChild(transform.childCount - 1).gameObject);
+
+        int random = Random.Range(0, 18);
+        switch (random)
+        {
+            case 0:
+                blaster = Instantiate(gameManager.blasterA, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 1:
+                blaster = Instantiate(gameManager.blasterB, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 2:
+                blaster = Instantiate(gameManager.blasterC, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 3:
+                blaster = Instantiate(gameManager.blasterD, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 4:
+                blaster = Instantiate(gameManager.blasterE, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 5:
+                blaster = Instantiate(gameManager.blasterF, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 6:
+                blaster = Instantiate(gameManager.blasterG, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 7:
+                blaster = Instantiate(gameManager.blasterH, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 8:
+                blaster = Instantiate(gameManager.blasterI, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 9:
+                blaster = Instantiate(gameManager.blasterJ, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 10:
+                blaster = Instantiate(gameManager.blasterK, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 11:
+                blaster = Instantiate(gameManager.blasterL, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 12:
+                blaster = Instantiate(gameManager.blasterM, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 13:
+                blaster = Instantiate(gameManager.blasterN, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 14:
+                blaster = Instantiate(gameManager.blasterO, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 15:
+                blaster = Instantiate(gameManager.blasterP, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 16:
+                blaster = Instantiate(gameManager.blasterQ, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+            case 17:
+                blaster = Instantiate(gameManager.blasterR, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
+                break;
+        }
+        fireForce = blaster.GetComponent<BlasterData>().bulletSpeed;
+        shotsPerSecond = blaster.GetComponent<BlasterData>().fireRate;
+        fireRate = 1 / shotsPerSecond;
+        specialShotType = blaster.GetComponent<BlasterData>().specialShot;
+        specialShotTimer = 0;
     }
 }
