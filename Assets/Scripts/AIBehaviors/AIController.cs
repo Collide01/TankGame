@@ -162,21 +162,26 @@ public abstract class AIController : Controller
 
     public virtual void DoChaseState()
     {
-        // Turn to face target
-        pawn.RotateTowards(target.transform.position, totalSteeringAmount);
-        // Move forward
-        pawn.MoveForward();
-        moveDirection = MoveDirection.Forward;
+        if (target != null)
+        {
+            // Turn to face target
+            pawn.RotateTowards(target.transform.position, totalSteeringAmount);
+            // Move forward
+            pawn.MoveForward();
+            moveDirection = MoveDirection.Forward;
+        }
     }
 
     public virtual void DoFleeState()
     {
-        //throw new NotImplementedException();
-        // Turn to face target
-        pawn.RotateTowards(target.transform.position, totalSteeringAmount);
-        // Move backward
-        pawn.MoveBackward();
-        moveDirection = MoveDirection.Backward;
+        if (target != null)
+        {
+            // Turn to face target
+            pawn.RotateTowards(target.transform.position, totalSteeringAmount);
+            // Move backward
+            pawn.MoveBackward();
+            moveDirection = MoveDirection.Backward;
+        }
     }
 
     public virtual void DoPatrolState(bool changeState = false) // changeState prevents changing the patrol point so it can manually be done in MakeDecisions()
