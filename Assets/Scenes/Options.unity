@@ -1727,6 +1727,7 @@ GameObject:
   - component: {fileID: 1213264737}
   - component: {fileID: 1213264742}
   - component: {fileID: 1213264741}
+  - component: {fileID: 1213264743}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1849,6 +1850,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e73da3c11cd7f842ae94daf96d69fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1213264743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213264736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23514ccc1052b9449b74b8b1ddf6027f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: bb21f9a55d0807f459a6d5e28e6a2882, type: 2}
+  musicVolumeSlider: {fileID: 1309489976}
+  soundVolumeSlider: {fileID: 955211899}
 --- !u!1 &1302660564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,7 +2049,19 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8566638619421551492, guid: bb21f9a55d0807f459a6d5e28e6a2882, type: 2}
+        m_TargetAssemblyTypeName: UnityEditor.Audio.AudioMixerController, UnityEditor.CoreModule
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1368759375
 GameObject:
   m_ObjectHideFlags: 0
