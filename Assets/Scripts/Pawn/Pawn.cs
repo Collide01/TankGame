@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Pawn : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public abstract class Pawn : MonoBehaviour
     [HideInInspector] public Shooter shooter;
     [HideInInspector] public Health health;
     [HideInInspector] public NoiseMaker noiseMaker;
+    public Image healthBar;
 
     // Variable for move speed
     public float moveSpeed;
@@ -83,6 +85,8 @@ public abstract class Pawn : MonoBehaviour
         {
             health.TakeDamage(999, this);
         }
+
+        healthBar.fillAmount = health.currentHealth / health.maxHealth;
     }
 
     public abstract void MoveForward();
