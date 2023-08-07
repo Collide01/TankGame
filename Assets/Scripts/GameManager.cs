@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     // This variable is temporary; only accomodates for one player
     private Pawn playerPawn;
 
+    public int highScore;
+
     [Header("Prefabs")]
     public GameObject ambulance;
     public GameObject delivery;

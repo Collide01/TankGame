@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ScorePowerup : Powerup
 {
-    public float scoreToAdd;
+    public int scoreToAdd;
     public override void Apply(PowerupManager target)
     {
-        Health targetHealth = target.gameObject.GetComponent<Health>();
-        if (targetHealth != null)
+        Score targetScore = target.gameObject.GetComponent<Score>();
+        if (targetScore != null)
         {
-            targetHealth.Heal(scoreToAdd, target.gameObject.GetComponent<Pawn>());
+            targetScore.AddScore(scoreToAdd);
         }
     }
 
