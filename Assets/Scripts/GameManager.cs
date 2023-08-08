@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
+public class GameStateChangedEvent : UnityEvent<GameState, GameState>
+{
+
+}
+public enum GameState { TitleState, OptionsState, VehicleState, GameplayState, GameOverState, Credits, Pause }
 public class GameManager : MonoBehaviour
 {
+    public GameStateChangedEvent OnGameStateChanged = new GameStateChangedEvent();
     // Instance of GameManager singleton
     [HideInInspector] public static GameManager instance;
+    public int numberOfPlayers = 1;
 
     private bool spawnedObjects;
 
@@ -16,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     // List that holds our player(s)
     public List<PlayerController> players;
+    public List<int> lives = new List<int>();
     // List that holds our AI
     public List<AIController> aiControllers;
     // List that holds our controller(s)
@@ -24,11 +33,47 @@ public class GameManager : MonoBehaviour
     public List<Pawn> pawns;
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
 
-    public Slider specialShotSlider;
     // This variable is temporary; only accomodates for one player
     private Pawn playerPawn;
 
     public int highScore;
+
+    public bool PlayersHaveLives
+    {
+        get
+        {
+            int totalLives = 0;
+            foreach (int playerLives in lives)
+            {
+                totalLives += playerLives;
+            }
+            return (totalLives > 0);
+        }
+    }
+
+    public int GetPlayerIndex(Pawn source)
+    {
+        foreach (PlayerController controller in players)
+        {
+            if (controller.pawn == source)
+            {
+                return (players.IndexOf(controller));
+            }
+        }
+
+        return -1;
+    }
+
+    public GameState currentGameState = GameState.TitleState;
+    private GameState previousGameState;
+
+
+    public void ChangeGameState(GameState state)
+    {
+        previousGameState = currentGameState;
+        currentGameState = state;
+        OnGameStateChanged.Invoke(previousGameState, currentGameState);
+    }
 
     [Header("Prefabs")]
     public GameObject ambulance;
@@ -106,15 +151,15 @@ public class GameManager : MonoBehaviour
             }
             spawnedObjects = true;
         }
-
-        if (playerPawn != null)
-        {
-            specialShotSlider.value = playerPawn.specialShotTimer;
-        }
     }
 
     public void SpawnPlayer()
     {
+        if (pawnSpawnPoints.Count < numberOfPlayers)
+        {
+            Debug.LogError("Not enough spawn points");
+            return;
+        }
         PawnSpawnPoint spawn = GetRandomSpawnPoint();
         while (spawn.spawnedPawn == null)
         {
@@ -138,10 +183,14 @@ public class GameManager : MonoBehaviour
         // Set the layer of the vehicle prefab to the Player layer
         int playerLayer = LayerMask.NameToLayer("Player");
         newPawnObj.gameObject.layer = playerLayer;
+    }
 
-        // Temporary code; only accomodates for one player
-        playerPawn = newController.pawn;
-        specialShotSlider.maxValue = newController.pawn.specialChargeTime;
+    public void SpawnPlayers()
+    {
+        if (players.Count < numberOfPlayers)
+        {
+            SpawnPlayer();
+        }
     }
 
     public void SpawnAI()
@@ -166,5 +215,61 @@ public class GameManager : MonoBehaviour
     private PawnSpawnPoint GetRandomSpawnPoint()
     {
         return pawnSpawnPoints[Random.Range(0, pawnSpawnPoints.Count)];
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game is quitting");
+    }
+
+    public void StartGame()
+    {
+        ChangeGameState(GameState.GameplayState);
+        Time.timeScale = 1f;
+    }
+
+    public void OpenOptionsMenu()
+    {
+        ChangeGameState(GameState.OptionsState);
+    }
+
+    public void CloseOptionsMenu()
+    {
+        ChangeGameState(previousGameState);
+    }
+
+    public void ChangeToPreviousGameState()
+    {
+        ChangeGameState(previousGameState);
+    }
+
+    public void ChangeStateToTitle()
+    {
+        ChangeGameState(GameState.TitleState);
+    }
+
+    public void PauseGame()
+    {
+        ChangeGameState(GameState.Pause);
+        Time.timeScale = 0f;
+    }
+
+    public void UnpauseGame()
+    {
+        ChangeGameState(GameState.GameplayState);
+        Time.timeScale = 1f;
+    }
+
+    public void TogglePause()
+    {
+        if (currentGameState == GameState.Pause)
+        {
+            UnpauseGame();
+        }
+        else
+        {
+            PauseGame();
+        }
     }
 }

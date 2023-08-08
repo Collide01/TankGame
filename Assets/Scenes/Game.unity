@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 950772461}
   - component: {fileID: 950772460}
   m_Layer: 5
-  m_Name: Health Meter
+  m_Name: SpecialShotMeter
   m_TagString: SpecialShotBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -686,15 +686,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3c6cb0d82e88847b60eab0de0f8dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfPlayers: 1
   playerControllerPrefab: {fileID: 6516318107442943948, guid: b555baf987cf519489efa0ab9f456ade, type: 3}
   tankPawnPrefab: {fileID: 8431708097166189571, guid: d4c17e4692709b945a5cdf9274a06ac1, type: 3}
   players: []
+  lives: 
   aiControllers: []
   controllers: []
   pawns: []
   pawnSpawnPoints: []
-  specialShotSlider: {fileID: 950772460}
   highScore: 0
+  currentGameState: 3
   ambulance: {fileID: 3144730932396826205, guid: de7dad599ae06e04490f50b5e834333c, type: 3}
   delivery: {fileID: 3990786821727018511, guid: 3e1c3e1eef0ebbc4fa298388453733d5, type: 3}
   deliveryFlat: {fileID: 2657644047650458638, guid: 340f0c3936f057948929fadc51540753, type: 3}

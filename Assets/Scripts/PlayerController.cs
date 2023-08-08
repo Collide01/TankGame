@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PlayerController : Controller
@@ -9,6 +10,8 @@ public class PlayerController : Controller
     private Vector2 vInput;
     private bool firing;
     private bool specialFiring;
+
+    public Slider specialShotSlider;
 
     // Start is called before the first frame update
     public override void Start()
@@ -31,6 +34,12 @@ public class PlayerController : Controller
         pawn.health.currentHealth = 10;
         pawn.ownedByPlayer = true;
 
+        specialShotSlider = GameObject.Find("SpecialShotMeter").GetComponent<Slider>();
+        if (specialShotSlider != null)
+        {
+            specialShotSlider.maxValue = pawn.specialChargeTime;
+        }
+
         // Run the Start() function from the parent (base) class
         base.Start();
     }
@@ -47,6 +56,11 @@ public class PlayerController : Controller
 
         if (firing) pawn.Shoot();
         if (specialFiring) pawn.SpecialShoot();
+
+        if (pawn != null)
+        {
+            specialShotSlider.value = pawn.specialShotTimer;
+        }
 
         // Run the Update() function from the parent (base) class
         base.Update();

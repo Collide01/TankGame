@@ -6,20 +6,30 @@ using UnityEngine.Audio;
 
 public class VolumeManager : MonoBehaviour
 {
+    public static VolumeManager Instance;
     public AudioMixer audioMixer;
     public Slider musicVolumeSlider;
     public Slider soundVolumeSlider;
 
-    public void Start()
+    public float bgmVolume = 1.0f;
+    public float sfxVolume = 1.0f;
+
+    private void Awake()
     {
-        OnMusicVolumeChange();
-        OnSFXVolumeChange();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to create a second audio manager");
+            Destroy(this);
+        }
     }
 
-    public void OnMusicVolumeChange()
+    private float ConvertToDecibel(float value)
     {
-        // Start with the slider value (assuming our slider runs from 0 to 1)
-        float newVolume = musicVolumeSlider.value;
+        float newVolume = value;
         if (newVolume <= 0)
         {
             // If we are at zero, set our volume to the lowest value
@@ -32,27 +42,25 @@ public class VolumeManager : MonoBehaviour
             // Make it in the 0-20db range (instead of 0-1 db)
             newVolume = newVolume * 20;
         }
+
+        return newVolume;
+    }
+
+    public void OnBGMVolumeChange(float value)
+    {
+        bgmVolume = Mathf.Clamp01(value);
+        // Start with the slider value (assuming our slider runs from 0 to 1)
+        float newVolume = ConvertToDecibel(value);
 
         // Set the volume to the new volume setting
         audioMixer.SetFloat("MusicVolume", newVolume);
     }
 
-    public void OnSFXVolumeChange()
+    public void OnSFXVolumeChange(float value)
     {
+        sfxVolume = Mathf.Clamp01(value);
         // Start with the slider value (assuming our slider runs from 0 to 1)
-        float newVolume = soundVolumeSlider.value;
-        if (newVolume <= 0)
-        {
-            // If we are at zero, set our volume to the lowest value
-            newVolume = -80;
-        }
-        else
-        {
-            // We are >0, so start by finding the log10 value 
-            newVolume = Mathf.Log10(newVolume);
-            // Make it in the 0-20db range (instead of 0-1 db)
-            newVolume = newVolume * 20;
-        }
+        float newVolume = ConvertToDecibel(value);
 
         // Set the volume to the new volume setting
         audioMixer.SetFloat("SFXVolume", newVolume);
