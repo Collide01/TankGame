@@ -403,7 +403,6 @@ GameObject:
   - component: {fileID: 8773601441572174941}
   - component: {fileID: 380827221225247333}
   - component: {fileID: 2136823900288708953}
-  - component: {fileID: 4219393187903455932}
   m_Layer: 0
   m_Name: TankPrefab
   m_TagString: Vehicle
@@ -567,16 +566,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc7f4888a715c94b8c033458b9856b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4219393187903455932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8431708097166189571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f5f805e21a342e499bb18be475d97b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0

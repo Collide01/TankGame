@@ -356,13 +356,6 @@ public abstract class AIController : Controller
                 // Deregister with the GameManager
                 GameManager.instance.aiControllers.Remove(this);
             }
-
-            // And it tracks the controller(s)
-            if (GameManager.instance.controllers != null)
-            {
-                // Deregister with the GameManager
-                GameManager.instance.controllers.Remove(this);
-            }
         }
     }
 }

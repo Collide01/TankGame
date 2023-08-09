@@ -1865,6 +1865,8 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: bb21f9a55d0807f459a6d5e28e6a2882, type: 2}
   musicVolumeSlider: {fileID: 1309489976}
   soundVolumeSlider: {fileID: 955211899}
+  bgmVolume: 1
+  sfxVolume: 1
 --- !u!1 &1302660564
 GameObject:
   m_ObjectHideFlags: 0

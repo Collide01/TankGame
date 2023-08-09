@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ScorePickup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ScorePowerup scorePowerup;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        PowerupManager manager = other.gameObject.GetComponent<PowerupManager>();
+        if (manager)
+        {
+            manager.Add(scorePowerup);
+            Destroy(gameObject);
+        }
     }
 }

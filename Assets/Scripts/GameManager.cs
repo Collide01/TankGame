@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     public List<int> lives = new List<int>();
     // List that holds our AI
     public List<AIController> aiControllers;
-    // List that holds our controller(s)
-    public List<Controller> controllers;
     // List that holds our pawn(s)
     public List<Pawn> pawns;
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
@@ -37,6 +35,8 @@ public class GameManager : MonoBehaviour
     private Pawn playerPawn;
 
     public int highScore;
+    public bool playerMode; // false = one player mode, true = 2 player mode
+    public bool mapMode; // false = Map of the Day, true = Random Map
 
     public bool PlayersHaveLives
     {
