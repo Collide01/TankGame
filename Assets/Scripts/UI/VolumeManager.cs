@@ -14,6 +14,9 @@ public class VolumeManager : MonoBehaviour
     public float bgmVolume = 1.0f;
     public float sfxVolume = 1.0f;
 
+    public Toggle gameModeCheckbox;
+    public Toggle mapModeCheckbox;
+
     private void Awake()
     {
         if (Instance == null)
@@ -64,5 +67,30 @@ public class VolumeManager : MonoBehaviour
 
         // Set the volume to the new volume setting
         audioMixer.SetFloat("SFXVolume", newVolume);
+    }
+
+    public void OnGameModeChange()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.gameMode = gameModeCheckbox.isOn;
+            if (gameModeCheckbox.isOn)
+            {
+                GameManager.instance.numberOfPlayers = 2;
+            }
+            else
+            {
+                GameManager.instance.numberOfPlayers = 1;
+            }
+        }
+    }
+
+    public void OnMapModeChange()
+    {
+        if (GameManager.instance != null)
+        {
+            Debug.Log(mapModeCheckbox.isOn);
+            GameManager.instance.mapMode = mapModeCheckbox.isOn;
+        }
     }
 }

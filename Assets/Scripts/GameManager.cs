@@ -31,11 +31,8 @@ public class GameManager : MonoBehaviour
     public List<Pawn> pawns;
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
 
-    // This variable is temporary; only accomodates for one player
-    private Pawn playerPawn;
-
     public int highScore;
-    public bool playerMode; // false = one player mode, true = 2 player mode
+    public bool gameMode; // false = one player mode, true = 2 player mode
     public bool mapMode; // false = Map of the Day, true = Random Map
 
     public bool PlayersHaveLives
@@ -217,26 +214,10 @@ public class GameManager : MonoBehaviour
         return pawnSpawnPoints[Random.Range(0, pawnSpawnPoints.Count)];
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-        Debug.Log("Game is quitting");
-    }
-
     public void StartGame()
     {
         ChangeGameState(GameState.GameplayState);
         Time.timeScale = 1f;
-    }
-
-    public void OpenOptionsMenu()
-    {
-        ChangeGameState(GameState.OptionsState);
-    }
-
-    public void CloseOptionsMenu()
-    {
-        ChangeGameState(previousGameState);
     }
 
     public void ChangeToPreviousGameState()

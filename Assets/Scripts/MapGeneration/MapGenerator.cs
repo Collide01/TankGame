@@ -17,6 +17,17 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.mapMode)
+            {
+                randomType = RandomType.Random;
+            }
+            else
+            {
+                randomType = RandomType.MapOfTheDay;
+            }
+        }
         GenerateMap();
     }
 
