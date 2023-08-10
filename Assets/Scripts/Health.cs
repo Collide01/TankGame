@@ -36,11 +36,19 @@ public class Health : MonoBehaviour
     public void OnDie(Pawn source)
     {
         // Get the player index if killed by a player
-        int playerIndex = GameManager.instance.GetPlayerIndex(source);
+        int playerIndexShooter = GameManager.instance.GetPlayerIndex(source);
+        // Get the player index if this object is a player
+        int playerIndexThis = GameManager.instance.GetPlayerIndex(gameObject.GetComponent<Pawn>());
         // Award points to that player
-        if (playerIndex != -1)
+        if (playerIndexShooter != -1)
         {
-            GameManager.instance.players[playerIndex].score += source.pointsOnKilled;
+            GameManager.instance.players[playerIndexShooter].score += source.pointsOnKilled;
+        }
+        // Remove a life if this is a player
+        if (playerIndexThis != -1)
+        {
+            GameManager.instance.players[playerIndexThis].lives--;
+            Debug.Log("Decreasing life");
         }
         Destroy(gameObject);
     }

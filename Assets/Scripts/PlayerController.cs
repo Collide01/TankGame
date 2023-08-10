@@ -13,9 +13,12 @@ public class PlayerController : Controller
     private bool specialFiring;
 
     public TMP_Text scoreText;
+    public TMP_Text livesText;
+    public Slider healthSlider;
     public Slider specialShotSlider;
 
     public int score;
+    public int lives = 3;
 
     // Start is called before the first frame update
     public override void Start()
@@ -38,10 +41,23 @@ public class PlayerController : Controller
         pawn.health.currentHealth = 10;
         pawn.ownedByPlayer = true;
 
+        livesText = GameObject.Find("LivesText").GetComponent<TMP_Text>();
+        if (livesText != null)
+        {
+            livesText.text = "Lives: " + lives;
+        }
+
         scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
         if (scoreText != null)
         {
             scoreText.text = "Score: " + score;
+        }
+
+        healthSlider = GameObject.Find("HealthMeter").GetComponent<Slider>();
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = pawn.health.maxHealth;
+            healthSlider.value = pawn.health.maxHealth;
         }
 
         specialShotSlider = GameObject.Find("SpecialShotMeter").GetComponent<Slider>();
@@ -67,9 +83,19 @@ public class PlayerController : Controller
         if (firing) pawn.Shoot();
         if (specialFiring) pawn.SpecialShoot();
 
+        if (pawn != null && livesText != null)
+        {
+            livesText.text = "Lives: " + lives;
+        }
+
         if (pawn != null && scoreText != null)
         {
             scoreText.text = "Score: " + score;
+        }
+
+        if (pawn != null && healthSlider != null)
+        {
+            healthSlider.value = pawn.health.currentHealth;
         }
 
         if (pawn != null && specialShotSlider != null)

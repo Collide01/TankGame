@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     // List that holds our player(s)
     public List<PlayerController> players;
-    public List<int> lives = new List<int>();
     // List that holds our AI
     public List<AIController> aiControllers;
     // List that holds our pawn(s)
@@ -51,9 +50,9 @@ public class GameManager : MonoBehaviour
         get
         {
             int totalLives = 0;
-            foreach (int playerLives in lives)
+            for (int i = 0; i < players.Count; i++)
             {
-                totalLives += playerLives;
+                totalLives += players[i].lives;
             }
             return (totalLives > 0);
         }
@@ -144,13 +143,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (currentGameState == GameState.GameplayState)
+        {
+            highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!spawnedObjects && pawnSpawnPoints.Count > 0)
+        if (!spawnedObjects && pawnSpawnPoints.Count > 0 && currentGameState == GameState.GameplayState)
         {
             SpawnPlayer();
             for (int i = 0; i < pawnSpawnPoints.Count - 1; i++)
@@ -161,7 +163,6 @@ public class GameManager : MonoBehaviour
         }
 
         // Update high score
-        highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
         if (highScoreText != null)
         {
             for (int i = 0; i < players.Count; i++)
