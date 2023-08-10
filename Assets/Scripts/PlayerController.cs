@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class PlayerController : Controller
@@ -11,7 +12,10 @@ public class PlayerController : Controller
     private bool firing;
     private bool specialFiring;
 
+    public TMP_Text scoreText;
     public Slider specialShotSlider;
+
+    public int score;
 
     // Start is called before the first frame update
     public override void Start()
@@ -33,6 +37,12 @@ public class PlayerController : Controller
         pawn.health.maxHealth = 10;
         pawn.health.currentHealth = 10;
         pawn.ownedByPlayer = true;
+
+        scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
+        }
 
         specialShotSlider = GameObject.Find("SpecialShotMeter").GetComponent<Slider>();
         if (specialShotSlider != null)
@@ -57,7 +67,12 @@ public class PlayerController : Controller
         if (firing) pawn.Shoot();
         if (specialFiring) pawn.SpecialShoot();
 
-        if (pawn != null)
+        if (pawn != null && scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
+        }
+
+        if (pawn != null && specialShotSlider != null)
         {
             specialShotSlider.value = pawn.specialShotTimer;
         }

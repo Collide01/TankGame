@@ -89,7 +89,6 @@ public class VolumeManager : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            Debug.Log(mapModeCheckbox.isOn);
             GameManager.instance.mapMode = mapModeCheckbox.isOn;
         }
     }

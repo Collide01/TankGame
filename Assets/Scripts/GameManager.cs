@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Events;
 
 public class GameStateChangedEvent : UnityEvent<GameState, GameState>
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     // Instance of GameManager singleton
     [HideInInspector] public static GameManager instance;
     public int numberOfPlayers = 1;
-
+    public List<int> points = new List<int>();
     private bool spawnedObjects;
 
     // Prefabs
@@ -32,8 +33,18 @@ public class GameManager : MonoBehaviour
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
 
     public int highScore;
+    private TMP_Text highScoreText;
     public bool gameMode; // false = one player mode, true = 2 player mode
     public bool mapMode; // false = Map of the Day, true = Random Map
+
+    public IEnumerator SpawnTanksNextFrame()
+    {
+        // Write code here
+        yield return null;
+        // This code runs on the next frame
+        SpawnPlayers();
+        SpawnAI();
+    }
 
     public bool PlayersHaveLives
     {
@@ -147,6 +158,20 @@ public class GameManager : MonoBehaviour
                 SpawnAI();
             }
             spawnedObjects = true;
+        }
+
+        // Update high score
+        highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
+        if (highScoreText != null)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].score > highScore)
+                {
+                    highScore = players[i].score;
+                    highScoreText.text = "High Score: " + highScore;
+                }
+            }
         }
     }
 

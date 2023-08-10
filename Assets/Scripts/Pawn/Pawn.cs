@@ -32,6 +32,8 @@ public abstract class Pawn : MonoBehaviour
     [HideInInspector] public float fireRate;
     public float shotsPerSecond;
 
+    public int pointsOnKilled = 100;
+
     // Variables for making noise
     public float moveNoise;
     public float shootNoise;

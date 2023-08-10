@@ -11,28 +11,28 @@ public class SceneChanger : MonoBehaviour
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.currentGameState = GameState.VehicleState;
+                GameManager.instance.ChangeGameState(GameState.VehicleState);
             }
         }
         else if (scene == "Options")
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.currentGameState = GameState.OptionsState;
+                GameManager.instance.ChangeGameState(GameState.OptionsState);
             }
         }
         else if (scene == "MainMenu")
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.currentGameState = GameState.TitleState;
+                GameManager.instance.ChangeGameState(GameState.TitleState);
             }
         }
         else if (scene == "Game")
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.currentGameState = GameState.GameplayState;
+                GameManager.instance.ChangeGameState(GameState.GameplayState);
             }
         }
         SceneManager.LoadScene(scene);
