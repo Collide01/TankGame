@@ -47,7 +47,7 @@ public class AISmart : AIController
                         ChangeAIState(AIState.Chase);
                         return;
                     }
-                    if (!CanSee(target))
+                    if (!CanSee())
                     {
                         target = null;
                         ChangeAIState(AIState.Scan);
@@ -78,7 +78,7 @@ public class AISmart : AIController
                         ChangeAIState(AIState.Attack);
                         return;
                     }
-                    if (!CanSee(target))
+                    if (!CanSee())
                     {
                         target = null;
                         ChangeAIState(AIState.Scan);
@@ -111,7 +111,7 @@ public class AISmart : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanSee())
                     {
                         target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Chase);
@@ -147,7 +147,7 @@ public class AISmart : AIController
                 }
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanSee())
                     {
                         target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Chase);

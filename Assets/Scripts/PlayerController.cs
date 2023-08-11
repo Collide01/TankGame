@@ -94,6 +94,7 @@ public class PlayerController : Controller
 
             if (healthSlider != null)
             {
+                healthSlider.maxValue = pawn.health.maxHealth;
                 healthSlider.value = pawn.health.currentHealth;
             }
 

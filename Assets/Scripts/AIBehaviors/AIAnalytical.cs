@@ -39,7 +39,7 @@ public class AIAnalytical : AIController
                         ChangeAIState(AIState.Flee);
                         return;
                     }
-                    if (!CanSee(target))
+                    if (!CanSee())
                     {
                         target = null;
                         currentPatrolPoint = NearestPatrolPoint();
@@ -72,7 +72,7 @@ public class AIAnalytical : AIController
                         ChangeAIState(AIState.Attack);
                         return;
                     }
-                    if (!CanSee(target))
+                    if (!CanSee())
                     {
                         target = null;
                         currentPatrolPoint = NearestPatrolPoint();
@@ -93,7 +93,7 @@ public class AIAnalytical : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanSee())
                     {
                         target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Flee);
@@ -118,7 +118,7 @@ public class AIAnalytical : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanSee())
                     {
                         target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Flee);

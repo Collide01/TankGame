@@ -113,7 +113,7 @@ public abstract class AIController : Controller
         }
     }
 
-    public virtual bool CanSee(GameObject targetGameObject)
+    public virtual bool CanSee()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, viewDistance, targetMask);
 

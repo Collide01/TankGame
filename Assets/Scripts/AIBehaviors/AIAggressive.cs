@@ -39,7 +39,7 @@ public class AIAggressive : AIController
                 DoChaseState();
 
                 // Check for transitions
-                if (!CanSee(target) || target == null)
+                if (!CanSee() || target == null)
                 {
                     target = null;
                     ChangeAIState(AIState.Scan);
@@ -60,7 +60,7 @@ public class AIAggressive : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanSee())
                     {
                         target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Chase);
@@ -80,7 +80,7 @@ public class AIAggressive : AIController
                 // Check for transitions
                 foreach (Controller playerController in GameManager.instance.players)
                 {
-                    if (playerController.pawn != null && CanSee(playerController.pawn.gameObject))
+                    if (playerController.pawn != null && CanSee())
                     {
                         target = playerController.pawn.gameObject;
                         ChangeAIState(AIState.Chase);
