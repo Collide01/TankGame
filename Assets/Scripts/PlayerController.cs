@@ -13,6 +13,7 @@ public class PlayerController : Controller
     private bool specialFiring;
 
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
     public TMP_Text livesText;
     public Slider healthSlider;
     public Slider specialShotSlider;
@@ -40,26 +41,30 @@ public class PlayerController : Controller
         pawn.health.currentHealth = 10;
         pawn.ownedByPlayer = true;
 
-        livesText = GameObject.Find("LivesText").GetComponent<TMP_Text>();
         if (livesText != null)
         {
             livesText.text = "Lives: " + lives;
         }
 
-        scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
         if (scoreText != null)
         {
             scoreText.text = "Score: " + score;
         }
 
-        healthSlider = GameObject.Find("HealthMeter").GetComponent<Slider>();
+        if (GameManager.instance != null)
+        {
+            if (highScoreText != null)
+            {
+                highScoreText.text = "High Score: " + GameManager.instance.highScore;
+            }
+        }
+
         if (healthSlider != null)
         {
             healthSlider.maxValue = pawn.health.maxHealth;
             healthSlider.value = pawn.health.maxHealth;
         }
 
-        specialShotSlider = GameObject.Find("SpecialShotMeter").GetComponent<Slider>();
         if (specialShotSlider != null)
         {
             specialShotSlider.maxValue = pawn.specialChargeTime;
@@ -95,6 +100,14 @@ public class PlayerController : Controller
             if (scoreText != null)
             {
                 scoreText.text = "Score: " + score;
+            }
+
+            if (GameManager.instance != null)
+            {
+                if (highScoreText != null)
+                {
+                    highScoreText.text = "High Score: " + GameManager.instance.highScore;
+                }
             }
 
             if (healthSlider != null)

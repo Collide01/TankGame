@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
 
     public int highScore;
-    private TMP_Text highScoreText;
     public bool gameMode; // false = one player mode, true = 2 player mode
     public bool mapMode; // false = Map of the Day, true = Random Map
 
@@ -144,11 +143,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Update high score
-        if (currentGameState == GameState.GameplayState && highScoreText == null)
-        {
-            highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
-        }
+        
     }
 
     // Update is called once per frame
@@ -168,15 +163,12 @@ public class GameManager : MonoBehaviour
             spawnedObjects = true;
         }
 
-        if (highScoreText != null)
+        // Update high score
+        for (int i = 0; i < players.Count; i++)
         {
-            for (int i = 0; i < players.Count; i++)
+            if (players[i].score > highScore)
             {
-                if (players[i].score > highScore)
-                {
-                    highScore = players[i].score;
-                    highScoreText.text = "High Score: " + highScore;
-                }
+                highScore = players[i].score;
             }
         }
 
