@@ -92,24 +92,6 @@ public class PlayerController : Controller
             if (firing) pawn.Shoot();
             if (specialFiring) pawn.SpecialShoot();
 
-            if (livesText != null)
-            {
-                livesText.text = "Lives: " + lives;
-            }
-
-            if (scoreText != null)
-            {
-                scoreText.text = "Score: " + score;
-            }
-
-            if (GameManager.instance != null)
-            {
-                if (highScoreText != null)
-                {
-                    highScoreText.text = "High Score: " + GameManager.instance.highScore;
-                }
-            }
-
             if (healthSlider != null)
             {
                 healthSlider.value = pawn.health.currentHealth;
@@ -118,6 +100,24 @@ public class PlayerController : Controller
             if (specialShotSlider != null)
             {
                 specialShotSlider.value = pawn.specialShotTimer;
+            }
+        }
+
+        if (livesText != null)
+        {
+            livesText.text = "Lives: " + lives;
+        }
+
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
+        }
+
+        if (GameManager.instance != null)
+        {
+            if (highScoreText != null)
+            {
+                highScoreText.text = "High Score: " + GameManager.instance.highScore;
             }
         }
 

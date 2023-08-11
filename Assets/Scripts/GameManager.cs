@@ -173,13 +173,13 @@ public class GameManager : MonoBehaviour
         }
 
         // Check lives
-        if (spawnedObjects)
+        if (spawnedObjects && players.Count > 0)
         {
             if (PlayersHaveLives)
             {
                 for (int i = 0; i < players.Count; i++)
                 {
-                    if (players[i].pawn == null)
+                    if (players[i].pawn == null && players[i].lives > 0)
                     {
                         RespawnPlayer(i);
                     }
