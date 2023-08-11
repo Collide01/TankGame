@@ -249,6 +249,7 @@ public class GameManager : MonoBehaviour
         // Get the Player Controller component and Pawn component. 
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         newPawn.spawnPoint = spawn;
+        newPawn.ownedByPlayer = true;
 
         // Hook them up!
         players[index].pawn = newPawn;
