@@ -49,16 +49,7 @@ public class Health : MonoBehaviour
         {
             GameManager.instance.players[playerIndexThis].lives--;
             Debug.Log("Decreasing life");
-            if (GameManager.instance.players[playerIndexThis].lives > 0)
-            {
-                GameManager.instance.RespawnPlayer(playerIndexThis);
-            }
-            else
-            {
-                Destroy(GameManager.instance.players[playerIndexThis]);
-                GameManager.instance.currentGameState = GameState.GameOverState;
-                Debug.Log("GameOver");
-            }
+            GameManager.instance.players[playerIndexThis].pawn = null;
         }
         Destroy(gameObject);
     }

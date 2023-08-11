@@ -58,6 +58,8 @@ public abstract class Pawn : MonoBehaviour
     [HideInInspector] public float specialShotTimer;
     [HideInInspector] public bool overcharge;
 
+    [HideInInspector] public PawnSpawnPoint spawnPoint;
+
     public abstract void RotateTowards(Vector3 targetPosition, float avoidanceSpeed = 0);
 
     // Start is called before the first frame update
@@ -100,6 +102,11 @@ public abstract class Pawn : MonoBehaviour
 
     public void OnDestroy()
     {
+        if (spawnPoint != null)
+        {
+            spawnPoint.spawned = false;
+        }
+
         // If we have a GameManager
         if (GameManager.instance != null)
         {

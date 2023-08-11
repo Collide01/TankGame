@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
     {
         if (!spawnedObjects && pawnSpawnPoints.Count > 0 && currentGameState == GameState.GameplayState)
         {
-            SpawnPlayer();
+            SpawnPlayers();
             for (int i = 0; i < pawnSpawnPoints.Count - 1; i++)
             {
                 SpawnAI();
@@ -172,6 +172,26 @@ public class GameManager : MonoBehaviour
                     highScore = players[i].score;
                     highScoreText.text = "High Score: " + highScore;
                 }
+            }
+        }
+
+        // Check lives
+        if (spawnedObjects)
+        {
+            if (PlayersHaveLives)
+            {
+                for (int i = 0; i < players.Count; i++)
+                {
+                    if (players[i].pawn == null)
+                    {
+                        RespawnPlayer(i);
+                    }
+                }
+            }
+            else
+            {
+                currentGameState = GameState.GameOverState;
+                Debug.Log("GameOver");
             }
         }
     }
@@ -199,6 +219,7 @@ public class GameManager : MonoBehaviour
         // Get the Player Controller component and Pawn component. 
         Controller newController = newPlayerObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+        newPawn.spawnPoint = spawn;
 
         // Hook them up!
         newController.pawn = newPawn;
@@ -216,7 +237,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         PawnSpawnPoint spawn = GetRandomSpawnPoint();
-        while (spawn.spawnedPawn == null)
+        while (spawn.spawnedPawn != null && spawn.spawned)
         {
             spawn = GetRandomSpawnPoint();
         }
@@ -227,6 +248,7 @@ public class GameManager : MonoBehaviour
 
         // Get the Player Controller component and Pawn component. 
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+        newPawn.spawnPoint = spawn;
 
         // Hook them up!
         players[index].pawn = newPawn;
@@ -258,6 +280,7 @@ public class GameManager : MonoBehaviour
 
         // Spawn the AI prefab
         GameObject aiPawn = Instantiate(spawn.aiPawns[randomBehavior], spawn.gameObject.transform.position, spawn.gameObject.transform.rotation);
+        aiPawn.GetComponent<Pawn>().spawnPoint = spawn;
 
         // Pass the patrol points to the AI
         aiPawn.GetComponent<AIController>().patrolPoints = spawn.patrolPoints;

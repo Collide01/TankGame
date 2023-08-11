@@ -75,36 +75,36 @@ public class PlayerController : Controller
         if (pawn != null)
         {
             transform.position = pawn.transform.position;
-        }
 
-        // Process out inputs
-        if (vInput.y > 0) pawn.MoveForward();
-        if (vInput.y < 0) pawn.MoveBackward();
-        if (vInput.x > 0) pawn.Rotate(pawn.turnSpeed);
-        if (vInput.x < 0) pawn.Rotate(-pawn.turnSpeed);
-        if (vInput.x == 0 && vInput.y == 0) pawn.StayStill();
+            // Process out inputs
+            if (vInput.y > 0) pawn.MoveForward();
+            if (vInput.y < 0) pawn.MoveBackward();
+            if (vInput.x > 0) pawn.Rotate(pawn.turnSpeed);
+            if (vInput.x < 0) pawn.Rotate(-pawn.turnSpeed);
+            if (vInput.x == 0 && vInput.y == 0) pawn.StayStill();
 
-        if (firing) pawn.Shoot();
-        if (specialFiring) pawn.SpecialShoot();
+            if (firing) pawn.Shoot();
+            if (specialFiring) pawn.SpecialShoot();
 
-        if (pawn != null && livesText != null)
-        {
-            livesText.text = "Lives: " + lives;
-        }
+            if (livesText != null)
+            {
+                livesText.text = "Lives: " + lives;
+            }
 
-        if (pawn != null && scoreText != null)
-        {
-            scoreText.text = "Score: " + score;
-        }
+            if (scoreText != null)
+            {
+                scoreText.text = "Score: " + score;
+            }
 
-        if (pawn != null && healthSlider != null)
-        {
-            healthSlider.value = pawn.health.currentHealth;
-        }
+            if (healthSlider != null)
+            {
+                healthSlider.value = pawn.health.currentHealth;
+            }
 
-        if (pawn != null && specialShotSlider != null)
-        {
-            specialShotSlider.value = pawn.specialShotTimer;
+            if (specialShotSlider != null)
+            {
+                specialShotSlider.value = pawn.specialShotTimer;
+            }
         }
 
         // Run the Update() function from the parent (base) class
