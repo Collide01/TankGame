@@ -35,7 +35,6 @@ public class PlayerController : Controller
         }
 
         transform.position = pawn.transform.position;
-        transform.parent = pawn.transform;
         pawn.gameObject.layer = 7; // Player layer
         pawn.health.maxHealth = 10;
         pawn.health.currentHealth = 10;
@@ -73,6 +72,11 @@ public class PlayerController : Controller
     // Update is called once per frame
     public override void Update()
     {
+        if (pawn != null)
+        {
+            transform.position = pawn.transform.position;
+        }
+
         // Process out inputs
         if (vInput.y > 0) pawn.MoveForward();
         if (vInput.y < 0) pawn.MoveBackward();

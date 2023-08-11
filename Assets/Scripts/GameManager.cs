@@ -208,6 +208,34 @@ public class GameManager : MonoBehaviour
         newPawnObj.gameObject.layer = playerLayer;
     }
 
+    public void RespawnPlayer(int index)
+    {
+        if (pawnSpawnPoints.Count < numberOfPlayers)
+        {
+            Debug.LogError("Not enough spawn points");
+            return;
+        }
+        PawnSpawnPoint spawn = GetRandomSpawnPoint();
+        while (spawn.spawnedPawn == null)
+        {
+            spawn = GetRandomSpawnPoint();
+        }
+        spawn.spawned = true;
+
+        // Spawn the Pawn and connect it to the Controller
+        GameObject newPawnObj = Instantiate(spawn.spawnedPawn.gameObject, spawn.gameObject.transform.position, spawn.gameObject.transform.rotation) as GameObject;
+
+        // Get the Player Controller component and Pawn component. 
+        Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+
+        // Hook them up!
+        players[index].pawn = newPawn;
+
+        // Set the layer of the vehicle prefab to the Player layer
+        int playerLayer = LayerMask.NameToLayer("Player");
+        newPawnObj.gameObject.layer = playerLayer;
+    }
+
     public void SpawnPlayers()
     {
         if (players.Count < numberOfPlayers)
