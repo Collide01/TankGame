@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
                 SpawnPlayers();
             }
             
-            for (int i = 0; i < pawnSpawnPoints.Count - 1; i++)
+            for (int i = 0; i < pawnSpawnPoints.Count - numberOfPlayers; i++)
             {
                 SpawnAI();
             }
