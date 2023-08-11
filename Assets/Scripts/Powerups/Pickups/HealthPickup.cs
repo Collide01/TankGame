@@ -12,7 +12,6 @@ public class HealthPickup : MonoBehaviour
         if (manager)
         {
             manager.Add(healthPowerup);
-            Debug.Log("Healed tank");
             Destroy(gameObject);
         }
     }

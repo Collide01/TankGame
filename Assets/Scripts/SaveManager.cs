@@ -21,12 +21,14 @@ public class SaveManager : MonoBehaviour
         if (PlayerPrefs.HasKey("BGMVolume"))
         {
             VolumeManager.Instance.bgmVolume = PlayerPrefs.GetFloat("BGMVolume");
-            VolumeManager.Instance.OnBGMVolumeChange(VolumeManager.Instance.bgmVolume);
+            VolumeManager.Instance.musicVolumeSlider.value = VolumeManager.Instance.bgmVolume * 10;
+            VolumeManager.Instance.OnBGMVolumeChange();
         }
         if (PlayerPrefs.HasKey("SFXVolume"))
         {
             VolumeManager.Instance.sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
-            VolumeManager.Instance.OnSFXVolumeChange(VolumeManager.Instance.sfxVolume);
+            VolumeManager.Instance.soundVolumeSlider.value = VolumeManager.Instance.sfxVolume * 10;
+            VolumeManager.Instance.OnSFXVolumeChange();
         }
 
     }

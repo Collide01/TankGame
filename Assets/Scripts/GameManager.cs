@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class GameStateChangedEvent : UnityEvent<GameState, GameState>
 {
@@ -143,7 +144,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Update high score
+        if (currentGameState == GameState.GameplayState && highScoreText == null)
+        {
+            highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
+        }
     }
 
     // Update is called once per frame
@@ -151,7 +156,11 @@ public class GameManager : MonoBehaviour
     {
         if (!spawnedObjects && pawnSpawnPoints.Count > 0 && currentGameState == GameState.GameplayState)
         {
-            SpawnPlayers();
+            for (int i = 0; i < numberOfPlayers; i++)
+            {
+                SpawnPlayers();
+            }
+            
             for (int i = 0; i < pawnSpawnPoints.Count - 1; i++)
             {
                 SpawnAI();
@@ -159,11 +168,6 @@ public class GameManager : MonoBehaviour
             spawnedObjects = true;
         }
 
-        // Update high score
-        if (currentGameState == GameState.GameplayState && highScoreText == null)
-        {
-            highScoreText = GameObject.Find("HighScoreText").GetComponent<TMP_Text>();
-        }
         if (highScoreText != null)
         {
             for (int i = 0; i < players.Count; i++)

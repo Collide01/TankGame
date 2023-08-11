@@ -75,6 +75,7 @@ public class PlayerController : Controller
         if (pawn != null)
         {
             transform.position = pawn.transform.position;
+            transform.rotation = pawn.transform.rotation;
 
             // Process out inputs
             if (vInput.y > 0) pawn.MoveForward();

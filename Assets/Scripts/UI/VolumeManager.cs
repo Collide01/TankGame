@@ -49,21 +49,21 @@ public class VolumeManager : MonoBehaviour
         return newVolume;
     }
 
-    public void OnBGMVolumeChange(float value)
+    public void OnBGMVolumeChange()
     {
-        bgmVolume = Mathf.Clamp01(value);
+        bgmVolume = Mathf.Clamp01(musicVolumeSlider.value / 10);
         // Start with the slider value (assuming our slider runs from 0 to 1)
-        float newVolume = ConvertToDecibel(value);
+        float newVolume = ConvertToDecibel(musicVolumeSlider.value / 10);
 
         // Set the volume to the new volume setting
         audioMixer.SetFloat("MusicVolume", newVolume);
     }
 
-    public void OnSFXVolumeChange(float value)
+    public void OnSFXVolumeChange()
     {
-        sfxVolume = Mathf.Clamp01(value);
+        sfxVolume = Mathf.Clamp01(soundVolumeSlider.value / 10);
         // Start with the slider value (assuming our slider runs from 0 to 1)
-        float newVolume = ConvertToDecibel(value);
+        float newVolume = ConvertToDecibel(soundVolumeSlider.value / 10);
 
         // Set the volume to the new volume setting
         audioMixer.SetFloat("SFXVolume", newVolume);
