@@ -29,7 +29,6 @@ public class Health : MonoBehaviour
     public void Heal(float amount, Pawn source)
     {
         currentHealth = currentHealth + amount;
-        Debug.Log(source.name + " healed " + gameObject.name + " by " + amount);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
@@ -48,7 +47,6 @@ public class Health : MonoBehaviour
         if (playerIndexThis != -1)
         {
             GameManager.instance.players[playerIndexThis].lives--;
-            Debug.Log("Decreasing life");
             GameManager.instance.players[playerIndexThis].pawn = null;
         }
         Destroy(gameObject);

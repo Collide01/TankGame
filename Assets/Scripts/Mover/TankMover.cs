@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class TankMover : Mover
 {
     // Variable to hold the Rigidbody Component
@@ -16,9 +17,12 @@ public class TankMover : Mover
 
     public override void Move(Vector3 direction, float speed)
     {
-        Vector3 moveVector = direction.normalized * speed * Time.deltaTime;
-        rb.MovePosition(rb.position + moveVector);
-        base.Move(direction, speed);
+        if (rb != null)
+        {
+            Vector3 moveVector = direction.normalized * speed * Time.deltaTime;
+            rb.MovePosition(rb.position + moveVector);
+            base.Move(direction, speed);
+        }
     }
 
     public override void Rotate(float speed)

@@ -1144,15 +1144,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayers: 1
+  points: 
   playerControllerPrefab: {fileID: 6516318107442943948, guid: b555baf987cf519489efa0ab9f456ade, type: 3}
   tankPawnPrefab: {fileID: 8431708097166189571, guid: d4c17e4692709b945a5cdf9274a06ac1, type: 3}
   players: []
-  lives: 
   aiControllers: []
-  controllers: []
   pawns: []
   pawnSpawnPoints: []
   highScore: 0
+  gameMode: 0
+  mapMode: 0
   currentGameState: 0
   ambulance: {fileID: 3144730932396826205, guid: de7dad599ae06e04490f50b5e834333c, type: 3}
   delivery: {fileID: 3990786821727018511, guid: 3e1c3e1eef0ebbc4fa298388453733d5, type: 3}

@@ -488,6 +488,7 @@ MonoBehaviour:
   shellLifespan: 1.5
   fireRate: 0
   shotsPerSecond: 2
+  pointsOnKilled: 100
   moveNoise: 5
   shootNoise: 10
   specialShotNoise: 20
@@ -499,6 +500,7 @@ MonoBehaviour:
   specialLifespan: 2
   specialShotTimer: 0
   overcharge: 0
+  spawnPoint: {fileID: 0}
   firePoint: {fileID: 2426450998463021420}
   specialFirePoint: {fileID: 2885006807217340697}
   minePoint: {fileID: 2639524209118141572}
