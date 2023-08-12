@@ -187,8 +187,9 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                currentGameState = GameState.GameOverState;
+                ChangeGameState(GameState.GameOverState);
                 Debug.Log("GameOver");
+                transform.GetChild(0).GetComponent<SceneChanger>().ChangeScene("GameOver");
             }
         }
     }

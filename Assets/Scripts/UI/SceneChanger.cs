@@ -35,6 +35,13 @@ public class SceneChanger : MonoBehaviour
                 GameManager.instance.ChangeGameState(GameState.GameplayState);
             }
         }
+        else if (scene == "GameOver")
+        {
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.ChangeGameState(GameState.GameOverState);
+            }
+        }
         SceneManager.LoadScene(scene);
     }
 }
