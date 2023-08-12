@@ -9,6 +9,10 @@ public class SceneChanger : MonoBehaviour
     {
         if (scene == "Vehicle")
         {
+            if (CreateManager.instance != null)
+            {
+                Destroy(CreateManager.instance.gameObject);
+            }
             if (GameManager.instance != null)
             {
                 GameManager.instance.ChangeGameState(GameState.VehicleState);
@@ -32,6 +36,7 @@ public class SceneChanger : MonoBehaviour
         {
             if (GameManager.instance != null)
             {
+                GameManager.instance.ResetGame();
                 GameManager.instance.ChangeGameState(GameState.GameplayState);
             }
         }

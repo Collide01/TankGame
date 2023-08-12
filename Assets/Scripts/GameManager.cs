@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     // Instance of GameManager singleton
     [HideInInspector] public static GameManager instance;
     public int numberOfPlayers = 1;
-    public List<int> points = new List<int>();
     private bool spawnedObjects;
 
     // Prefabs
@@ -328,5 +327,14 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
         }
+    }
+
+    public void ResetGame()
+    {
+        players = new List<PlayerController>();
+        aiControllers = new List<AIController>();
+        pawns = new List<Pawn>();
+        pawnSpawnPoints = new List<PawnSpawnPoint>();
+        spawnedObjects = false;
     }
 }
