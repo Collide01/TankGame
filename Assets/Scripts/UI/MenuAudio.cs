@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class MenuAudio : MonoBehaviour
 {
-    public AudioSource buttonClick;
-    public AudioSource buttonHighlight;
+    public AudioSource buttonSounds;
+    public AudioClip buttonClick;
+    public AudioClip buttonHighlight;
 
     public void PlayButtonClick()
     {
-        buttonClick.Play();
+        buttonSounds.PlayOneShot(buttonClick);
     }
 
     public void PlayButtonHighlight()
     {
-        buttonHighlight.Play();
+        buttonSounds.PlayOneShot(buttonHighlight);
     }
 }
