@@ -17,16 +17,14 @@ public class VolumeManager : MonoBehaviour
     public Toggle gameModeCheckbox;
     public Toggle mapModeCheckbox;
 
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
+        if (GameManager.instance != null)
         {
-            Instance = this;
-        }
-        else
-        {
-            Debug.LogWarning("Attempted to create a second audio manager");
-            Destroy(this);
+            musicVolumeSlider.value = GameManager.instance.bgmVolume * 10;
+            soundVolumeSlider.value = GameManager.instance.sfxVolume * 10;
+            gameModeCheckbox.isOn = GameManager.instance.gameMode;
+            mapModeCheckbox.isOn = GameManager.instance.mapMode;
         }
     }
 
@@ -51,7 +49,10 @@ public class VolumeManager : MonoBehaviour
 
     public void OnBGMVolumeChange()
     {
-        bgmVolume = Mathf.Clamp01(musicVolumeSlider.value / 10);
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.bgmVolume = Mathf.Clamp01(musicVolumeSlider.value / 10);
+        }
         // Start with the slider value (assuming our slider runs from 0 to 1)
         float newVolume = ConvertToDecibel(musicVolumeSlider.value / 10);
 
@@ -61,7 +62,10 @@ public class VolumeManager : MonoBehaviour
 
     public void OnSFXVolumeChange()
     {
-        sfxVolume = Mathf.Clamp01(soundVolumeSlider.value / 10);
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.sfxVolume = Mathf.Clamp01(soundVolumeSlider.value / 10);
+        }
         // Start with the slider value (assuming our slider runs from 0 to 1)
         float newVolume = ConvertToDecibel(soundVolumeSlider.value / 10);
 

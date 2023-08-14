@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public List<PawnSpawnPoint> pawnSpawnPoints = new List<PawnSpawnPoint>();
 
     public int highScore;
+    public float bgmVolume = 1;
+    public float sfxVolume = 1;
     public bool gameMode; // false = one player mode, true = 2 player mode
     public bool mapMode; // false = Map of the Day, true = Random Map
 

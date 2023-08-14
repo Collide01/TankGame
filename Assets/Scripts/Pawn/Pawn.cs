@@ -109,8 +109,8 @@ public abstract class Pawn : MonoBehaviour
             spawnPoint.spawned = false;
         }
 
-        GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
-        tankAudio.GetComponent<GameAudioSource>().PlayAudio(2);
+        //GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+        //tankAudio.GetComponent<GameAudioSource>().PlayAudio(2);
 
         // If we have a GameManager
         if (GameManager.instance != null)

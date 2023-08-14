@@ -24,7 +24,6 @@ public class SceneChanger : MonoBehaviour
             numberOfFades = screenFades.Length;
         }
         screenFades = GameObject.FindGameObjectsWithTag("SceneFade");
-        Debug.Log(screenFades.Length);
         if (numberOfFades != screenFades.Length)
         {
             fadedIn = false;
