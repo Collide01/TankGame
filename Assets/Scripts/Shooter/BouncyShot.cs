@@ -7,6 +7,7 @@ public class BouncyShot : MonoBehaviour
     public float damageDone = 999;
     public int bounces; // Bounces a certain number of times before it gets destroyed
     public Pawn owner;
+    [SerializeField] private GameObject tankAudioPrefab;
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -19,6 +20,10 @@ public class BouncyShot : MonoBehaviour
             {
                 // Do damage
                 otherHealth.TakeDamage(damageDone, owner);
+
+                GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+                tankAudio.GetComponent<GameAudioSource>().PlayAudio(0);
+
                 Destroy(gameObject);
             }
 

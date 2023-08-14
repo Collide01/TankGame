@@ -807,6 +807,7 @@ MonoBehaviour:
   specialFirePoint: {fileID: 2885006807217340697}
   minePoint: {fileID: 2639524209118141572}
   blaster: {fileID: 5719128013827180619}
+  tankAudioPrefab: {fileID: 4601315539335122062, guid: 628fab246856be348a46453bf9ac0b1a, type: 3}
 --- !u!114 &8773601441572174939
 MonoBehaviour:
   m_ObjectHideFlags: 0

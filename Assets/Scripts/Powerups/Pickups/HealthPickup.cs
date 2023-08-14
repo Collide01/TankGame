@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public HealthPowerup healthPowerup;
+    [SerializeField] private GameObject tankAudioPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +13,10 @@ public class HealthPickup : MonoBehaviour
         if (manager)
         {
             manager.Add(healthPowerup);
+
+            GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+            tankAudio.GetComponent<GameAudioSource>().PlayAudio(1);
+
             Destroy(gameObject);
         }
     }

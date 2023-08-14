@@ -114,3 +114,4 @@ MonoBehaviour:
   chargePowerup:
     duration: 5
     isPermanent: 0
+  tankAudioPrefab: {fileID: 4601315539335122062, guid: 628fab246856be348a46453bf9ac0b1a, type: 3}

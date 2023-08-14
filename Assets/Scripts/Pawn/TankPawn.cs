@@ -390,6 +390,8 @@ public class TankPawn : Pawn
             {
                 noiseMaker.volumeDistance = shootNoise;
             }
+            GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+            tankAudio.GetComponent<GameAudioSource>().PlayAudio(3);
         }
     }
 
@@ -401,6 +403,8 @@ public class TankPawn : Pawn
             {
                 case SpecialShotType.BouncyShot:
                     shooter.BouncyShot(specialShotPrefab, specialFirepointTransform, fireForce);
+                    GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+                    tankAudio.GetComponent<GameAudioSource>().PlayAudio(3);
                     break;
                 case SpecialShotType.LaserBeam:
                     //shooter.LaserBeam(specialShotPrefab, specialFirepointTransform, specialLifespan);

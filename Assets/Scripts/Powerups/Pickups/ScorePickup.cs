@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScorePickup : MonoBehaviour
 {
     public ScorePowerup scorePowerup;
+    [SerializeField] private GameObject tankAudioPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +13,10 @@ public class ScorePickup : MonoBehaviour
         if (manager)
         {
             manager.Add(scorePowerup);
+
+            GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+            tankAudio.GetComponent<GameAudioSource>().PlayAudio(1);
+
             Destroy(gameObject);
         }
     }

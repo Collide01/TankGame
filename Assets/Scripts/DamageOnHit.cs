@@ -6,6 +6,7 @@ public class DamageOnHit : MonoBehaviour
 {
     public float damageDone;
     public Pawn owner;
+    [SerializeField] private GameObject tankAudioPrefab;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -18,6 +19,9 @@ public class DamageOnHit : MonoBehaviour
             {
                 // Do damage
                 otherHealth.TakeDamage(damageDone, owner);
+
+                GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+                tankAudio.GetComponent<GameAudioSource>().PlayAudio(0);
             }
 
             // Destroy ourselves, whether we did damage or not

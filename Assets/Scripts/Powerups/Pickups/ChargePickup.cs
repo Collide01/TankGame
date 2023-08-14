@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChargePickup : MonoBehaviour
 {
     public ChargePowerup chargePowerup;
+    [SerializeField] private GameObject tankAudioPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +13,10 @@ public class ChargePickup : MonoBehaviour
         if (manager)
         {
             manager.Add(chargePowerup);
+
+            GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+            tankAudio.GetComponent<GameAudioSource>().PlayAudio(1);
+
             Destroy(gameObject);
         }
     }

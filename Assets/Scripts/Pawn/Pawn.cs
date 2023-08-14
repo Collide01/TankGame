@@ -60,6 +60,8 @@ public abstract class Pawn : MonoBehaviour
 
     [HideInInspector] public PawnSpawnPoint spawnPoint;
 
+    [SerializeField] protected GameObject tankAudioPrefab;
+
     public abstract void RotateTowards(Vector3 targetPosition, float avoidanceSpeed = 0);
 
     // Start is called before the first frame update
@@ -106,6 +108,9 @@ public abstract class Pawn : MonoBehaviour
         {
             spawnPoint.spawned = false;
         }
+
+        GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+        tankAudio.GetComponent<GameAudioSource>().PlayAudio(2);
 
         // If we have a GameManager
         if (GameManager.instance != null)
