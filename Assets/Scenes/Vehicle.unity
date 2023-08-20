@@ -373,10 +373,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 226601802}
-        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 1762994073}
+        m_TargetAssemblyTypeName: CreateManager, Assembly-CSharp
+        m_MethodName: NextPlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3580,8 +3580,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5302340d8395c409655be606b17aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chosenVehicle: 0
-  chosenBlaster: 0
+  numberOfPlayers: 0
+  chosenVehicle: 
+  chosenBlaster: 
   health: 0
   speed: 0
   turnSpeed: 0
@@ -3592,6 +3593,7 @@ MonoBehaviour:
   bulletSpeed: 0
   fireRate: 0
   specialShot: 0
+  title: {fileID: 2076036140}
   vehicle: {fileID: 2021374744}
   blaster: {fileID: 16190192}
   vehicleSelection: {fileID: 1201366973}
@@ -3600,6 +3602,8 @@ MonoBehaviour:
   vehicleArrowRight: {fileID: 252246759}
   blasterArrowLeft: {fileID: 1690998654}
   blasterArrowRight: {fileID: 382987178}
+  eventSystem: {fileID: 316286047}
+  vehicleSliderObject: {fileID: 1560696562}
   vehicleSlider: {fileID: 1560696563}
   blasterSlider: {fileID: 1628307359}
   healthSlider: {fileID: 1581186608}
@@ -4433,7 +4437,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -56}
-  m_SizeDelta: {x: 720.26, y: 87.87}
+  m_SizeDelta: {x: 1000, y: 87.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2076036140
 MonoBehaviour:
@@ -4482,8 +4486,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 56
+  m_fontSizeBase: 56
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

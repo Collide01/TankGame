@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class CreateManager : MonoBehaviour
 {
@@ -74,6 +75,7 @@ public class CreateManager : MonoBehaviour
     [HideInInspector] public Pawn.SpecialShotType specialShot;
 
     [Header("Menu GameObjects")]
+    public TMP_Text title;
     public GameObject vehicle;
     public GameObject blaster;
     public GameObject vehicleSelection;
@@ -82,8 +84,10 @@ public class CreateManager : MonoBehaviour
     public GameObject vehicleArrowRight;
     public GameObject blasterArrowLeft;
     public GameObject blasterArrowRight;
+    public EventSystem eventSystem;
 
     [Header("Controllable sliders")]
+    public GameObject vehicleSliderObject;
     public Slider vehicleSlider;
     public Slider blasterSlider;
 
@@ -157,6 +161,7 @@ public class CreateManager : MonoBehaviour
     void Start()
     {
         currentPlayer = 0;
+        title.text = "Player 1: Create Your Tank";
 
         if (GameManager.instance != null)
         {
@@ -514,6 +519,23 @@ public class CreateManager : MonoBehaviour
             case Pawn.SpecialShotType.Mine:
                 specialShotText.text = "Mine";
                 break;
+        }
+    }
+
+    public void NextPlayer()
+    {
+        currentPlayer++;
+        if (currentPlayer < numberOfPlayers)
+        {
+            vehicleSliderObject = eventSystem.currentSelectedGameObject;
+            vehicleSlider.value = 1;
+            blasterSlider.value = 1;
+            title.text = "Player " + (currentPlayer + 1) + ": Create Your Tank";
+        }
+        else
+        {
+            SceneChanger sceneChanger = GameObject.Find("Canvas").GetComponent<SceneChanger>();
+            sceneChanger.ChangeScene("Game");
         }
     }
 }

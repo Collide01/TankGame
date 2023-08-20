@@ -37,15 +37,6 @@ public class GameManager : MonoBehaviour
     public bool gameMode; // false = one player mode, true = 2 player mode
     public bool mapMode; // false = Map of the Day, true = Random Map
 
-    public IEnumerator SpawnTanksNextFrame()
-    {
-        // Write code here
-        yield return null;
-        // This code runs on the next frame
-        SpawnPlayers();
-        SpawnAI();
-    }
-
     public bool PlayersHaveLives
     {
         get
@@ -154,7 +145,7 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < numberOfPlayers; i++)
             {
-                SpawnPlayers();
+                SpawnPlayers(i + 1);
             }
             
             for (int i = 0; i < pawnSpawnPoints.Count - numberOfPlayers; i++)
@@ -182,7 +173,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (players[i].pawn == null && players[i].lives > 0)
                     {
-                        RespawnPlayer(i);
+                        RespawnPlayer(i + 1);
                     }
                 }
             }
@@ -195,7 +186,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnPlayer()
+    public void SpawnPlayer(int playerIndex)
     {
         if (pawnSpawnPoints.Count < numberOfPlayers)
         {
@@ -219,7 +210,7 @@ public class GameManager : MonoBehaviour
         Controller newController = newPlayerObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         newPawn.spawnPoint = spawn;
-        newPawn.playerNumber = players.Count + 1;
+        newPawn.playerNumber = playerIndex;
 
         // Hook them up!
         newController.pawn = newPawn;
@@ -249,7 +240,7 @@ public class GameManager : MonoBehaviour
         // Get the Player Controller component and Pawn component. 
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         newPawn.spawnPoint = spawn;
-        newPawn.playerNumber = index + 1;
+        newPawn.playerNumber = index;
 
         // Hook them up!
         players[index].pawn = newPawn;
@@ -259,11 +250,11 @@ public class GameManager : MonoBehaviour
         newPawnObj.gameObject.layer = playerLayer;
     }
 
-    public void SpawnPlayers()
+    public void SpawnPlayers(int playerIndex)
     {
         if (players.Count < numberOfPlayers)
         {
-            SpawnPlayer();
+            SpawnPlayer(playerIndex);
         }
     }
 

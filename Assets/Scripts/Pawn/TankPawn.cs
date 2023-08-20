@@ -31,6 +31,7 @@ public class TankPawn : Pawn
         // Set the vehicle data from the vehicle menu
         if (tankPrefabs != null && playerNumber != 0)
         {
+            Debug.Log(playerNumber);
             switch (tankPrefabs.chosenVehicle[playerNumber - 1])
             {
                 case CreateManager.Vehicle.Ambulance:
