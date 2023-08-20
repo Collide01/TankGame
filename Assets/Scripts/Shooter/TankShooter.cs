@@ -79,6 +79,15 @@ public class TankShooter : Shooter
 
     public override void Mine(GameObject shellPrefab, Transform firepointTransform, float lifespan)
     {
-        throw new System.NotImplementedException();
+        // Instantiate our projectile
+        GameObject newShell = Instantiate(shellPrefab, firepointTransform.position, firepointTransform.rotation) as GameObject;
+        // Get the DamageOnHit component
+        Mine mine = newShell.GetComponent<Mine>();
+        // If it has one... 
+        if (mine != null)
+        {
+            // ... set the owner to the pawn that shot this shell, if there is one (otherwise, owner is null).
+            mine.owner = GetComponent<Pawn>();
+        }
     }
 }

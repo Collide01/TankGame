@@ -391,7 +391,7 @@ public class TankPawn : Pawn
                     firingLaser = true;
                     break;
                 case SpecialShotType.Mine:
-                    //shooter.Mine(minePrefab, mineTransform, specialLifespan);
+                    shooter.Mine(minePrefab, mineTransform, specialLifespan);
                     break;
             }
             GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);

@@ -797,7 +797,7 @@ MonoBehaviour:
   specialShotType: 0
   bouncyShotPrefab: {fileID: 2884441558055782101, guid: 4618aca98b3867a40bd72c7a4b5913e9, type: 3}
   laserBeamPrefab: {fileID: 5321179519111079244, guid: 2c184dc25a944e44a9caf1817781043f, type: 3}
-  minePrefab: {fileID: 0}
+  minePrefab: {fileID: 1759222207379869472, guid: a9d3ed11c2d7a734c946132570a694aa, type: 3}
   specialChargeTime: 10
   specialFirepointTransform: {fileID: 183052706874375125}
   mineTransform: {fileID: 5277566949835706100}
