@@ -8,6 +8,8 @@ public class CreateManager : MonoBehaviour
 {
     // Instance of CreateManager singleton
     [HideInInspector] public static CreateManager instance;
+    [HideInInspector] public int numberOfPlayers;
+    private int currentPlayer;
 
     public enum Vehicle
     {
@@ -32,7 +34,7 @@ public class CreateManager : MonoBehaviour
         TruckFlat,
         Van
     }
-    [HideInInspector] public Vehicle chosenVehicle;
+    [HideInInspector] public List<Vehicle> chosenVehicle;
 
     public enum Blaster
     {
@@ -55,7 +57,7 @@ public class CreateManager : MonoBehaviour
         BlasterQ,
         BlasterR,
     }
-    [HideInInspector] public Blaster chosenBlaster;
+    [HideInInspector] public List<Blaster> chosenBlaster;
 
     // These variables are adjusted based on the vehicle chosen
     [HideInInspector] public float health;
@@ -154,8 +156,22 @@ public class CreateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chosenVehicle = Vehicle.Ambulance;
-        chosenBlaster = Blaster.BlasterA;
+        currentPlayer = 0;
+
+        if (GameManager.instance != null)
+        {
+            numberOfPlayers = GameManager.instance.numberOfPlayers;
+        }
+        else
+        {
+            numberOfPlayers = 1;
+        }
+
+        for (int i = 0; i < numberOfPlayers; i++)
+        {
+            chosenVehicle.Add(Vehicle.Ambulance);
+            chosenBlaster.Add(Blaster.BlasterA);
+        }
 
         // Set models
         Instantiate(ambulance, vehicle.transform.position, vehicle.transform.rotation, vehicle.transform);
@@ -324,7 +340,7 @@ public class CreateManager : MonoBehaviour
         speed = selectedVehicle.GetComponent<VehicleData>().speed; // Minimum: 5, Maximum: 20
         turnSpeed = selectedVehicle.GetComponent<VehicleData>().turnSpeed; // Minimum: 50, Maximum: 200
         UpdateVisualStats();
-        chosenVehicle = (Vehicle)value;
+        chosenVehicle[currentPlayer] = (Vehicle)value;
     }
 
     public void ChangeBlaster()
@@ -449,7 +465,7 @@ public class CreateManager : MonoBehaviour
         fireRate = selectedBlaster.GetComponent<BlasterData>().fireRate; // Minimum: 0.5, Maximum: 4
         specialShot = selectedBlaster.GetComponent<BlasterData>().specialShot;
         UpdateVisualStats();
-        chosenBlaster = (Blaster)value;
+        chosenBlaster[currentPlayer] = (Blaster)value;
     }
 
     public void ToggleVehicleArrows()

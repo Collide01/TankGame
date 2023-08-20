@@ -219,6 +219,7 @@ public class GameManager : MonoBehaviour
         Controller newController = newPlayerObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         newPawn.spawnPoint = spawn;
+        newPawn.playerNumber = players.Count + 1;
 
         // Hook them up!
         newController.pawn = newPawn;
@@ -248,7 +249,7 @@ public class GameManager : MonoBehaviour
         // Get the Player Controller component and Pawn component. 
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         newPawn.spawnPoint = spawn;
-        newPawn.ownedByPlayer = true;
+        newPawn.playerNumber = index + 1;
 
         // Hook them up!
         players[index].pawn = newPawn;

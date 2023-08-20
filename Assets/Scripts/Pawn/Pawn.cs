@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class Pawn : MonoBehaviour
 {
-    [HideInInspector] public bool ownedByPlayer;
+    [HideInInspector] public int playerNumber; // 0 if this pawn isn't controlled by a player
     [HideInInspector] public Mover mover;
     [HideInInspector] public Shooter shooter;
     [HideInInspector] public Health health;

@@ -39,7 +39,6 @@ public class PlayerController : Controller
         pawn.gameObject.layer = 7; // Player layer
         pawn.health.maxHealth = 10;
         pawn.health.currentHealth = 10;
-        pawn.ownedByPlayer = true;
 
         if (livesText != null)
         {

@@ -29,9 +29,9 @@ public class TankPawn : Pawn
         }
 
         // Set the vehicle data from the vehicle menu
-        if (tankPrefabs != null && ownedByPlayer)
+        if (tankPrefabs != null && playerNumber != 0)
         {
-            switch (tankPrefabs.chosenVehicle)
+            switch (tankPrefabs.chosenVehicle[playerNumber - 1])
             {
                 case CreateManager.Vehicle.Ambulance:
                     vehicle = Instantiate(GameManager.instance.ambulance, transform.position, transform.rotation, gameObject.transform);
@@ -103,7 +103,7 @@ public class TankPawn : Pawn
             moveSpeed = vehicle.GetComponent<VehicleData>().speed;
             turnSpeed = vehicle.GetComponent<VehicleData>().turnSpeed;
 
-            switch (tankPrefabs.chosenBlaster)
+            switch (tankPrefabs.chosenBlaster[playerNumber - 1])
             {
                 case CreateManager.Blaster.BlasterA:
                     blaster = Instantiate(GameManager.instance.blasterA, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
