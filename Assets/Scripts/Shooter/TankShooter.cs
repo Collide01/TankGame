@@ -64,7 +64,17 @@ public class TankShooter : Shooter
 
     public override void LaserBeam(GameObject shellPrefab, Transform firepointTransform, float lifespan)
     {
-        throw new System.NotImplementedException();
+        // Instantiate our projectile
+        GameObject newShell = Instantiate(shellPrefab, firepointTransform.position, firepointTransform.rotation) as GameObject;
+        // Get the DamageOnHit component
+        LaserBeam laser = newShell.GetComponent<LaserBeam>();
+        // If it has one... 
+        if (laser != null)
+        {
+            // ... set the owner to the pawn that shot this shell, if there is one (otherwise, owner is null).
+            laser.owner = GetComponent<Pawn>();
+            laser.lifetime = lifespan;
+        }
     }
 
     public override void Mine(GameObject shellPrefab, Transform firepointTransform, float lifespan)

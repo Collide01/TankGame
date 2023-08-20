@@ -50,7 +50,9 @@ public abstract class Pawn : MonoBehaviour
     }
     public SpecialShotType specialShotType;
     // Variable for our special shot prefab
-    public GameObject specialShotPrefab;
+    public GameObject bouncyShotPrefab;
+    public GameObject laserBeamPrefab;
+    public GameObject minePrefab;
 
     // Variable for the special shot's charge time
     public float specialChargeTime; // In seconds
@@ -60,6 +62,7 @@ public abstract class Pawn : MonoBehaviour
     public float specialLifespan;
     [HideInInspector] public float specialShotTimer;
     [HideInInspector] public bool overcharge;
+    [HideInInspector] public bool firingLaser;
 
     [HideInInspector] public PawnSpawnPoint spawnPoint;
 

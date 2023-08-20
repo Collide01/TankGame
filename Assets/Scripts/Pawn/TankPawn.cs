@@ -322,7 +322,7 @@ public class TankPawn : Pawn
     // Calls Mover to move the tank forward
     public override void MoveForward()
     {
-        if (mover != null)
+        if (mover != null && !firingLaser)
         {
             mover.Move(transform.forward, moveSpeed * 50);
             if (noiseMaker != null)
@@ -330,17 +330,12 @@ public class TankPawn : Pawn
                 noiseMaker.volumeDistance = moveNoise;
             }
         }
-        else
-        {
-            // Failsafe
-            Debug.LogWarning("Warning: No Mover in TankPawn.MoveForward()!");
-        }
     }
 
     // Calls Mover to move the tank backward
     public override void MoveBackward()
     {
-        if (mover != null)
+        if (mover != null && !firingLaser)
         {
             mover.Move(-transform.forward, moveSpeed * 50);
             if (noiseMaker != null)
@@ -348,17 +343,12 @@ public class TankPawn : Pawn
                 noiseMaker.volumeDistance = moveNoise;
             }
         }
-        else
-        {
-            // Failsafe
-            Debug.LogWarning("Warning: No Mover in TankPawn.MoveBackward()!");
-        }
     }
 
     // Calls Mover to rotate the tank clockwise
     public override void Rotate(float setTurnSpeed)
     {
-        if (mover != null)
+        if (mover != null && !firingLaser)
         {
             mover.Rotate(setTurnSpeed);
             if (noiseMaker != null)
@@ -366,16 +356,11 @@ public class TankPawn : Pawn
                 noiseMaker.volumeDistance = moveNoise;
             }
         }
-        else
-        {
-            // Failsafe
-            Debug.LogWarning("Warning: No Mover in TankPawn.Rotate()!");
-        }
     }
 
     public override void Shoot()
     {
-        if (shootTimer >= fireRate)
+        if (shootTimer >= fireRate && !firingLaser)
         {
             shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
             shootTimer = 0;
@@ -394,22 +379,23 @@ public class TankPawn : Pawn
 
     public override void SpecialShoot()
     {
-        if (specialShotTimer >= specialChargeTime)
+        if (specialShotTimer >= specialChargeTime && !firingLaser)
         {
             switch (specialShotType)
             {
                 case SpecialShotType.BouncyShot:
-                    shooter.BouncyShot(specialShotPrefab, specialFirepointTransform, fireForce);
-                    GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
-                    tankAudio.GetComponent<GameAudioSource>().PlayAudio(3);
+                    shooter.BouncyShot(bouncyShotPrefab, specialFirepointTransform, fireForce);
                     break;
                 case SpecialShotType.LaserBeam:
-                    //shooter.LaserBeam(specialShotPrefab, specialFirepointTransform, specialLifespan);
+                    shooter.LaserBeam(laserBeamPrefab, specialFirepointTransform, specialLifespan);
+                    firingLaser = true;
                     break;
                 case SpecialShotType.Mine:
-                    //shooter.Mine(specialShotPrefab, specialFirepointTransform, specialLifespan);
+                    //shooter.Mine(minePrefab, mineTransform, specialLifespan);
                     break;
             }
+            GameObject tankAudio = Instantiate(tankAudioPrefab, transform.position, Quaternion.identity);
+            tankAudio.GetComponent<GameAudioSource>().PlayAudio(3);
             if (!overcharge)
             {
                 specialShotTimer = 0;
@@ -422,10 +408,10 @@ public class TankPawn : Pawn
                         specialShotTimer = specialChargeTime - 1;
                         break;
                     case SpecialShotType.LaserBeam:
-                        specialShotTimer = specialChargeTime - 5;
+                        specialShotTimer = specialChargeTime - 2;
                         break;
                     case SpecialShotType.Mine:
-                        specialShotTimer = specialChargeTime - 2;
+                        specialShotTimer = specialChargeTime - 1;
                         break;
                 }
             }

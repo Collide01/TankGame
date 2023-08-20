@@ -1404,6 +1404,8 @@ MonoBehaviour:
   pawns: []
   pawnSpawnPoints: []
   highScore: 0
+  bgmVolume: 1
+  sfxVolume: 1
   gameMode: 0
   mapMode: 0
   currentGameState: 0

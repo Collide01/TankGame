@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bafac9e6792654cbfa1c718cedd31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownedByPlayer: 0
+  playerNumber: 0
   mover: {fileID: 8773601441572174941}
   shooter: {fileID: 8773601441572174940}
   health: {fileID: 8773601441572174939}
@@ -795,19 +795,22 @@ MonoBehaviour:
   shootNoise: 10
   specialShotNoise: 20
   specialShotType: 0
-  specialShotPrefab: {fileID: 2884441558055782101, guid: 4618aca98b3867a40bd72c7a4b5913e9, type: 3}
+  bouncyShotPrefab: {fileID: 2884441558055782101, guid: 4618aca98b3867a40bd72c7a4b5913e9, type: 3}
+  laserBeamPrefab: {fileID: 5321179519111079244, guid: 2c184dc25a944e44a9caf1817781043f, type: 3}
+  minePrefab: {fileID: 0}
   specialChargeTime: 10
   specialFirepointTransform: {fileID: 183052706874375125}
   mineTransform: {fileID: 5277566949835706100}
   specialLifespan: 2
   specialShotTimer: 0
   overcharge: 0
+  firingLaser: 0
   spawnPoint: {fileID: 0}
+  tankAudioPrefab: {fileID: 4601315539335122062, guid: 628fab246856be348a46453bf9ac0b1a, type: 3}
   firePoint: {fileID: 2426450998463021420}
   specialFirePoint: {fileID: 2885006807217340697}
   minePoint: {fileID: 2639524209118141572}
   blaster: {fileID: 5719128013827180619}
-  tankAudioPrefab: {fileID: 4601315539335122062, guid: 628fab246856be348a46453bf9ac0b1a, type: 3}
 --- !u!114 &8773601441572174939
 MonoBehaviour:
   m_ObjectHideFlags: 0
