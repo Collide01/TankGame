@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         PawnSpawnPoint spawn = GetRandomSpawnPoint();
-        while (spawn.spawnedPawn != null && spawn.spawned)
+        while (spawn.spawnedPawn == null || spawn.spawned)
         {
             spawn = GetRandomSpawnPoint();
         }
@@ -243,7 +243,7 @@ public class GameManager : MonoBehaviour
         newPawn.playerNumber = index;
 
         // Hook them up!
-        players[index].pawn = newPawn;
+        players[index - 1].pawn = newPawn;
 
         // Set the layer of the vehicle prefab to the Player layer
         int playerLayer = LayerMask.NameToLayer("Player");

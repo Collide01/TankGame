@@ -9,8 +9,6 @@ public class TankPawn : Pawn
     [SerializeField] private GameObject firePoint;
     [SerializeField] private GameObject specialFirePoint;
     [SerializeField] private GameObject minePoint;
-    private GameObject createManager;
-    private CreateManager tankPrefabs;
 
     private GameObject vehicle;
     [SerializeField] private GameObject blaster;
@@ -22,17 +20,10 @@ public class TankPawn : Pawn
     {
         base.Start();
 
-        createManager = GameObject.Find("CreateManager");
-        if (createManager != null)
-        {
-            tankPrefabs = createManager.GetComponent<CreateManager>();
-        }
-
         // Set the vehicle data from the vehicle menu
-        if (tankPrefabs != null && playerNumber != 0)
+        if (CreateManager.instance != null && playerNumber != 0)
         {
-            Debug.Log(playerNumber);
-            switch (tankPrefabs.chosenVehicle[playerNumber - 1])
+            switch (CreateManager.instance.chosenVehicle[playerNumber - 1])
             {
                 case CreateManager.Vehicle.Ambulance:
                     vehicle = Instantiate(GameManager.instance.ambulance, transform.position, transform.rotation, gameObject.transform);
@@ -104,7 +95,7 @@ public class TankPawn : Pawn
             moveSpeed = vehicle.GetComponent<VehicleData>().speed;
             turnSpeed = vehicle.GetComponent<VehicleData>().turnSpeed;
 
-            switch (tankPrefabs.chosenBlaster[playerNumber - 1])
+            switch (CreateManager.instance.chosenBlaster[playerNumber - 1])
             {
                 case CreateManager.Blaster.BlasterA:
                     blaster = Instantiate(GameManager.instance.blasterA, vehicle.transform.position, vehicle.transform.rotation, gameObject.transform);
