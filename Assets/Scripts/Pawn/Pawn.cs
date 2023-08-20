@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public abstract class Pawn : MonoBehaviour
 {
+    // Variable to hold the Rigidbody Component
+    protected Rigidbody rb;
+
     [HideInInspector] public int playerNumber; // 0 if this pawn isn't controlled by a player
     [HideInInspector] public Mover mover;
     [HideInInspector] public Shooter shooter;
@@ -67,6 +70,9 @@ public abstract class Pawn : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        // Get the Rigidbody component
+        rb = GetComponent<Rigidbody>();
+
         mover = GetComponent<Mover>();
         shooter = GetComponent<Shooter>();
         health = GetComponent<Health>();

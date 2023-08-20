@@ -20,7 +20,10 @@ public class TankMover : Mover
         if (rb != null)
         {
             Vector3 moveVector = direction.normalized * speed * Time.deltaTime;
-            rb.MovePosition(rb.position + moveVector);
+            if (rb.velocity.magnitude < speed)
+            {
+                rb.AddForce(moveVector, ForceMode.Impulse);
+            }
             base.Move(direction, speed);
         }
     }

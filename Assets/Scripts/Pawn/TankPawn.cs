@@ -311,6 +311,11 @@ public class TankPawn : Pawn
         specialFirePoint.transform.localPosition = vehicle.GetComponent<VehicleData>().specialFirePoint;
         minePoint.transform.localPosition = vehicle.GetComponent<VehicleData>().minePoint;
 
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+        }
+
         base.Update();
     }
 
@@ -319,7 +324,7 @@ public class TankPawn : Pawn
     {
         if (mover != null)
         {
-            mover.Move(transform.forward, moveSpeed);
+            mover.Move(transform.forward, moveSpeed * 50);
             if (noiseMaker != null)
             {
                 noiseMaker.volumeDistance = moveNoise;
@@ -337,7 +342,7 @@ public class TankPawn : Pawn
     {
         if (mover != null)
         {
-            mover.Move(transform.forward, -moveSpeed);
+            mover.Move(-transform.forward, moveSpeed * 50);
             if (noiseMaker != null)
             {
                 noiseMaker.volumeDistance = moveNoise;
