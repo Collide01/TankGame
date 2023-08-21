@@ -311,7 +311,7 @@ public class TankPawn : Pawn
         specialFirePoint.transform.localPosition = vehicle.GetComponent<VehicleData>().specialFirePoint;
         minePoint.transform.localPosition = vehicle.GetComponent<VehicleData>().minePoint;
 
-        if (rb != null)
+        if (rb != null && grounded)
         {
             rb.velocity = Vector3.zero;
         }

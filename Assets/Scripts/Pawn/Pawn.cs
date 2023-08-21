@@ -15,6 +15,7 @@ public abstract class Pawn : MonoBehaviour
     [HideInInspector] public NoiseMaker noiseMaker;
     public Image healthBar;
 
+    [HideInInspector] public bool grounded;
     // Variable for move speed
     public float moveSpeed;
     // Variable for turn speed
@@ -139,6 +140,11 @@ public abstract class Pawn : MonoBehaviour
         {
             health.TakeDamage(999, this);
             collision.gameObject.GetComponent<Health>().TakeDamage(999, collision.gameObject.GetComponent<Pawn>());
+        }
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
         }
     }
 }
