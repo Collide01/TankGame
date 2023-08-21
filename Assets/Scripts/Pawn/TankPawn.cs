@@ -322,7 +322,7 @@ public class TankPawn : Pawn
     // Calls Mover to move the tank forward
     public override void MoveForward()
     {
-        if (mover != null && !firingLaser)
+        if (mover != null && !firingLaser && grounded)
         {
             mover.Move(transform.forward, moveSpeed * 50);
             if (noiseMaker != null)
@@ -335,7 +335,7 @@ public class TankPawn : Pawn
     // Calls Mover to move the tank backward
     public override void MoveBackward()
     {
-        if (mover != null && !firingLaser)
+        if (mover != null && !firingLaser && grounded)
         {
             mover.Move(-transform.forward, moveSpeed * 50);
             if (noiseMaker != null)
@@ -348,7 +348,7 @@ public class TankPawn : Pawn
     // Calls Mover to rotate the tank clockwise
     public override void Rotate(float setTurnSpeed)
     {
-        if (mover != null && !firingLaser)
+        if (mover != null && !firingLaser && grounded)
         {
             mover.Rotate(setTurnSpeed);
             if (noiseMaker != null)
@@ -360,7 +360,7 @@ public class TankPawn : Pawn
 
     public override void Shoot()
     {
-        if (shootTimer >= fireRate && !firingLaser)
+        if (shootTimer >= fireRate && !firingLaser && grounded)
         {
             shooter.Shoot(shellPrefab, firepointTransform, fireForce, damageDone, shellLifespan);
             shootTimer = 0;
@@ -379,7 +379,7 @@ public class TankPawn : Pawn
 
     public override void SpecialShoot()
     {
-        if (specialShotTimer >= specialChargeTime && !firingLaser)
+        if (specialShotTimer >= specialChargeTime && !firingLaser && grounded)
         {
             switch (specialShotType)
             {

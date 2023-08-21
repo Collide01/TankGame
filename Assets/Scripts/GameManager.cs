@@ -159,11 +159,11 @@ public class GameManager : MonoBehaviour
         }
 
         // Update high score
-        for (int i = 0; i < players.Count; i++)
+        foreach (PlayerController player in players)
         {
-            if (players[i].score > highScore)
+            if (player.score > highScore)
             {
-                highScore = players[i].score;
+                highScore = player.score;
             }
         }
 
