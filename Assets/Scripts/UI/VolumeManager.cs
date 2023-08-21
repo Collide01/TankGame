@@ -6,7 +6,6 @@ using UnityEngine.Audio;
 
 public class VolumeManager : MonoBehaviour
 {
-    public static VolumeManager Instance;
     public AudioMixer audioMixer;
     public Slider musicVolumeSlider;
     public Slider soundVolumeSlider;
@@ -22,7 +21,9 @@ public class VolumeManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             musicVolumeSlider.value = GameManager.instance.bgmVolume * 10;
+            OnBGMVolumeChange();
             soundVolumeSlider.value = GameManager.instance.sfxVolume * 10;
+            OnSFXVolumeChange();
             gameModeCheckbox.isOn = GameManager.instance.gameMode;
             mapModeCheckbox.isOn = GameManager.instance.mapMode;
         }
@@ -58,6 +59,8 @@ public class VolumeManager : MonoBehaviour
 
         // Set the volume to the new volume setting
         audioMixer.SetFloat("MusicVolume", newVolume);
+
+        GameManager.instance.SaveGame();
     }
 
     public void OnSFXVolumeChange()
@@ -71,6 +74,8 @@ public class VolumeManager : MonoBehaviour
 
         // Set the volume to the new volume setting
         audioMixer.SetFloat("SFXVolume", newVolume);
+
+        GameManager.instance.SaveGame();
     }
 
     public void OnGameModeChange()

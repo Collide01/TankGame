@@ -13,6 +13,7 @@ public class GameStateChangedEvent : UnityEvent<GameState, GameState>
 public enum GameState { TitleState, OptionsState, VehicleState, GameplayState, GameOverState, Credits, Pause }
 public class GameManager : MonoBehaviour
 {
+    public SaveManager saveManager;
     public GameStateChangedEvent OnGameStateChanged = new GameStateChangedEvent();
     // Instance of GameManager singleton
     [HideInInspector] public static GameManager instance;
@@ -130,6 +131,8 @@ public class GameManager : MonoBehaviour
             // Otherwise, there is already an instance, so destroy this gameObject
             Destroy(gameObject);
         }
+
+        LoadGame();
     }
 
     // Start is called before the first frame update
@@ -181,6 +184,7 @@ public class GameManager : MonoBehaviour
             {
                 ChangeGameState(GameState.GameOverState);
                 Debug.Log("GameOver");
+                SaveGame();
                 transform.GetChild(0).GetComponent<SceneChanger>().ChangeScene("GameOver");
             }
         }
@@ -330,5 +334,21 @@ public class GameManager : MonoBehaviour
         pawns = new List<Pawn>();
         pawnSpawnPoints = new List<PawnSpawnPoint>();
         spawnedObjects = false;
+    }
+
+    public void SaveGame()
+    {
+        if (saveManager != null)
+        {
+            saveManager.SavePlayerPreferences();
+        }
+    }
+
+    public void LoadGame()
+    {
+        if (saveManager != null)
+        {
+            saveManager.LoadPlayerPreferences();
+        }
     }
 }

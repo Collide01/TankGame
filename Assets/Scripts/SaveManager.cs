@@ -12,24 +12,24 @@ public class SaveManager : MonoBehaviour
 
     public void SavePlayerPreferences()
     {
-        PlayerPrefs.SetFloat("BGMVolume", VolumeManager.Instance.bgmVolume);
-        PlayerPrefs.SetFloat("SFXVolume", VolumeManager.Instance.sfxVolume);
+        PlayerPrefs.SetInt("HighScore", GameManager.instance.highScore);
+        PlayerPrefs.SetFloat("BGMVolume",GameManager.instance.bgmVolume);
+        PlayerPrefs.SetFloat("SFXVolume", GameManager.instance.sfxVolume);
     }
 
     public void LoadPlayerPreferences()
     {
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            GameManager.instance.highScore = PlayerPrefs.GetInt("HighScore");
+        }
         if (PlayerPrefs.HasKey("BGMVolume"))
         {
-            VolumeManager.Instance.bgmVolume = PlayerPrefs.GetFloat("BGMVolume");
-            VolumeManager.Instance.musicVolumeSlider.value = VolumeManager.Instance.bgmVolume * 10;
-            VolumeManager.Instance.OnBGMVolumeChange();
+            GameManager.instance.bgmVolume = PlayerPrefs.GetFloat("BGMVolume");
         }
         if (PlayerPrefs.HasKey("SFXVolume"))
         {
-            VolumeManager.Instance.sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
-            VolumeManager.Instance.soundVolumeSlider.value = VolumeManager.Instance.sfxVolume * 10;
-            VolumeManager.Instance.OnSFXVolumeChange();
+            GameManager.instance.sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
         }
-
     }
 }
